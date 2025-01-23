@@ -11,14 +11,14 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * </p>
  */
 @SpringBootApplication
-public class ReaktorIssuesServerApplication {
-
+public class ReaktorIssuesServerApplication
+{
 	/**
 	 * Metodo main que lanza la aplicación Spring en si misma.
 	 * @param args
 	 */
-	public static void main(String[] args) {
+	public static void main(String[] args) 
+	{
 		SpringApplication.run(ReaktorIssuesServerApplication.class, args);
 	}
-
 }

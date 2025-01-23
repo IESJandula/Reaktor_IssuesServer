@@ -17,8 +17,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class FiltroBusqueda {
-
+public class FiltroBusqueda 
+{
     /**
      * Atributo - Número de aula para filtrar las incidencias.
      * 

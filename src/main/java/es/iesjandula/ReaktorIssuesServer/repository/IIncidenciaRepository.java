@@ -11,7 +11,6 @@ import org.springframework.stereotype.Repository;
 import es.iesjandula.ReaktorIssuesServer.dto.IncidenciaDTO;
 import es.iesjandula.ReaktorIssuesServer.entity.IncidenciaEntity;
 import es.iesjandula.ReaktorIssuesServer.entity.IncidenciaEntityId;
-import lombok.Data;
 
 /**
  * Repositorio para gestionar incidencias en la base de datos.

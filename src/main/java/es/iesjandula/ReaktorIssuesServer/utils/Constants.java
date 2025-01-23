@@ -30,6 +30,7 @@ public final class Constants
 	public static final String ESTADO_CANCELADA = "CANCELADA";
 	public static final String ESTADO_RESUELTA = "RESUELTA";
 	public static final String ESTADO_PENDIENTE = "PENDIENTE";
+	public static final String ESTADO_DUPLICADA = "DUPLICADA";
 
 	// Constantes para minimos de longitud de campo.
 		// Descripcion de la incidencia.

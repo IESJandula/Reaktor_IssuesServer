@@ -1,5 +1,6 @@
 package es.iesjandula.ReaktorIssuesServer.dto;
 
+
 import java.util.Date;
 
 import es.iesjandula.ReaktorIssuesServer.utils.Constants;
@@ -20,7 +21,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class IncidenciaDTO 
+public class CrearIncidenciaDTO 
 {
 	/**
 	 * Atribtuo - Aula en la que se da la incidencia.
@@ -43,15 +44,6 @@ public class IncidenciaDTO
 	 */
 	private String descripcionIncidencia;
 
-	/**
-	 * Atribtuo - Define el estado de la incidencia. 
-	 */
-	private String estadoIncidencia;
-	
-	/**
-	 * Atribtuo - Comentario relacionado a la solucion de la incidencia.
-	 */
-	private String comentario;
 
 	public void setDescripcionIncidencia(String descripcionIncidencia)
     {
