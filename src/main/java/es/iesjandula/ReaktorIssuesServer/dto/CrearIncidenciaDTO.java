@@ -51,10 +51,6 @@ public class CrearIncidenciaDTO
         {
             throw new IllegalArgumentException("La descripcion del tic no debería de estar vacía");
         }
-        if(descripcionIncidencia.length() < Constants.MIN_LONG_DESCRIPCION)
-        {
-        	throw new IllegalArgumentException("Deberías de describir mejor la Incidencia");
-        }
         this.descripcionIncidencia = descripcionIncidencia;
     }
 	
