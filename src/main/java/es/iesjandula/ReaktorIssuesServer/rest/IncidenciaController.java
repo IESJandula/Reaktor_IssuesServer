@@ -257,16 +257,7 @@ public class IncidenciaController
 	        IncidenciaEntity nuevaIncidencia = new IncidenciaEntity();
 	        nuevaIncidencia.setNumeroAula(crearIncidenciaDTO.getNumeroAula());
 	        nuevaIncidencia.setCorreoDocente(crearIncidenciaDTO.getCorreoDocente());
-	        
-	        if (crearIncidenciaDTO.getFechaIncidencia() == null)
-	        {
-	        	nuevaIncidencia.setFechaIncidencia(new Date());
-	        }
-	        else
-	        {
-	        	nuevaIncidencia.setFechaIncidencia(crearIncidenciaDTO.getFechaIncidencia());
-	        }
-	        
+	        nuevaIncidencia.setFechaIncidencia(new Date());
 	        nuevaIncidencia.setDescripcionIncidencia(crearIncidenciaDTO.getDescripcionIncidencia());
 	        nuevaIncidencia.setEstadoIncidencia(Constants.ESTADO_PENDIENTE);
 	        
