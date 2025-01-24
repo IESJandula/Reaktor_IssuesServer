@@ -104,12 +104,6 @@ public class IncidenciaController
 	{
 		try
 		{
-			// Mensaje informativo a devolver
-			ResponseEntity<String> response = null;
-			
-			// Loguea los parametros recibidos para fines diagnosticos.
-			log.debug("Parametros recibidos:\n" + incidenciaDTO.toString());
-				
 			// Si el numero de aula está vacio o solo espacios.
 			if (incidenciaDTO.getNumeroAula() == null || incidenciaDTO.getNumeroAula().isBlank())
 			{
@@ -139,7 +133,7 @@ public class IncidenciaController
 			
 			
 			// Si no existe la incidencia
-			if(!iIncidenciaRepository.existsByCompositeId(incidenciaDTO.getNumeroAula(), 
+			if(!this.iIncidenciaRepository.existsByCompositeId(incidenciaDTO.getNumeroAula(), 
 			incidenciaDTO.getCorreoDocente(), incidenciaDTO.getFechaIncidencia()))
 			{
 				// Objeto fecha de hoy
@@ -161,30 +155,24 @@ public class IncidenciaController
 			
 				// Información para indicar la inicializacion de la incidencia
 				log.debug("DEBUG: Objeto incidencia inicializado correctamente:\n " + incidencia.toString());
-
-				// Informe de incidencia creada con exito
-				response = ResponseEntity.status(HttpStatus.CREATED).body("EXITO: Incidencia creada con exito");
 			}
 			else
 			{
 				// Mapear la incidencia
-				incidencia = incidenciaMapper.mapToEntity(incidenciaDTO);
+				incidencia = this.incidenciaMapper.mapToEntity(incidenciaDTO);
 				
 				// Información para indicar la inicializacion de la incidencia
 				log.debug("DEBUG: Objeto incidencia inicializado correctamente:\n " + incidencia.toString());
-				
-				// Informe de incidencia actualizada con exito
-				response = ResponseEntity.status(HttpStatus.OK).body("EXITO: Incidencia actualizada con exito");
 			}
 			
 			// Finalmente guarda la incidencia en la BBDD.
-			iIncidenciaRepository.saveAndFlush(incidencia);
+			this.iIncidenciaRepository.saveAndFlush(incidencia);
 
 			// Información para registro.
 			log.info("INFO: El objeto guardado en base de datos es:\n" + incidencia.toString());
 
-			// Informe a cliente del exito de la operacion.
-			return response;
+			// Informe de incidencia creada con exito
+			return ResponseEntity.ok().build() ;
 
 		}
 		catch (IssuesServerError exception)
@@ -262,7 +250,7 @@ public class IncidenciaController
 	        nuevaIncidencia.setEstadoIncidencia(Constants.ESTADO_PENDIENTE);
 	        
 	        // Guardar la incidencia en la base de datos
-	        iIncidenciaRepository.saveAndFlush(nuevaIncidencia);
+	        this.iIncidenciaRepository.saveAndFlush(nuevaIncidencia);
 
 	        // Loguea el éxito de la operación
 	        log.info("Incidencia creada correctamente: {}", nuevaIncidencia);
@@ -311,7 +299,7 @@ public class IncidenciaController
 			IncidenciaEntity inEntity = incidenciaMapper.mapToEntity(dto);
 
 			// Verifica si la incidencia existe en la base de datos.
-			if (!(iIncidenciaRepository.existsByCompositeId(inEntity.getNumeroAula(), inEntity.getCorreoDocente(),
+			if (!(this.iIncidenciaRepository.existsByCompositeId(inEntity.getNumeroAula(), inEntity.getCorreoDocente(),
 					inEntity.getFechaIncidencia())))
 			{
 				// Si no existe la incidencia, responde con 404.
@@ -324,7 +312,7 @@ public class IncidenciaController
 			}
 
 			// Elimina la incidencia de la base de datos y loguea la accion.
-			iIncidenciaRepository.delete(inEntity);
+			this.iIncidenciaRepository.delete(inEntity);
 			log.info("INFO: Incidencia eliminada con exito.\n{}", inEntity.toString());
 
 			// Respuesta HTTP de objeto borrado con exito.

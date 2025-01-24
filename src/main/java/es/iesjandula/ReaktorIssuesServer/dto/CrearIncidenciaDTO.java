@@ -3,7 +3,6 @@ package es.iesjandula.ReaktorIssuesServer.dto;
 
 import java.util.Date;
 
-import es.iesjandula.ReaktorIssuesServer.utils.Constants;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -44,14 +43,16 @@ public class CrearIncidenciaDTO
 	 */
 	private String descripcionIncidencia;
 
-
+	/**
+	 * @param descripcionIncidencia descripción de la incidencia
+	 */
 	public void setDescripcionIncidencia(String descripcionIncidencia)
     {
         if (descripcionIncidencia == null || descripcionIncidencia.trim().isEmpty())
         {
             throw new IllegalArgumentException("La descripcion del tic no debería de estar vacía");
         }
+        
         this.descripcionIncidencia = descripcionIncidencia;
     }
-	
 }

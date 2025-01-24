@@ -26,14 +26,14 @@ package es.iesjandula.ReaktorIssuesServer.utils;
 public final class Constants
 {
 	// Constantes de estado de incidencias
+	public static final String ESTADO_PENDIENTE = "PENDIENTE";
 	public static final String ESTADO_EN_PROGRESO = "EN PROGRESO";
 	public static final String ESTADO_CANCELADA = "CANCELADA";
 	public static final String ESTADO_RESUELTA = "RESUELTA";
-	public static final String ESTADO_PENDIENTE = "PENDIENTE";
 	public static final String ESTADO_DUPLICADA = "DUPLICADA";
 
 	// Constantes para minimos de longitud de campo.
 		// Descripcion de la incidencia.
-		public static final int MIN_LONG_DESCRIPCION = 15;
+	public static final int MIN_LONG_DESCRIPCION = 15;
 
 }
