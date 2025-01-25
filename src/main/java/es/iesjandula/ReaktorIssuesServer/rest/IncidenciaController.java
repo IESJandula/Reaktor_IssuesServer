@@ -1,14 +1,17 @@
 package es.iesjandula.ReaktorIssuesServer.rest;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -16,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 import es.iesjandula.ReaktorIssuesServer.dto.CrearIncidenciaDTO;
 import es.iesjandula.ReaktorIssuesServer.dto.FiltroBusqueda;
 import es.iesjandula.ReaktorIssuesServer.dto.IncidenciaDTO;
+import es.iesjandula.ReaktorIssuesServer.dto.ModificarIncidenciaDto;
 import es.iesjandula.ReaktorIssuesServer.entity.IncidenciaEntity;
 import es.iesjandula.ReaktorIssuesServer.mappers.IncidenciaMapper;
 import es.iesjandula.ReaktorIssuesServer.repository.IIncidenciaRepository;
@@ -97,96 +101,64 @@ public class IncidenciaController
 	 *         Si ocurre un error inesperado, se devuelve un
 	 *         código de estado 500 (Internal Server Error) con un mensaje de error.
 	 */
-	@RequestMapping(method = RequestMethod.PUT)
-	public ResponseEntity<?> crearActualizarIncidencia(
-			@RequestHeader(value = "correo-docente", required = true) String correoDocente,
-			@RequestBody(required = true) IncidenciaDTO incidenciaDTO)
+	@PutMapping("/modificar_incidencia")
+	public ResponseEntity<?> modificarIncidencia(@RequestBody ModificarIncidenciaDto modificarIncidenciaDto)
 	{
-		try
-		{
-			// Si el numero de aula está vacio o solo espacios.
-			if (incidenciaDTO.getNumeroAula() == null || incidenciaDTO.getNumeroAula().isBlank())
-			{
-				String errorString = "El número de aula es obligatorio.";
-				log.error(errorString);
-				throw new IssuesServerError(4, errorString);
-				
-				//log.error("Intento de creación de incidencia con numero de aula no definido");
-				//return ResponseEntity.badRequest().body("ERROR: Numero de aula nulo o vacio.");
-			}
+	    try
+	    {
+	        // Validación del estado
+	        if (modificarIncidenciaDto.getEstado() == null || modificarIncidenciaDto.getEstado().isBlank()) 
+	        {
+	            String errorString = "El estado es obligatorio.";
+	            log.error(errorString);
+	            throw new IssuesServerError(4, errorString);
+	        }
 
-			// Si la descripcion está vacia o solo espacios.
-			if (incidenciaDTO.getDescripcionIncidencia() == null
-					|| incidenciaDTO.getDescripcionIncidencia().isBlank())
-			{
-				String errorString = "La descripción de la incidencia es obligatoria";
-	        	log.error(errorString);
-	        	throw new IssuesServerError(5, errorString);
-				
-				//log.error("Intento de creación de incidencia con descripcion no definida o menor de 15 caracteres");
-				//return ResponseEntity.badRequest().body("ERROR: Descripcion de incidencia nulo, vacio o menor de 15 caracteres.");
-			}
-			
-			// Si tanto numero de aula como descripción han sido definidos correctamente
-			// creamos nueva incidencia.
-			IncidenciaEntity incidencia = new IncidenciaEntity();
-			
-			
-			// Si no existe la incidencia
-			if(!this.iIncidenciaRepository.existsByCompositeId(incidenciaDTO.getNumeroAula(), 
-			incidenciaDTO.getCorreoDocente(), incidenciaDTO.getFechaIncidencia()))
-			{
-				// Objeto fecha de hoy
-				Date today = new Date();
-				
-				// Primer parametro  - Numero de Aula
-				// Segundo parametro - Correo del Docente
-				// Tercer parametro  - Fecha Actual
-				// Cuarto parametro  - Descripcion
-				// Quinto parametro  - Estado(Pendiente)
-				// Sexto parametro   - Comentario(Vacío)
-				incidencia = new IncidenciaEntity(
-						incidenciaDTO.getNumeroAula(), 
-						correoDocente, 
-						today,
-						incidenciaDTO.getDescripcionIncidencia(),
-						Constants.ESTADO_PENDIENTE,
-						"");
-			
-				// Información para indicar la inicializacion de la incidencia
-				log.debug("DEBUG: Objeto incidencia inicializado correctamente:\n " + incidencia.toString());
-			}
-			else
-			{
-				// Mapear la incidencia
-				incidencia = this.incidenciaMapper.mapToEntity(incidenciaDTO);
-				
-				// Información para indicar la inicializacion de la incidencia
-				log.debug("DEBUG: Objeto incidencia inicializado correctamente:\n " + incidencia.toString());
-			}
-			
-			// Finalmente guarda la incidencia en la BBDD.
-			this.iIncidenciaRepository.saveAndFlush(incidencia);
+	        // Validación del comentario
+	        if (modificarIncidenciaDto.getComentario() == null || modificarIncidenciaDto.getComentario().isBlank()) 
+	        {
+	            String errorString = "El comentario de la incidencia es obligatorio.";
+	            log.error(errorString);
+	            throw new IssuesServerError(5, errorString);
+	        }
 
-			// Información para registro.
-			log.info("INFO: El objeto guardado en base de datos es:\n" + incidencia.toString());
+	        // Buscar la incidencia en la base de datos
+	        IncidenciaEntity incidencia = this.iIncidenciaRepository.findByNumeroAulaAndCorreoDocenteAndFechaIncidencia(modificarIncidenciaDto.getNumeroAula(),modificarIncidenciaDto.getCorreoDocente(),modificarIncidenciaDto.getFechaIncidencia());
 
-			// Informe de incidencia creada con exito
-			return ResponseEntity.ok().build() ;
+	        if (incidencia == null) 
+	        {
+	            String errorString = "La incidencia no existe.";
+	            log.error(errorString);
+	            throw new IssuesServerError(6, errorString);
+	        }
 
-		}
-		catch (IssuesServerError exception)
-		{
-			return ResponseEntity.status(400).body(exception.getMapError()) ;
-		}
-		catch (Exception createIssueException)
-		{
-			String message = "Excepción capturada en crearIncidencia(): {}" + createIssueException.getMessage();
-			log.error(message, createIssueException);
-	        IssuesServerError serverError = new IssuesServerError(0, message, createIssueException);
-			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(serverError.getMapError());
-		}
+	        // Actualizar los campos de estado y comentario
+	        incidencia.setEstadoIncidencia(modificarIncidenciaDto.getEstado());
+	        incidencia.setComentario(modificarIncidenciaDto.getComentario());
+
+	        // Guardar los cambios en la base de datos
+	        this.iIncidenciaRepository.saveAndFlush(incidencia);
+
+	        // Información para registro
+	        log.info("La incidencia ha sido modificada correctamente: " + incidencia.toString());
+
+	        // Respuesta exitosa
+	        return ResponseEntity.ok().build();
+
+	    } 
+	    catch (IssuesServerError exception) 
+	    {
+	        return ResponseEntity.status(400).body(exception.getMapError());
+	    } 
+	    catch (Exception exception) 
+	    {
+	        String message = "Excepción capturada en modificarIncidencia(): " + exception.getMessage();
+	        log.error(message, exception);
+	        IssuesServerError serverError = new IssuesServerError(0, message, exception);
+	        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(serverError.getMapError());
+	    }
 	}
+
 
 	/**
 	 * Maneja las solicitudes GET para buscar incidencias en base a los criterios
@@ -272,6 +244,43 @@ public class IncidenciaController
 	        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(serverError.getMapError());
 	    }
 	}
+	
+	@GetMapping("/listadoEstado")
+	public ResponseEntity<?> listadoEstadoIncidencias()
+	{
+	    try
+	    {
+	        List<String> listaEstadoIncidencias = new ArrayList<>();
+	        
+	        // Agregar estados de incidencias
+	        listaEstadoIncidencias.add(Constants.ESTADO_PENDIENTE);
+	        listaEstadoIncidencias.add(Constants.ESTADO_RESUELTA);
+	        listaEstadoIncidencias.add(Constants.ESTADO_CANCELADA);
+	        listaEstadoIncidencias.add(Constants.ESTADO_DUPLICADA);
+	        listaEstadoIncidencias.add(Constants.ESTADO_EN_PROGRESO);
+	        
+	        // Responder con la lista de estados
+	        return ResponseEntity.ok().body(listaEstadoIncidencias);
+
+	    }
+	    catch (IllegalArgumentException illegalArgumentException)
+	    {
+	        String message = "ERROR: Error en parámetros del objeto recibido en listadoEstadoIncidencias().\n" + illegalArgumentException.getMessage();
+	        log.error(message, illegalArgumentException);
+	        IssuesServerError serverError = new IssuesServerError(1, message, illegalArgumentException);
+	        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(serverError.getMapError());
+	    }
+	    catch (Exception exception)
+	    {
+	        String message = "Error inesperado en listadoEstadoIncidencias().\nMensaje de error: " + exception.getMessage();
+	        log.error(message, exception);
+	        IssuesServerError serverError = new IssuesServerError(4, message, exception);
+	        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(serverError.getMapError());
+	    }
+	}
+
+	
+	
 	
 
 	/**

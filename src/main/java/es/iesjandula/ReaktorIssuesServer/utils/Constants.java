@@ -32,8 +32,5 @@ public final class Constants
 	public static final String ESTADO_RESUELTA = "RESUELTA";
 	public static final String ESTADO_DUPLICADA = "DUPLICADA";
 
-	// Constantes para minimos de longitud de campo.
-		// Descripcion de la incidencia.
-	public static final int MIN_LONG_DESCRIPCION = 15;
 
 }

@@ -57,7 +57,7 @@ public interface IIncidenciaRepository extends JpaRepository<IncidenciaEntity, I
 	 * @param estadoIncidencia        El estado de la incidencia.
 	 * @param comentario               Parte del comentario de la incidencia a buscar.
 	 * @return                        Una lista de objetos {@link IncidenciaDTO} que cumplen con los criterios de búsqueda.
-	 */
+	 
 	@Query("SELECT new es.iesjandula.ReaktorIssuesServer.dto.IncidenciaDTO("
 			+ "e.numeroAula, e.correoDocente, e.fechaIncidencia, e.descripcionIncidencia, e.estadoIncidencia, e.comentario"
 			+ ") " + "FROM IncidenciaEntity e WHERE ( :numeroAula IS NULL OR e.numeroAula = :numeroAula ) AND "
@@ -73,7 +73,9 @@ public interface IIncidenciaRepository extends JpaRepository<IncidenciaEntity, I
 			@Param("fechaFin")Date fechaFin, 
 			@Param("descripcionIncidencia")String descripcionIncidencia, 
 			@Param("estadoIncidencia")String estadoIncidencia, 
-			@Param("comentario")String comentario );
+			@Param("comentario")String comentario );*/
 	
-
+	// Busca la incidencia por número de aula, correo docente y fecha de incidencia
+    IncidenciaEntity findByNumeroAulaAndCorreoDocenteAndFechaIncidencia(String numeroAula, String correoDocente, Date fechaIncidencia);
+    
 }

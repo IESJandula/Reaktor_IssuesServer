@@ -82,6 +82,4 @@ public class IncidenciaEntity
 	@Column(columnDefinition = "TEXT")
 	private String comentario;
 	
-	
-
 }
