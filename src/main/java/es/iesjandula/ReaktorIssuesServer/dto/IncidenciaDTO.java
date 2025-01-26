@@ -1,8 +1,7 @@
 package es.iesjandula.ReaktorIssuesServer.dto;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
-import es.iesjandula.ReaktorIssuesServer.utils.Constants;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -22,35 +21,11 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class IncidenciaDTO 
 {
-	/**
-	 * Atribtuo - Aula en la que se da la incidencia.
-	 */
-	private String numeroAula;
 
-	/**
-	 * Atribtuo - Correo del docente que informa de la incidencia.
-	 */
-	private String correoDocente;
-
-	/**
-	 * Atribtuo - Fecha de creación de la señalación.
-	 */
-	//@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy HH:mm:ss")
-	private Date fechaIncidencia;
-
-	/**
-	 * Atribtuo - Detalla el problema relacionado a la incidencia.
-	 */
-	private String descripcionIncidencia;
-
-	/**
-	 * Atribtuo - Define el estado de la incidencia. 
-	 */
-	private String estadoIncidencia;
-	
-	/**
-	 * Atribtuo - Comentario relacionado a la solucion de la incidencia.
-	 */
-	private String comentario;
+    private String numeroAula;
+    private String correoDocente;
+    private LocalDateTime  fechaIncidencia;
+    private String estado;
+    private String comentario;
 
 }

@@ -1,13 +1,14 @@
 package es.iesjandula.ReaktorIssuesServer.rest;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -21,7 +22,6 @@ import es.iesjandula.ReaktorIssuesServer.dto.FiltroBusqueda;
 import es.iesjandula.ReaktorIssuesServer.dto.IncidenciaDTO;
 import es.iesjandula.ReaktorIssuesServer.dto.ModificarIncidenciaDto;
 import es.iesjandula.ReaktorIssuesServer.entity.IncidenciaEntity;
-import es.iesjandula.ReaktorIssuesServer.mappers.IncidenciaMapper;
 import es.iesjandula.ReaktorIssuesServer.repository.IIncidenciaRepository;
 import es.iesjandula.ReaktorIssuesServer.utils.Constants;
 import es.iesjandula.ReaktorIssuesServer.utils.IssuesServerError;
@@ -73,10 +73,6 @@ public class IncidenciaController
 	// Auto-inyeccion de repositorio.
 	private IIncidenciaRepository iIncidenciaRepository;
 
-	@Autowired
-	// Auto-inyeccion de mapeador de dto-entidad.
-	IncidenciaMapper incidenciaMapper;
-
 	/**
 	 * Crear o actualizar una incidencia en el sistema.
 	 * 
@@ -123,7 +119,12 @@ public class IncidenciaController
 	        }
 
 	        // Buscar la incidencia en la base de datos
-	        IncidenciaEntity incidencia = this.iIncidenciaRepository.findByNumeroAulaAndCorreoDocenteAndFechaIncidencia(modificarIncidenciaDto.getNumeroAula(),modificarIncidenciaDto.getCorreoDocente(),modificarIncidenciaDto.getFechaIncidencia());
+	        IncidenciaEntity incidencia = this.iIncidenciaRepository.EncontrarByNumeroAulaAndCorreoDocenteAndFechaIncidencia(modificarIncidenciaDto.getNumeroAula(),modificarIncidenciaDto.getCorreoDocente(),modificarIncidenciaDto.getFechaIncidencia());
+	        log.info("Datos recibidos: numeroAula={}, correoDocente={}, fechaIncidencia={}",
+	        	    modificarIncidenciaDto.getNumeroAula(),
+	        	    modificarIncidenciaDto.getCorreoDocente(),
+	        	    modificarIncidenciaDto.getFechaIncidencia()
+	        	);
 
 	        if (incidencia == null) 
 	        {
@@ -217,7 +218,7 @@ public class IncidenciaController
 	        IncidenciaEntity nuevaIncidencia = new IncidenciaEntity();
 	        nuevaIncidencia.setNumeroAula(crearIncidenciaDTO.getNumeroAula());
 	        nuevaIncidencia.setCorreoDocente(crearIncidenciaDTO.getCorreoDocente());
-	        nuevaIncidencia.setFechaIncidencia(new Date());
+	        nuevaIncidencia.setFechaIncidencia(LocalDateTime.now());
 	        nuevaIncidencia.setDescripcionIncidencia(crearIncidenciaDTO.getDescripcionIncidencia());
 	        nuevaIncidencia.setEstadoIncidencia(Constants.ESTADO_PENDIENTE);
 	        
@@ -280,7 +281,14 @@ public class IncidenciaController
 	}
 
 	
-	
+	@GetMapping("/listarIncidenciasOrdenadas") 	public ResponseEntity<?> listarIncidenciasOrdenadasPorFecha() { 	 
+		try { 	       
+		List<IncidenciaEntity> incidencias = iIncidenciaRepository.buscarIncidenciaOrdenadaFecha(); 	   
+		log.info("INFO: Incidencias listadas con exito"); 	        
+		return ResponseEntity.ok(incidencias); 	    
+		}catch (Exception findIssueException) 		
+		{ 			
+		String message = "Error inesperado en listarIncidenciasOrdenadasPorFecha() .\nMensaje de error: " + findIssueException.getMessage(); 			log.error(message, findIssueException); 			IssuesServerError serverError = new IssuesServerError(5, message, findIssueException); 			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(serverError.getMapError()); 		} 	}
 	
 
 	/**
@@ -299,30 +307,28 @@ public class IncidenciaController
 	 *         (INTERNAL_SERVER_ERROR) en caso de errores inesperados.
 	 * @throws IllegalArgumentException si los parámetros del DTO son inválidos.
 	 */
-	@RequestMapping(method = RequestMethod.DELETE)
-	public ResponseEntity<?> borraIncidencia(@RequestBody(required = true) IncidenciaDTO dto)
+	@DeleteMapping("/borrarIncidencia")
+	public ResponseEntity<?> borraIncidencia(@RequestBody(required = true) IncidenciaDTO incidenciaDTO)
 	{
 		try
 		{
-			// Mapea el DTO recibido a la entidad de Incidencia y controla parametros NULL.
-			IncidenciaEntity inEntity = incidenciaMapper.mapToEntity(dto);
+			 IncidenciaEntity incidencia = this.iIncidenciaRepository.EncontrarByNumeroAulaAndCorreoDocenteAndFechaIncidencia(incidenciaDTO.getNumeroAula(),incidenciaDTO.getCorreoDocente(),incidenciaDTO.getFechaIncidencia());
+		        log.info("Datos recibidos: numeroAula={}, correoDocente={}, fechaIncidencia={}",
+		        		incidenciaDTO.getNumeroAula(),
+		        	    incidenciaDTO.getCorreoDocente(),
+		        	    incidenciaDTO.getFechaIncidencia()
+		        	);
 
-			// Verifica si la incidencia existe en la base de datos.
-			if (!(this.iIncidenciaRepository.existsByCompositeId(inEntity.getNumeroAula(), inEntity.getCorreoDocente(),
-					inEntity.getFechaIncidencia())))
-			{
-				// Si no existe la incidencia, responde con 404.
-				//return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Incidencia no encontrada.");
-				
-				String errorString = "Incidencia no encontrada." ;
-	        	
-	        	log.error(errorString) ;
-	        	throw new IssuesServerError(6, errorString) ;
-			}
+		        if (incidencia == null) 
+		        {
+		            String errorString = "La incidencia no existe.";
+		            log.error(errorString);
+		            throw new IssuesServerError(6, errorString);
+		        }
 
 			// Elimina la incidencia de la base de datos y loguea la accion.
-			this.iIncidenciaRepository.delete(inEntity);
-			log.info("INFO: Incidencia eliminada con exito.\n{}", inEntity.toString());
+			this.iIncidenciaRepository.delete(incidencia);
+			log.info("INFO: Incidencia eliminada con exito.\n{}", incidencia.toString());
 
 			// Respuesta HTTP de objeto borrado con exito.
 			return ResponseEntity.status(HttpStatus.NO_CONTENT).body("INFO:Incidencia eliminada con exito.");

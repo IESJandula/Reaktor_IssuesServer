@@ -1,6 +1,6 @@
 package es.iesjandula.ReaktorIssuesServer.dto;
 
-import java.sql.Date;
+import java.time.LocalDateTime;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -14,7 +14,7 @@ public class ModificarIncidenciaDto
 
     private String numeroAula;
     private String correoDocente;
-    private Date fechaIncidencia;
+    private LocalDateTime  fechaIncidencia;
     private String estado;
     private String comentario;
 }

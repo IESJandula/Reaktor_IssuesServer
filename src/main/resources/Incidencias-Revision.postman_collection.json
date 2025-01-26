@@ -1,0 +1,184 @@
+{
+	"info": {
+		"_postman_id": "0bf862d9-cf72-499b-9a65-809b52eb1467",
+		"name": "Incidencias-Revision",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "38446508"
+	},
+	"item": [
+		{
+			"name": "listadoEstado",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8881/incidencias/listadoEstado",
+					"host": [
+						"localhost"
+					],
+					"port": "8881",
+					"path": [
+						"incidencias",
+						"listadoEstado"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "listarIncidenciasOrdenadas",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8881/incidencias/listarIncidenciasOrdenadas",
+					"host": [
+						"localhost"
+					],
+					"port": "8881",
+					"path": [
+						"incidencias",
+						"listarIncidenciasOrdenadas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear incidencia 1",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "correo-docente",
+						"value": "pablo@gmail.com",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"numeroAula\":\"0.5\",\n    \"correoDocente\":\"pablo@gmail.com\",\n    \"descripcionIncidencia\":\"La pizarra electronica no enciende.\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8881/incidencias/crear_incidencia",
+					"host": [
+						"localhost"
+					],
+					"port": "8881",
+					"path": [
+						"incidencias",
+						"crear_incidencia"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear incidencia ejemplo 2",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "correo-docente",
+						"value": "pablo@gmail.com",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"numeroAula\":\"1.1\",\n    \"correoDocente\":\"pablo@gmail.com\",\n    \"descripcionIncidencia\":\"hdmi roto \"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8881/incidencias/crear_incidencia",
+					"host": [
+						"localhost"
+					],
+					"port": "8881",
+					"path": [
+						"incidencias",
+						"crear_incidencia"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Borrado de incidencia (ejemplo)",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"numeroAula\":\"0.5\",\n    \"correoDocente\":\"pablo@gmail.com\",\n    \"descripcionIncidencia\":\"La pizarra electronica no enciende.\",\n      \"comentario\":\"\",\n        \"estadoIncidencia\": \"PENDIENTE\",\n          \"fechaIncidencia\": \"2025-01-26T19:32:50.876729\"\n}\n\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8881/incidencias/borrarIncidencia",
+					"host": [
+						"localhost"
+					],
+					"port": "8881",
+					"path": [
+						"incidencias",
+						"borrarIncidencia"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "modificar_incidencia",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "    {\r\n        \"numeroAula\": \"1.1\",\r\n        \"correoDocente\": \"pablo@gmail.com\",\r\n        \"fechaIncidencia\": \"2025-01-26T19:32:53.866091\",\r\n        \"descripcionIncidencia\":\"hdmi roto \",\r\n        \"estado\": \"CANCELADA\",\r\n        \"comentario\": \"robado\"\r\n\r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8881/incidencias/modificar_incidencia",
+					"host": [
+						"localhost"
+					],
+					"port": "8881",
+					"path": [
+						"incidencias",
+						"modificar_incidencia"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

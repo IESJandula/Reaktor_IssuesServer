@@ -1,6 +1,6 @@
 package es.iesjandula.ReaktorIssuesServer.entity;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -54,7 +54,7 @@ public class IncidenciaEntity
      * Este atributo es parte del identificador compuesto de la incidencia.
      */
 	@Id
-	private Date fechaIncidencia;
+	private LocalDateTime fechaIncidencia;
 	
     /**
      * Atributo - Detalla el problema relacionado a la incidencia.

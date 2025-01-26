@@ -1,5 +1,8 @@
 package es.iesjandula.ReaktorIssuesServer.repository;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
 import java.util.Date;
 import java.util.List;
 
@@ -23,6 +26,14 @@ import es.iesjandula.ReaktorIssuesServer.entity.IncidenciaEntityId;
 public interface IIncidenciaRepository extends JpaRepository<IncidenciaEntity, IncidenciaEntityId>
 {
 	
+	/**Busca incidencias en la base de datos ordenado por fecha de forma decreciente  	 
+	 * <p> 	 
+	 *  	 
+	 * @return lista de Incidencias ordenadas por fecha de forma decreciente  	 
+	 */ 	
+	@Query("SELECT i FROM IncidenciaEntity i ORDER BY i.fechaIncidencia ASC") 	
+	public List<IncidenciaEntity> buscarIncidenciaOrdenadaFecha();
+	
 	/**
 	 * Verifica si existe una incidencia en la base de datos utilizando un identificador compuesto.
 	 * <p>
@@ -35,7 +46,7 @@ public interface IIncidenciaRepository extends JpaRepository<IncidenciaEntity, I
 	 * @param fechaIncidencia     La fecha y hora en que ocurrió la incidencia.
 	 * @return                   {@code true} si la incidencia existe en la base de datos; {@code false} en caso contrario.
 	 */
-	public default boolean existsByCompositeId( String numeroAula, String correoDocente, Date fechaIncidencia  ) {
+	public default boolean existsByCompositeId( String numeroAula, String correoDocente, LocalDateTime fechaIncidencia  ) {
 		IncidenciaEntityId id = new IncidenciaEntityId( numeroAula, correoDocente, fechaIncidencia  );
 		return this.existsById(id);
 	}
@@ -74,8 +85,10 @@ public interface IIncidenciaRepository extends JpaRepository<IncidenciaEntity, I
 			@Param("descripcionIncidencia")String descripcionIncidencia, 
 			@Param("estadoIncidencia")String estadoIncidencia, 
 			@Param("comentario")String comentario );*/
-	
-	// Busca la incidencia por número de aula, correo docente y fecha de incidencia
-    IncidenciaEntity findByNumeroAulaAndCorreoDocenteAndFechaIncidencia(String numeroAula, String correoDocente, Date fechaIncidencia);
-    
+	@Query("SELECT i FROM IncidenciaEntity i WHERE i.numeroAula = :numeroAula AND i.correoDocente = :correoDocente AND i.fechaIncidencia = :fechaIncidencia")
+	IncidenciaEntity EncontrarByNumeroAulaAndCorreoDocenteAndFechaIncidencia(
+	    @Param("numeroAula") String numeroAula, 
+	    @Param("correoDocente") String correoDocente, 
+	    @Param("fechaIncidencia") LocalDateTime fechaIncidencia
+	);
 }
