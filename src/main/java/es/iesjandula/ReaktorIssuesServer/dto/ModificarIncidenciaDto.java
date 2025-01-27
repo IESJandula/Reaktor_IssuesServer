@@ -15,6 +15,6 @@ public class ModificarIncidenciaDto
     private String numeroAula;
     private String correoDocente;
     private LocalDateTime  fechaIncidencia;
-    private String estado;
+    private String estadoIncidencia;
     private String comentario;
 }

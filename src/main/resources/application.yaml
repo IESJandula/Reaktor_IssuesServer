@@ -13,7 +13,7 @@ spring:
       enabled: true # Habilita explícitamente la codificación HTTP.
       force: true # Obliga a que todas las respuestas sean UTF-8.
 server:
-  port: 8881 # Define el puerto en el que se ejecutará la aplicación Spring Boot.
+  port: 8888 # Define el puerto en el que se ejecutará la aplicación Spring Boot.
 
 logging: # Sección de configuración del sistema de logs en Spring.
   level:

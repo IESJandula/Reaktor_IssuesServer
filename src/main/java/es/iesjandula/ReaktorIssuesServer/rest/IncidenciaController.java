@@ -102,8 +102,9 @@ public class IncidenciaController
 	{
 	    try
 	    {
+	    	log.info(modificarIncidenciaDto.toString());
 	        // Validación del estado
-	        if (modificarIncidenciaDto.getEstado() == null || modificarIncidenciaDto.getEstado().isBlank()) 
+	        if (modificarIncidenciaDto.getEstadoIncidencia() == null || modificarIncidenciaDto.getEstadoIncidencia().isBlank()) 
 	        {
 	            String errorString = "El estado es obligatorio.";
 	            log.error(errorString);
@@ -134,7 +135,7 @@ public class IncidenciaController
 	        }
 
 	        // Actualizar los campos de estado y comentario
-	        incidencia.setEstadoIncidencia(modificarIncidenciaDto.getEstado());
+	        incidencia.setEstadoIncidencia(modificarIncidenciaDto.getEstadoIncidencia());
 	        incidencia.setComentario(modificarIncidenciaDto.getComentario());
 
 	        // Guardar los cambios en la base de datos
@@ -144,7 +145,7 @@ public class IncidenciaController
 	        log.info("La incidencia ha sido modificada correctamente: " + incidencia.toString());
 
 	        // Respuesta exitosa
-	        return ResponseEntity.ok().build();
+	        return ResponseEntity.ok("Incidencia modificada con éxito\"}");
 
 	    } 
 	    catch (IssuesServerError exception) 

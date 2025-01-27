@@ -4597,3 +4597,523 @@ IncidenciaEntity(numeroAula=0.5, correoDocente=pablo@gmail.com, fechaIncidencia=
 2025-01-26T19:42:15.066+01:00  INFO 18708 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8881 (http) with context path '/'
 2025-01-26T19:42:15.069+01:00  INFO 18708 --- [restartedMain] e.i.R.ReaktorIssuesServerApplication     : Started ReaktorIssuesServerApplication in 0.536 seconds (process running for 582.836)
 2025-01-26T19:42:15.069+01:00  INFO 18708 --- [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2025-01-27T10:57:48.371+01:00  INFO 14476 --- [restartedMain] e.i.R.ReaktorIssuesServerApplication     : Starting ReaktorIssuesServerApplication using Java 23 with PID 14476 (C:\Users\2DAM enrique\Documents\Reaktor_IssuesServer\target\classes started by 2DAM enrique in C:\Users\2DAM enrique\Documents\Reaktor_IssuesServer)
+2025-01-27T10:57:48.374+01:00  INFO 14476 --- [restartedMain] e.i.R.ReaktorIssuesServerApplication     : No active profile set, falling back to 1 default profile: "default"
+2025-01-27T10:57:48.435+01:00  INFO 14476 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2025-01-27T10:57:48.435+01:00  INFO 14476 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2025-01-27T10:57:49.129+01:00  INFO 14476 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-01-27T10:57:49.197+01:00  INFO 14476 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 58 ms. Found 1 JPA repository interface.
+2025-01-27T10:57:49.840+01:00  INFO 14476 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8881 (http)
+2025-01-27T10:57:49.858+01:00  INFO 14476 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-01-27T10:57:49.859+01:00  INFO 14476 --- [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.30]
+2025-01-27T10:57:49.916+01:00  INFO 14476 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-01-27T10:57:49.916+01:00  INFO 14476 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1480 ms
+2025-01-27T10:57:50.121+01:00  INFO 14476 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-01-27T10:57:50.213+01:00  INFO 14476 --- [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.5.3.Final
+2025-01-27T10:57:50.263+01:00  INFO 14476 --- [restartedMain] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-01-27T10:57:50.650+01:00  INFO 14476 --- [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-01-27T10:57:50.686+01:00  INFO 14476 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-01-27T10:57:51.060+01:00  INFO 14476 --- [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@273a2e4f
+2025-01-27T10:57:51.062+01:00  INFO 14476 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-01-27T10:57:51.984+01:00  INFO 14476 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-01-27T10:57:52.079+01:00  INFO 14476 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-01-27T10:57:52.331+01:00  INFO 14476 --- [restartedMain] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2025-01-27T10:57:52.845+01:00  WARN 14476 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-01-27T10:57:53.230+01:00  INFO 14476 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2025-01-27T10:57:53.275+01:00  INFO 14476 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8881 (http) with context path '/'
+2025-01-27T10:57:53.286+01:00  INFO 14476 --- [restartedMain] e.i.R.ReaktorIssuesServerApplication     : Started ReaktorIssuesServerApplication in 5.42 seconds (process running for 5.954)
+2025-01-27T11:34:49.169+01:00  WARN 14476 --- [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=35m28s260ms858µs900ns).
+2025-01-27T11:40:00.187+01:00  INFO 12720 --- [restartedMain] e.i.R.ReaktorIssuesServerApplication     : Starting ReaktorIssuesServerApplication using Java 23 with PID 12720 (C:\Users\2DAM enrique\Documents\Reaktor_IssuesServer\target\classes started by 2DAM enrique in C:\Users\2DAM enrique\Documents\Reaktor_IssuesServer)
+2025-01-27T11:40:00.190+01:00  INFO 12720 --- [restartedMain] e.i.R.ReaktorIssuesServerApplication     : No active profile set, falling back to 1 default profile: "default"
+2025-01-27T11:40:00.256+01:00  INFO 12720 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2025-01-27T11:40:00.256+01:00  INFO 12720 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2025-01-27T11:40:01.001+01:00  INFO 12720 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-01-27T11:40:01.072+01:00  INFO 12720 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 61 ms. Found 1 JPA repository interface.
+2025-01-27T11:40:01.728+01:00  INFO 12720 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8888 (http)
+2025-01-27T11:40:01.748+01:00  INFO 12720 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-01-27T11:40:01.748+01:00  INFO 12720 --- [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.30]
+2025-01-27T11:40:01.805+01:00  INFO 12720 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-01-27T11:40:01.806+01:00  INFO 12720 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1549 ms
+2025-01-27T11:40:01.984+01:00  INFO 12720 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-01-27T11:40:02.049+01:00  INFO 12720 --- [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.5.3.Final
+2025-01-27T11:40:02.090+01:00  INFO 12720 --- [restartedMain] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-01-27T11:40:02.431+01:00  INFO 12720 --- [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-01-27T11:40:02.464+01:00  INFO 12720 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-01-27T11:40:02.821+01:00  INFO 12720 --- [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@4445a54a
+2025-01-27T11:40:02.823+01:00  INFO 12720 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-01-27T11:40:03.664+01:00  INFO 12720 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-01-27T11:40:03.732+01:00  INFO 12720 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-01-27T11:40:03.992+01:00  INFO 12720 --- [restartedMain] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2025-01-27T11:40:04.522+01:00  WARN 12720 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-01-27T11:40:04.850+01:00  INFO 12720 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2025-01-27T11:40:04.892+01:00  INFO 12720 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8888 (http) with context path '/'
+2025-01-27T11:40:04.902+01:00  INFO 12720 --- [restartedMain] e.i.R.ReaktorIssuesServerApplication     : Started ReaktorIssuesServerApplication in 5.226 seconds (process running for 5.733)
+2025-01-27T11:42:30.643+01:00  INFO 12720 --- [http-nio-8888-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-01-27T11:42:30.643+01:00  INFO 12720 --- [http-nio-8888-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-01-27T11:42:30.644+01:00  INFO 12720 --- [http-nio-8888-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2025-01-27T11:42:30.861+01:00  INFO 12720 --- [http-nio-8888-exec-2] e.i.R.rest.IncidenciaController          : Incidencia creada correctamente: IncidenciaEntity(numeroAula=12, correoDocente=epergar1209@g.educaand.es, fechaIncidencia=2025-01-27T11:42:30.759728400, descripcionIncidencia=No funciona el proyector
+, estadoIncidencia=PENDIENTE, comentario=null)
+2025-01-27T11:54:06.635+01:00  INFO 12720 --- [http-nio-8888-exec-5] e.i.R.rest.IncidenciaController          : INFO: Incidencias listadas con exito
+2025-01-27T11:54:49.545+01:00  INFO 12720 --- [http-nio-8888-exec-7] e.i.R.rest.IncidenciaController          : Incidencia creada correctamente: IncidenciaEntity(numeroAula=0.5, correoDocente=pablo@gmail.com, fechaIncidencia=2025-01-27T11:54:49.536449500, descripcionIncidencia=La pizarra electronica no enciende., estadoIncidencia=PENDIENTE, comentario=null)
+2025-01-27T11:55:14.280+01:00  INFO 12720 --- [http-nio-8888-exec-8] e.i.R.rest.IncidenciaController          : Datos recibidos: numeroAula=1.1, correoDocente=pablo@gmail.com, fechaIncidencia=2025-01-26T19:32:53.866091
+2025-01-27T11:55:14.281+01:00 ERROR 12720 --- [http-nio-8888-exec-8] e.i.R.rest.IncidenciaController          : La incidencia no existe.
+2025-01-27T11:55:23.812+01:00  INFO 12720 --- [http-nio-8888-exec-10] e.i.R.rest.IncidenciaController          : Incidencia creada correctamente: IncidenciaEntity(numeroAula=1.1, correoDocente=pablo@gmail.com, fechaIncidencia=2025-01-27T11:55:23.802749500, descripcionIncidencia=hdmi roto , estadoIncidencia=PENDIENTE, comentario=null)
+2025-01-27T11:55:27.774+01:00  INFO 12720 --- [http-nio-8888-exec-1] e.i.R.rest.IncidenciaController          : Datos recibidos: numeroAula=1.1, correoDocente=pablo@gmail.com, fechaIncidencia=2025-01-26T19:32:53.866091
+2025-01-27T11:55:27.774+01:00 ERROR 12720 --- [http-nio-8888-exec-1] e.i.R.rest.IncidenciaController          : La incidencia no existe.
+2025-01-27T11:55:40.309+01:00  INFO 12720 --- [http-nio-8888-exec-3] e.i.R.rest.IncidenciaController          : Incidencia creada correctamente: IncidenciaEntity(numeroAula=1.1, correoDocente=pablo@gmail.com, fechaIncidencia=2025-01-27T11:55:40.302217300, descripcionIncidencia=hdmi roto , estadoIncidencia=PENDIENTE, comentario=null)
+2025-01-27T11:56:22.478+01:00  INFO 12720 --- [http-nio-8888-exec-4] e.i.R.rest.IncidenciaController          : Datos recibidos: numeroAula=1.1, correoDocente=pablo@gmail.com, fechaIncidencia=2025-01-26T19:32:53.866091
+2025-01-27T11:56:22.478+01:00 ERROR 12720 --- [http-nio-8888-exec-4] e.i.R.rest.IncidenciaController          : La incidencia no existe.
+2025-01-27T11:58:15.273+01:00  INFO 12720 --- [http-nio-8888-exec-6] e.i.R.rest.IncidenciaController          : INFO: Incidencias listadas con exito
+2025-01-27T12:39:21.086+01:00  INFO 12720 --- [http-nio-8888-exec-8] e.i.R.rest.IncidenciaController          : INFO: Incidencias listadas con exito
+2025-01-27T12:39:36.582+01:00  WARN 12720 --- [http-nio-8888-exec-9] o.s.web.servlet.PageNotFound             : No mapping for OPTIONS /incidencias/modificarIncidencias
+2025-01-27T12:39:36.584+01:00  WARN 12720 --- [http-nio-8888-exec-9] o.s.web.servlet.PageNotFound             : No endpoint OPTIONS /incidencias/modificarIncidencias.
+2025-01-27T12:39:46.966+01:00  WARN 12720 --- [http-nio-8888-exec-10] o.s.web.servlet.PageNotFound             : No mapping for OPTIONS /incidencias/modificarIncidencias
+2025-01-27T12:39:46.967+01:00  WARN 12720 --- [http-nio-8888-exec-10] o.s.web.servlet.PageNotFound             : No endpoint OPTIONS /incidencias/modificarIncidencias.
+2025-01-27T12:40:00.764+01:00  INFO 12720 --- [http-nio-8888-exec-1] e.i.R.rest.IncidenciaController          : INFO: Incidencias listadas con exito
+2025-01-27T12:40:05.012+01:00  INFO 12720 --- [http-nio-8888-exec-2] e.i.R.rest.IncidenciaController          : INFO: Incidencias listadas con exito
+2025-01-27T12:40:28.438+01:00  INFO 12720 --- [http-nio-8888-exec-4] e.i.R.rest.IncidenciaController          : Incidencia creada correctamente: IncidenciaEntity(numeroAula=12, correoDocente=epergar1209@g.educaand.es, fechaIncidencia=2025-01-27T12:40:28.429699200, descripcionIncidencia=fafsdfsf, estadoIncidencia=PENDIENTE, comentario=null)
+2025-01-27T12:40:33.132+01:00  INFO 12720 --- [http-nio-8888-exec-5] e.i.R.rest.IncidenciaController          : Incidencia creada correctamente: IncidenciaEntity(numeroAula=12, correoDocente=epergar1209@g.educaand.es, fechaIncidencia=2025-01-27T12:40:33.124419100, descripcionIncidencia=3fafafadfa, estadoIncidencia=PENDIENTE, comentario=null)
+2025-01-27T12:40:38.820+01:00  INFO 12720 --- [http-nio-8888-exec-6] e.i.R.rest.IncidenciaController          : Incidencia creada correctamente: IncidenciaEntity(numeroAula=12, correoDocente=epergar1209@g.educaand.es, fechaIncidencia=2025-01-27T12:40:38.812605200, descripcionIncidencia=sfafafasfafsafafsaf, estadoIncidencia=PENDIENTE, comentario=null)
+2025-01-27T12:40:43.071+01:00  INFO 12720 --- [http-nio-8888-exec-7] e.i.R.rest.IncidenciaController          : INFO: Incidencias listadas con exito
+2025-01-27T12:41:43.067+01:00  WARN 12720 --- [http-nio-8888-exec-8] o.s.web.servlet.PageNotFound             : No mapping for OPTIONS /incidencias/modificarIncidencias
+2025-01-27T12:41:43.068+01:00  WARN 12720 --- [http-nio-8888-exec-8] o.s.web.servlet.PageNotFound             : No endpoint OPTIONS /incidencias/modificarIncidencias.
+2025-01-27T12:42:25.690+01:00  INFO 12720 --- [http-nio-8888-exec-9] e.i.R.rest.IncidenciaController          : INFO: Incidencias listadas con exito
+2025-01-27T12:42:38.577+01:00  WARN 12720 --- [http-nio-8888-exec-10] o.s.web.servlet.PageNotFound             : No mapping for OPTIONS /incidencias/modificarIncidencia
+2025-01-27T12:42:38.577+01:00  WARN 12720 --- [http-nio-8888-exec-10] o.s.web.servlet.PageNotFound             : No endpoint OPTIONS /incidencias/modificarIncidencia.
+2025-01-27T12:43:04.763+01:00  INFO 12720 --- [http-nio-8888-exec-1] e.i.R.rest.IncidenciaController          : INFO: Incidencias listadas con exito
+2025-01-27T12:43:13.209+01:00 ERROR 12720 --- [http-nio-8888-exec-3] e.i.R.rest.IncidenciaController          : El estado es obligatorio.
+2025-01-27T12:43:13.213+01:00  WARN 12720 --- [http-nio-8888-exec-3] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.HttpMediaTypeNotAcceptableException: No acceptable representation]
+2025-01-27T12:44:31.734+01:00  INFO 12720 --- [http-nio-8888-exec-5] e.i.R.rest.IncidenciaController          : INFO: Incidencias listadas con exito
+2025-01-27T12:45:33.564+01:00  INFO 12720 --- [http-nio-8888-exec-7] e.i.R.rest.IncidenciaController          : INFO: Incidencias listadas con exito
+2025-01-27T12:46:27.801+01:00  INFO 12720 --- [http-nio-8888-exec-8] e.i.R.rest.IncidenciaController          : INFO: Incidencias listadas con exito
+2025-01-27T12:46:50.807+01:00  INFO 12720 --- [http-nio-8888-exec-9] e.i.R.rest.IncidenciaController          : INFO: Incidencias listadas con exito
+2025-01-27T12:46:52.255+01:00  INFO 12720 --- [http-nio-8888-exec-10] e.i.R.rest.IncidenciaController          : INFO: Incidencias listadas con exito
+2025-01-27T12:47:17.368+01:00  INFO 12720 --- [http-nio-8888-exec-1] e.i.R.rest.IncidenciaController          : INFO: Incidencias listadas con exito
+2025-01-27T12:48:25.963+01:00  INFO 12720 --- [http-nio-8888-exec-3] e.i.R.rest.IncidenciaController          : INFO: Incidencias listadas con exito
+2025-01-27T12:48:56.556+01:00 ERROR 12720 --- [http-nio-8888-exec-4] e.i.R.rest.IncidenciaController          : El estado es obligatorio.
+2025-01-27T12:48:56.557+01:00  WARN 12720 --- [http-nio-8888-exec-4] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.HttpMediaTypeNotAcceptableException: No acceptable representation]
+2025-01-27T12:50:15.302+01:00 ERROR 12720 --- [http-nio-8888-exec-6] e.i.R.rest.IncidenciaController          : El estado es obligatorio.
+2025-01-27T12:50:15.302+01:00  WARN 12720 --- [http-nio-8888-exec-6] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.HttpMediaTypeNotAcceptableException: No acceptable representation]
+2025-01-27T12:54:49.682+01:00  INFO 12720 --- [http-nio-8888-exec-8] e.i.R.rest.IncidenciaController          : INFO: Incidencias listadas con exito
+2025-01-27T12:59:44.717+01:00  INFO 12720 --- [http-nio-8888-exec-1] e.i.R.rest.IncidenciaController          : INFO: Incidencias listadas con exito
+2025-01-27T13:02:54.805+01:00  INFO 12720 --- [http-nio-8888-exec-3] e.i.R.rest.IncidenciaController          : INFO: Incidencias listadas con exito
+2025-01-27T13:03:45.977+01:00 ERROR 12720 --- [http-nio-8888-exec-4] e.i.R.rest.IncidenciaController          : El estado es obligatorio.
+2025-01-27T13:03:45.977+01:00  WARN 12720 --- [http-nio-8888-exec-4] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.HttpMediaTypeNotAcceptableException: No acceptable representation]
+2025-01-27T13:08:14.101+01:00  INFO 12720 --- [http-nio-8888-exec-7] e.i.R.rest.IncidenciaController          : Datos recibidos: numeroAula=1.1, correoDocente=pablo@gmail.com, fechaIncidencia=2025-01-27T11:54:49.536450
+2025-01-27T13:08:14.101+01:00 ERROR 12720 --- [http-nio-8888-exec-7] e.i.R.rest.IncidenciaController          : La incidencia no existe.
+2025-01-27T13:08:26.125+01:00  INFO 12720 --- [http-nio-8888-exec-9] e.i.R.rest.IncidenciaController          : Datos recibidos: numeroAula=0.5, correoDocente=pablo@gmail.com, fechaIncidencia=2025-01-27T11:54:49.536450
+2025-01-27T13:08:26.139+01:00  INFO 12720 --- [http-nio-8888-exec-9] e.i.R.rest.IncidenciaController          : La incidencia ha sido modificada correctamente: IncidenciaEntity(numeroAula=0.5, correoDocente=pablo@gmail.com, fechaIncidencia=2025-01-27T11:54:49.536450, descripcionIncidencia=La pizarra electronica no enciende., estadoIncidencia=CANCELADA, comentario=robado)
+2025-01-27T13:08:38.538+01:00  INFO 12720 --- [http-nio-8888-exec-10] e.i.R.rest.IncidenciaController          : INFO: Incidencias listadas con exito
+2025-01-27T13:08:55.603+01:00 ERROR 12720 --- [http-nio-8888-exec-1] e.i.R.rest.IncidenciaController          : El estado es obligatorio.
+2025-01-27T13:08:55.604+01:00  WARN 12720 --- [http-nio-8888-exec-1] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.HttpMediaTypeNotAcceptableException: No acceptable representation]
+2025-01-27T13:08:58.539+01:00 ERROR 12720 --- [http-nio-8888-exec-2] e.i.R.rest.IncidenciaController          : El estado es obligatorio.
+2025-01-27T13:08:58.540+01:00  WARN 12720 --- [http-nio-8888-exec-2] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.HttpMediaTypeNotAcceptableException: No acceptable representation]
+2025-01-27T13:09:45.545+01:00 ERROR 12720 --- [http-nio-8888-exec-4] e.i.R.rest.IncidenciaController          : El estado es obligatorio.
+2025-01-27T13:09:45.546+01:00  WARN 12720 --- [http-nio-8888-exec-4] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.HttpMediaTypeNotAcceptableException: No acceptable representation]
+2025-01-27T13:10:37.150+01:00 ERROR 12720 --- [http-nio-8888-exec-5] e.i.R.rest.IncidenciaController          : El estado es obligatorio.
+2025-01-27T13:10:37.151+01:00  WARN 12720 --- [http-nio-8888-exec-5] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.HttpMediaTypeNotAcceptableException: No acceptable representation]
+2025-01-27T13:11:08.530+01:00 ERROR 12720 --- [http-nio-8888-exec-6] e.i.R.rest.IncidenciaController          : El estado es obligatorio.
+2025-01-27T13:11:08.531+01:00  WARN 12720 --- [http-nio-8888-exec-6] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.HttpMediaTypeNotAcceptableException: No acceptable representation]
+2025-01-27T13:11:12.602+01:00 ERROR 12720 --- [http-nio-8888-exec-7] e.i.R.rest.IncidenciaController          : El estado es obligatorio.
+2025-01-27T13:11:12.603+01:00  WARN 12720 --- [http-nio-8888-exec-7] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.HttpMediaTypeNotAcceptableException: No acceptable representation]
+2025-01-27T13:11:13.571+01:00 ERROR 12720 --- [http-nio-8888-exec-8] e.i.R.rest.IncidenciaController          : El estado es obligatorio.
+2025-01-27T13:11:13.572+01:00  WARN 12720 --- [http-nio-8888-exec-8] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.HttpMediaTypeNotAcceptableException: No acceptable representation]
+2025-01-27T13:11:16.907+01:00 ERROR 12720 --- [http-nio-8888-exec-9] e.i.R.rest.IncidenciaController          : El estado es obligatorio.
+2025-01-27T13:11:16.908+01:00  WARN 12720 --- [http-nio-8888-exec-9] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.HttpMediaTypeNotAcceptableException: No acceptable representation]
+2025-01-27T13:11:17.083+01:00 ERROR 12720 --- [http-nio-8888-exec-10] e.i.R.rest.IncidenciaController          : El estado es obligatorio.
+2025-01-27T13:11:17.083+01:00  WARN 12720 --- [http-nio-8888-exec-10] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.HttpMediaTypeNotAcceptableException: No acceptable representation]
+2025-01-27T13:11:17.275+01:00 ERROR 12720 --- [http-nio-8888-exec-1] e.i.R.rest.IncidenciaController          : El estado es obligatorio.
+2025-01-27T13:11:17.276+01:00  WARN 12720 --- [http-nio-8888-exec-1] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.HttpMediaTypeNotAcceptableException: No acceptable representation]
+2025-01-27T13:11:17.523+01:00 ERROR 12720 --- [http-nio-8888-exec-2] e.i.R.rest.IncidenciaController          : El estado es obligatorio.
+2025-01-27T13:11:17.524+01:00  WARN 12720 --- [http-nio-8888-exec-2] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.HttpMediaTypeNotAcceptableException: No acceptable representation]
+2025-01-27T13:11:27.540+01:00 ERROR 12720 --- [http-nio-8888-exec-3] e.i.R.rest.IncidenciaController          : El estado es obligatorio.
+2025-01-27T13:11:27.541+01:00  WARN 12720 --- [http-nio-8888-exec-3] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.HttpMediaTypeNotAcceptableException: No acceptable representation]
+2025-01-27T13:11:27.692+01:00 ERROR 12720 --- [http-nio-8888-exec-4] e.i.R.rest.IncidenciaController          : El estado es obligatorio.
+2025-01-27T13:11:27.692+01:00  WARN 12720 --- [http-nio-8888-exec-4] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.HttpMediaTypeNotAcceptableException: No acceptable representation]
+2025-01-27T13:11:27.860+01:00 ERROR 12720 --- [http-nio-8888-exec-5] e.i.R.rest.IncidenciaController          : El estado es obligatorio.
+2025-01-27T13:11:27.861+01:00  WARN 12720 --- [http-nio-8888-exec-5] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.HttpMediaTypeNotAcceptableException: No acceptable representation]
+2025-01-27T13:11:28.044+01:00 ERROR 12720 --- [http-nio-8888-exec-6] e.i.R.rest.IncidenciaController          : El estado es obligatorio.
+2025-01-27T13:11:28.045+01:00  WARN 12720 --- [http-nio-8888-exec-6] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.HttpMediaTypeNotAcceptableException: No acceptable representation]
+2025-01-27T13:11:28.324+01:00 ERROR 12720 --- [http-nio-8888-exec-7] e.i.R.rest.IncidenciaController          : El estado es obligatorio.
+2025-01-27T13:11:28.325+01:00  WARN 12720 --- [http-nio-8888-exec-7] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.HttpMediaTypeNotAcceptableException: No acceptable representation]
+2025-01-27T13:11:39.413+01:00 ERROR 12720 --- [http-nio-8888-exec-8] e.i.R.rest.IncidenciaController          : El estado es obligatorio.
+2025-01-27T13:11:39.413+01:00  WARN 12720 --- [http-nio-8888-exec-8] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.HttpMediaTypeNotAcceptableException: No acceptable representation]
+2025-01-27T13:11:41.070+01:00 ERROR 12720 --- [http-nio-8888-exec-9] e.i.R.rest.IncidenciaController          : El estado es obligatorio.
+2025-01-27T13:11:41.070+01:00  WARN 12720 --- [http-nio-8888-exec-9] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.HttpMediaTypeNotAcceptableException: No acceptable representation]
+2025-01-27T13:11:55.975+01:00 ERROR 12720 --- [http-nio-8888-exec-10] e.i.R.rest.IncidenciaController          : El estado es obligatorio.
+2025-01-27T13:11:55.976+01:00  WARN 12720 --- [http-nio-8888-exec-10] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.HttpMediaTypeNotAcceptableException: No acceptable representation]
+2025-01-27T13:14:49.311+01:00  INFO 12720 --- [http-nio-8888-exec-2] e.i.R.rest.IncidenciaController          : INFO: Incidencias listadas con exito
+2025-01-27T13:14:52.789+01:00 ERROR 12720 --- [http-nio-8888-exec-4] e.i.R.rest.IncidenciaController          : El estado es obligatorio.
+2025-01-27T13:14:52.790+01:00  WARN 12720 --- [http-nio-8888-exec-4] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.HttpMediaTypeNotAcceptableException: No acceptable representation]
+2025-01-27T13:16:11.663+01:00  INFO 12720 --- [http-nio-8888-exec-6] e.i.R.rest.IncidenciaController          : INFO: Incidencias listadas con exito
+2025-01-27T13:16:15.492+01:00  INFO 12720 --- [http-nio-8888-exec-7] e.i.R.rest.IncidenciaController          : INFO: Incidencias listadas con exito
+2025-01-27T13:16:21.022+01:00 ERROR 12720 --- [http-nio-8888-exec-8] e.i.R.rest.IncidenciaController          : El estado es obligatorio.
+2025-01-27T13:16:21.023+01:00  WARN 12720 --- [http-nio-8888-exec-8] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.HttpMediaTypeNotAcceptableException: No acceptable representation]
+2025-01-27T13:17:35.984+01:00  INFO 12720 --- [File Watcher] rtingClassPathChangeChangedEventListener : Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification)
+2025-01-27T13:17:35.996+01:00  INFO 12720 --- [Thread-5] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-01-27T13:17:35.999+01:00  INFO 12720 --- [Thread-5] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-01-27T13:17:36.002+01:00  INFO 12720 --- [Thread-5] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-01-27T13:17:36.102+01:00  INFO 12720 --- [restartedMain] e.i.R.ReaktorIssuesServerApplication     : Starting ReaktorIssuesServerApplication using Java 23 with PID 12720 (C:\Users\2DAM enrique\Documents\Reaktor_IssuesServer\target\classes started by 2DAM enrique in C:\Users\2DAM enrique\Documents\Reaktor_IssuesServer)
+2025-01-27T13:17:36.103+01:00  INFO 12720 --- [restartedMain] e.i.R.ReaktorIssuesServerApplication     : No active profile set, falling back to 1 default profile: "default"
+2025-01-27T13:17:36.305+01:00  INFO 12720 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-01-27T13:17:36.318+01:00  INFO 12720 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 12 ms. Found 1 JPA repository interface.
+2025-01-27T13:17:36.443+01:00  INFO 12720 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8888 (http)
+2025-01-27T13:17:36.445+01:00  INFO 12720 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-01-27T13:17:36.446+01:00  INFO 12720 --- [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.30]
+2025-01-27T13:17:36.473+01:00  INFO 12720 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-01-27T13:17:36.473+01:00  INFO 12720 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 367 ms
+2025-01-27T13:17:36.532+01:00  INFO 12720 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-01-27T13:17:36.536+01:00  INFO 12720 --- [restartedMain] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-01-27T13:17:36.547+01:00  INFO 12720 --- [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-01-27T13:17:36.549+01:00  INFO 12720 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Starting...
+2025-01-27T13:17:36.562+01:00  INFO 12720 --- [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-2 - Added connection com.mysql.cj.jdbc.ConnectionImpl@6bcbb829
+2025-01-27T13:17:36.562+01:00  INFO 12720 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Start completed.
+2025-01-27T13:17:36.617+01:00  INFO 12720 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-01-27T13:17:36.645+01:00  INFO 12720 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-01-27T13:17:36.756+01:00  WARN 12720 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-01-27T13:17:36.874+01:00  INFO 12720 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2025-01-27T13:17:36.886+01:00  INFO 12720 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8888 (http) with context path '/'
+2025-01-27T13:17:36.894+01:00  INFO 12720 --- [restartedMain] e.i.R.ReaktorIssuesServerApplication     : Started ReaktorIssuesServerApplication in 0.829 seconds (process running for 5857.724)
+2025-01-27T13:17:36.896+01:00  INFO 12720 --- [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2025-01-27T13:17:43.960+01:00  INFO 12720 --- [http-nio-8888-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-01-27T13:17:43.960+01:00  INFO 12720 --- [http-nio-8888-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-01-27T13:17:43.960+01:00  INFO 12720 --- [http-nio-8888-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 0 ms
+2025-01-27T13:17:43.967+01:00  INFO 12720 --- [http-nio-8888-exec-1] e.i.R.rest.IncidenciaController          : ModificarIncidenciaDto(numeroAula=0.5, correoDocente=pablo@gmail.com, fechaIncidencia=2025-01-27T11:54:49.536450, estado=null, comentario=robado)
+2025-01-27T13:17:43.967+01:00 ERROR 12720 --- [http-nio-8888-exec-1] e.i.R.rest.IncidenciaController          : El estado es obligatorio.
+2025-01-27T13:17:43.969+01:00  WARN 12720 --- [http-nio-8888-exec-1] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.HttpMediaTypeNotAcceptableException: No acceptable representation]
+2025-01-27T13:18:11.482+01:00  INFO 12720 --- [http-nio-8888-exec-3] e.i.R.rest.IncidenciaController          : ModificarIncidenciaDto(numeroAula=0.5, correoDocente=pablo@gmail.com, fechaIncidencia=2025-01-27T11:54:49.536450, estado=null, comentario=sustraidpo)
+2025-01-27T13:18:11.482+01:00 ERROR 12720 --- [http-nio-8888-exec-3] e.i.R.rest.IncidenciaController          : El estado es obligatorio.
+2025-01-27T13:18:11.482+01:00  WARN 12720 --- [http-nio-8888-exec-3] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.HttpMediaTypeNotAcceptableException: No acceptable representation]
+2025-01-27T13:18:58.207+01:00  INFO 12720 --- [http-nio-8888-exec-4] e.i.R.rest.IncidenciaController          : ModificarIncidenciaDto(numeroAula=0.5, correoDocente=pablo@gmail.com, fechaIncidencia=2025-01-27T11:54:49.536450, estado=null, comentario=pendiente)
+2025-01-27T13:18:58.207+01:00 ERROR 12720 --- [http-nio-8888-exec-4] e.i.R.rest.IncidenciaController          : El estado es obligatorio.
+2025-01-27T13:18:58.207+01:00  WARN 12720 --- [http-nio-8888-exec-4] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.HttpMediaTypeNotAcceptableException: No acceptable representation]
+2025-01-27T13:20:44.554+01:00  INFO 12720 --- [File Watcher] rtingClassPathChangeChangedEventListener : Restarting due to 2 class path changes (0 additions, 0 deletions, 2 modifications)
+2025-01-27T13:20:44.563+01:00  INFO 12720 --- [Thread-7] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-01-27T13:20:44.563+01:00  INFO 12720 --- [Thread-7] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Shutdown initiated...
+2025-01-27T13:20:44.566+01:00  INFO 12720 --- [Thread-7] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Shutdown completed.
+2025-01-27T13:20:44.658+01:00  INFO 12720 --- [restartedMain] e.i.R.ReaktorIssuesServerApplication     : Starting ReaktorIssuesServerApplication using Java 23 with PID 12720 (C:\Users\2DAM enrique\Documents\Reaktor_IssuesServer\target\classes started by 2DAM enrique in C:\Users\2DAM enrique\Documents\Reaktor_IssuesServer)
+2025-01-27T13:20:44.659+01:00  INFO 12720 --- [restartedMain] e.i.R.ReaktorIssuesServerApplication     : No active profile set, falling back to 1 default profile: "default"
+2025-01-27T13:20:44.825+01:00  INFO 12720 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-01-27T13:20:44.837+01:00  INFO 12720 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 11 ms. Found 1 JPA repository interface.
+2025-01-27T13:20:44.906+01:00  INFO 12720 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8888 (http)
+2025-01-27T13:20:44.907+01:00  INFO 12720 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-01-27T13:20:44.907+01:00  INFO 12720 --- [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.30]
+2025-01-27T13:20:44.930+01:00  INFO 12720 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-01-27T13:20:44.931+01:00  INFO 12720 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 270 ms
+2025-01-27T13:20:44.966+01:00  INFO 12720 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-01-27T13:20:44.971+01:00  INFO 12720 --- [restartedMain] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-01-27T13:20:44.981+01:00  INFO 12720 --- [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-01-27T13:20:44.982+01:00  INFO 12720 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-3 - Starting...
+2025-01-27T13:20:44.994+01:00  INFO 12720 --- [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-3 - Added connection com.mysql.cj.jdbc.ConnectionImpl@2daeaa5e
+2025-01-27T13:20:44.995+01:00  INFO 12720 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-3 - Start completed.
+2025-01-27T13:20:45.037+01:00  INFO 12720 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-01-27T13:20:45.066+01:00  INFO 12720 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-01-27T13:20:45.139+01:00  WARN 12720 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-01-27T13:20:45.221+01:00  INFO 12720 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2025-01-27T13:20:45.231+01:00  INFO 12720 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8888 (http) with context path '/'
+2025-01-27T13:20:45.234+01:00  INFO 12720 --- [restartedMain] e.i.R.ReaktorIssuesServerApplication     : Started ReaktorIssuesServerApplication in 0.605 seconds (process running for 6046.064)
+2025-01-27T13:20:45.235+01:00  INFO 12720 --- [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2025-01-27T13:21:02.405+01:00  INFO 12720 --- [http-nio-8888-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-01-27T13:21:02.405+01:00  INFO 12720 --- [http-nio-8888-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-01-27T13:21:02.406+01:00  INFO 12720 --- [http-nio-8888-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 0 ms
+2025-01-27T13:21:02.411+01:00 ERROR 12720 --- [http-nio-8888-exec-1] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Handler dispatch failed: java.lang.Error: Unresolved compilation problems: 
+	The method getEstado() is undefined for the type ModificarIncidenciaDto
+	The method getEstado() is undefined for the type ModificarIncidenciaDto
+	The method getEstado() is undefined for the type ModificarIncidenciaDto
+] with root cause
+
+java.lang.Error: Unresolved compilation problems: 
+	The method getEstado() is undefined for the type ModificarIncidenciaDto
+	The method getEstado() is undefined for the type ModificarIncidenciaDto
+	The method getEstado() is undefined for the type ModificarIncidenciaDto
+
+	at es.iesjandula.ReaktorIssuesServer.rest.IncidenciaController.modificarIncidencia(IncidenciaController.java:107) ~[classes/:na]
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580) ~[na:na]
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:255) ~[spring-web-6.1.13.jar:6.1.13]
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:188) ~[spring-web-6.1.13.jar:6.1.13]
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:118) ~[spring-webmvc-6.1.13.jar:6.1.13]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:926) ~[spring-webmvc-6.1.13.jar:6.1.13]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:831) ~[spring-webmvc-6.1.13.jar:6.1.13]
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87) ~[spring-webmvc-6.1.13.jar:6.1.13]
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1089) ~[spring-webmvc-6.1.13.jar:6.1.13]
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:979) ~[spring-webmvc-6.1.13.jar:6.1.13]
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1014) ~[spring-webmvc-6.1.13.jar:6.1.13]
+	at org.springframework.web.servlet.FrameworkServlet.doPut(FrameworkServlet.java:925) ~[spring-webmvc-6.1.13.jar:6.1.13]
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:593) ~[tomcat-embed-core-10.1.30.jar:6.0]
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885) ~[spring-webmvc-6.1.13.jar:6.1.13]
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658) ~[tomcat-embed-core-10.1.30.jar:6.0]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:195) ~[tomcat-embed-core-10.1.30.jar:10.1.30]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) ~[tomcat-embed-core-10.1.30.jar:10.1.30]
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51) ~[tomcat-embed-websocket-10.1.30.jar:10.1.30]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164) ~[tomcat-embed-core-10.1.30.jar:10.1.30]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) ~[tomcat-embed-core-10.1.30.jar:10.1.30]
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201) ~[spring-web-6.1.13.jar:6.1.13]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.1.13.jar:6.1.13]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164) ~[tomcat-embed-core-10.1.30.jar:10.1.30]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) ~[tomcat-embed-core-10.1.30.jar:10.1.30]
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167) ~[tomcat-embed-core-10.1.30.jar:10.1.30]
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90) ~[tomcat-embed-core-10.1.30.jar:10.1.30]
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:483) ~[tomcat-embed-core-10.1.30.jar:10.1.30]
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115) ~[tomcat-embed-core-10.1.30.jar:10.1.30]
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93) ~[tomcat-embed-core-10.1.30.jar:10.1.30]
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74) ~[tomcat-embed-core-10.1.30.jar:10.1.30]
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344) ~[tomcat-embed-core-10.1.30.jar:10.1.30]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:384) ~[tomcat-embed-core-10.1.30.jar:10.1.30]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63) ~[tomcat-embed-core-10.1.30.jar:10.1.30]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:905) ~[tomcat-embed-core-10.1.30.jar:10.1.30]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1741) ~[tomcat-embed-core-10.1.30.jar:10.1.30]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52) ~[tomcat-embed-core-10.1.30.jar:10.1.30]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1190) ~[tomcat-embed-core-10.1.30.jar:10.1.30]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659) ~[tomcat-embed-core-10.1.30.jar:10.1.30]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63) ~[tomcat-embed-core-10.1.30.jar:10.1.30]
+	at java.base/java.lang.Thread.run(Thread.java:1575) ~[na:na]
+
+2025-01-27T13:21:36.838+01:00  INFO 12720 --- [File Watcher] rtingClassPathChangeChangedEventListener : Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification)
+2025-01-27T13:21:36.847+01:00  INFO 12720 --- [Thread-11] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-01-27T13:21:36.848+01:00  INFO 12720 --- [Thread-11] com.zaxxer.hikari.HikariDataSource       : HikariPool-3 - Shutdown initiated...
+2025-01-27T13:21:36.850+01:00  INFO 12720 --- [Thread-11] com.zaxxer.hikari.HikariDataSource       : HikariPool-3 - Shutdown completed.
+2025-01-27T13:21:36.931+01:00  INFO 12720 --- [restartedMain] e.i.R.ReaktorIssuesServerApplication     : Starting ReaktorIssuesServerApplication using Java 23 with PID 12720 (C:\Users\2DAM enrique\Documents\Reaktor_IssuesServer\target\classes started by 2DAM enrique in C:\Users\2DAM enrique\Documents\Reaktor_IssuesServer)
+2025-01-27T13:21:36.932+01:00  INFO 12720 --- [restartedMain] e.i.R.ReaktorIssuesServerApplication     : No active profile set, falling back to 1 default profile: "default"
+2025-01-27T13:21:37.090+01:00  INFO 12720 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-01-27T13:21:37.103+01:00  INFO 12720 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 12 ms. Found 1 JPA repository interface.
+2025-01-27T13:21:37.164+01:00  INFO 12720 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8888 (http)
+2025-01-27T13:21:37.165+01:00  INFO 12720 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-01-27T13:21:37.165+01:00  INFO 12720 --- [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.30]
+2025-01-27T13:21:37.206+01:00  INFO 12720 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-01-27T13:21:37.206+01:00  INFO 12720 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 272 ms
+2025-01-27T13:21:37.235+01:00  INFO 12720 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-01-27T13:21:37.243+01:00  INFO 12720 --- [restartedMain] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-01-27T13:21:37.253+01:00  INFO 12720 --- [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-01-27T13:21:37.254+01:00  INFO 12720 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-4 - Starting...
+2025-01-27T13:21:37.266+01:00  INFO 12720 --- [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-4 - Added connection com.mysql.cj.jdbc.ConnectionImpl@683414af
+2025-01-27T13:21:37.267+01:00  INFO 12720 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-4 - Start completed.
+2025-01-27T13:21:37.305+01:00  INFO 12720 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-01-27T13:21:37.329+01:00  INFO 12720 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-01-27T13:21:37.392+01:00  WARN 12720 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-01-27T13:21:37.458+01:00  INFO 12720 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2025-01-27T13:21:37.466+01:00  INFO 12720 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8888 (http) with context path '/'
+2025-01-27T13:21:37.469+01:00  INFO 12720 --- [restartedMain] e.i.R.ReaktorIssuesServerApplication     : Started ReaktorIssuesServerApplication in 0.563 seconds (process running for 6098.299)
+2025-01-27T13:21:37.470+01:00  INFO 12720 --- [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2025-01-27T13:22:02.367+01:00  INFO 12720 --- [File Watcher] rtingClassPathChangeChangedEventListener : Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification)
+2025-01-27T13:22:02.375+01:00  INFO 12720 --- [Thread-15] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-01-27T13:22:02.376+01:00  INFO 12720 --- [Thread-15] com.zaxxer.hikari.HikariDataSource       : HikariPool-4 - Shutdown initiated...
+2025-01-27T13:22:02.378+01:00  INFO 12720 --- [Thread-15] com.zaxxer.hikari.HikariDataSource       : HikariPool-4 - Shutdown completed.
+2025-01-27T13:22:02.455+01:00  INFO 12720 --- [restartedMain] e.i.R.ReaktorIssuesServerApplication     : Starting ReaktorIssuesServerApplication using Java 23 with PID 12720 (C:\Users\2DAM enrique\Documents\Reaktor_IssuesServer\target\classes started by 2DAM enrique in C:\Users\2DAM enrique\Documents\Reaktor_IssuesServer)
+2025-01-27T13:22:02.455+01:00  INFO 12720 --- [restartedMain] e.i.R.ReaktorIssuesServerApplication     : No active profile set, falling back to 1 default profile: "default"
+2025-01-27T13:22:02.597+01:00  INFO 12720 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-01-27T13:22:02.608+01:00  INFO 12720 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 10 ms. Found 1 JPA repository interface.
+2025-01-27T13:22:02.667+01:00  INFO 12720 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8888 (http)
+2025-01-27T13:22:02.667+01:00  INFO 12720 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-01-27T13:22:02.667+01:00  INFO 12720 --- [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.30]
+2025-01-27T13:22:02.688+01:00  INFO 12720 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-01-27T13:22:02.688+01:00  INFO 12720 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 231 ms
+2025-01-27T13:22:02.718+01:00  INFO 12720 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-01-27T13:22:02.722+01:00  INFO 12720 --- [restartedMain] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-01-27T13:22:02.731+01:00  INFO 12720 --- [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-01-27T13:22:02.732+01:00  INFO 12720 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-5 - Starting...
+2025-01-27T13:22:02.743+01:00  INFO 12720 --- [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-5 - Added connection com.mysql.cj.jdbc.ConnectionImpl@44f8a7de
+2025-01-27T13:22:02.743+01:00  INFO 12720 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-5 - Start completed.
+2025-01-27T13:22:02.785+01:00  INFO 12720 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-01-27T13:22:02.811+01:00  INFO 12720 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-01-27T13:22:02.868+01:00  WARN 12720 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-01-27T13:22:02.922+01:00  INFO 12720 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2025-01-27T13:22:02.930+01:00  INFO 12720 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8888 (http) with context path '/'
+2025-01-27T13:22:02.932+01:00  INFO 12720 --- [restartedMain] e.i.R.ReaktorIssuesServerApplication     : Started ReaktorIssuesServerApplication in 0.501 seconds (process running for 6123.763)
+2025-01-27T13:22:02.933+01:00  INFO 12720 --- [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2025-01-27T13:22:16.973+01:00  INFO 12720 --- [http-nio-8888-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-01-27T13:22:16.974+01:00  INFO 12720 --- [http-nio-8888-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-01-27T13:22:16.974+01:00  INFO 12720 --- [http-nio-8888-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 0 ms
+2025-01-27T13:22:16.979+01:00  INFO 12720 --- [http-nio-8888-exec-2] e.i.R.rest.IncidenciaController          : ModificarIncidenciaDto(numeroAula=0.5, correoDocente=pablo@gmail.com, fechaIncidencia=2025-01-27T11:54:49.536450, estadoIncidencia=EN PROGRESO, comentario=progereso)
+2025-01-27T13:22:16.984+01:00  INFO 12720 --- [http-nio-8888-exec-2] e.i.R.rest.IncidenciaController          : Datos recibidos: numeroAula=0.5, correoDocente=pablo@gmail.com, fechaIncidencia=2025-01-27T11:54:49.536450
+2025-01-27T13:22:16.996+01:00  INFO 12720 --- [http-nio-8888-exec-2] e.i.R.rest.IncidenciaController          : La incidencia ha sido modificada correctamente: IncidenciaEntity(numeroAula=0.5, correoDocente=pablo@gmail.com, fechaIncidencia=2025-01-27T11:54:49.536450, descripcionIncidencia=La pizarra electronica no enciende., estadoIncidencia=EN PROGRESO, comentario=progereso)
+2025-01-27T13:24:58.186+01:00  INFO 12720 --- [http-nio-8888-exec-3] e.i.R.rest.IncidenciaController          : INFO: Incidencias listadas con exito
+2025-01-27T13:25:02.976+01:00  INFO 12720 --- [http-nio-8888-exec-4] e.i.R.rest.IncidenciaController          : ModificarIncidenciaDto(numeroAula=0.5, correoDocente=pablo@gmail.com, fechaIncidencia=2025-01-27T11:54:49.536450, estadoIncidencia=EN PROGRESO, comentario=progereso)
+2025-01-27T13:25:02.979+01:00  INFO 12720 --- [http-nio-8888-exec-4] e.i.R.rest.IncidenciaController          : Datos recibidos: numeroAula=0.5, correoDocente=pablo@gmail.com, fechaIncidencia=2025-01-27T11:54:49.536450
+2025-01-27T13:25:02.981+01:00  INFO 12720 --- [http-nio-8888-exec-4] e.i.R.rest.IncidenciaController          : La incidencia ha sido modificada correctamente: IncidenciaEntity(numeroAula=0.5, correoDocente=pablo@gmail.com, fechaIncidencia=2025-01-27T11:54:49.536450, descripcionIncidencia=La pizarra electronica no enciende., estadoIncidencia=EN PROGRESO, comentario=progereso)
+2025-01-27T13:26:33.466+01:00  INFO 12720 --- [http-nio-8888-exec-6] e.i.R.rest.IncidenciaController          : INFO: Incidencias listadas con exito
+2025-01-27T13:26:40.358+01:00  INFO 12720 --- [http-nio-8888-exec-7] e.i.R.rest.IncidenciaController          : INFO: Incidencias listadas con exito
+2025-01-27T13:26:45.405+01:00  INFO 12720 --- [http-nio-8888-exec-8] e.i.R.rest.IncidenciaController          : ModificarIncidenciaDto(numeroAula=12, correoDocente=epergar1209@g.educaand.es, fechaIncidencia=2025-01-27T12:40:38.812605, estadoIncidencia=PENDIENTE, comentario=null)
+2025-01-27T13:26:45.405+01:00 ERROR 12720 --- [http-nio-8888-exec-8] e.i.R.rest.IncidenciaController          : El comentario de la incidencia es obligatorio.
+2025-01-27T13:26:45.407+01:00  WARN 12720 --- [http-nio-8888-exec-8] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.HttpMediaTypeNotAcceptableException: No acceptable representation]
+2025-01-27T13:27:35.628+01:00  INFO 12720 --- [http-nio-8888-exec-9] e.i.R.rest.IncidenciaController          : INFO: Incidencias listadas con exito
+2025-01-27T13:27:43.089+01:00  INFO 12720 --- [http-nio-8888-exec-10] e.i.R.rest.IncidenciaController          : ModificarIncidenciaDto(numeroAula=0.5, correoDocente=pablo@gmail.com, fechaIncidencia=2025-01-27T11:54:49.536450, estadoIncidencia=EN PROGRESO, comentario=progereso)
+2025-01-27T13:27:43.092+01:00  INFO 12720 --- [http-nio-8888-exec-10] e.i.R.rest.IncidenciaController          : Datos recibidos: numeroAula=0.5, correoDocente=pablo@gmail.com, fechaIncidencia=2025-01-27T11:54:49.536450
+2025-01-27T13:27:43.093+01:00  INFO 12720 --- [http-nio-8888-exec-10] e.i.R.rest.IncidenciaController          : La incidencia ha sido modificada correctamente: IncidenciaEntity(numeroAula=0.5, correoDocente=pablo@gmail.com, fechaIncidencia=2025-01-27T11:54:49.536450, descripcionIncidencia=La pizarra electronica no enciende., estadoIncidencia=EN PROGRESO, comentario=progereso)
+2025-01-27T13:27:54.108+01:00  INFO 12720 --- [http-nio-8888-exec-2] e.i.R.rest.IncidenciaController          : INFO: Incidencias listadas con exito
+2025-01-27T13:28:04.253+01:00  INFO 12720 --- [http-nio-8888-exec-1] e.i.R.rest.IncidenciaController          : ModificarIncidenciaDto(numeroAula=0.5, correoDocente=pablo@gmail.com, fechaIncidencia=2025-01-27T11:54:49.536450, estadoIncidencia=EN PROGRESO, comentario=progereso)
+2025-01-27T13:28:04.256+01:00  INFO 12720 --- [http-nio-8888-exec-1] e.i.R.rest.IncidenciaController          : Datos recibidos: numeroAula=0.5, correoDocente=pablo@gmail.com, fechaIncidencia=2025-01-27T11:54:49.536450
+2025-01-27T13:28:04.257+01:00  INFO 12720 --- [http-nio-8888-exec-1] e.i.R.rest.IncidenciaController          : La incidencia ha sido modificada correctamente: IncidenciaEntity(numeroAula=0.5, correoDocente=pablo@gmail.com, fechaIncidencia=2025-01-27T11:54:49.536450, descripcionIncidencia=La pizarra electronica no enciende., estadoIncidencia=EN PROGRESO, comentario=progereso)
+2025-01-27T13:28:58.810+01:00  INFO 12720 --- [File Watcher] rtingClassPathChangeChangedEventListener : Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification)
+2025-01-27T13:28:58.819+01:00  INFO 12720 --- [Thread-19] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-01-27T13:28:58.819+01:00  INFO 12720 --- [Thread-19] com.zaxxer.hikari.HikariDataSource       : HikariPool-5 - Shutdown initiated...
+2025-01-27T13:28:58.821+01:00  INFO 12720 --- [Thread-19] com.zaxxer.hikari.HikariDataSource       : HikariPool-5 - Shutdown completed.
+2025-01-27T13:28:58.901+01:00  INFO 12720 --- [restartedMain] e.i.R.ReaktorIssuesServerApplication     : Starting ReaktorIssuesServerApplication using Java 23 with PID 12720 (C:\Users\2DAM enrique\Documents\Reaktor_IssuesServer\target\classes started by 2DAM enrique in C:\Users\2DAM enrique\Documents\Reaktor_IssuesServer)
+2025-01-27T13:28:58.902+01:00  INFO 12720 --- [restartedMain] e.i.R.ReaktorIssuesServerApplication     : No active profile set, falling back to 1 default profile: "default"
+2025-01-27T13:28:59.047+01:00  INFO 12720 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-01-27T13:28:59.058+01:00  INFO 12720 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 11 ms. Found 1 JPA repository interface.
+2025-01-27T13:28:59.118+01:00  INFO 12720 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8888 (http)
+2025-01-27T13:28:59.119+01:00  INFO 12720 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-01-27T13:28:59.119+01:00  INFO 12720 --- [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.30]
+2025-01-27T13:28:59.141+01:00  INFO 12720 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-01-27T13:28:59.141+01:00  INFO 12720 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 238 ms
+2025-01-27T13:28:59.178+01:00  INFO 12720 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-01-27T13:28:59.181+01:00  INFO 12720 --- [restartedMain] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-01-27T13:28:59.192+01:00  INFO 12720 --- [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-01-27T13:28:59.193+01:00  INFO 12720 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-6 - Starting...
+2025-01-27T13:28:59.207+01:00  INFO 12720 --- [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-6 - Added connection com.mysql.cj.jdbc.ConnectionImpl@7078bab8
+2025-01-27T13:28:59.207+01:00  INFO 12720 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-6 - Start completed.
+2025-01-27T13:28:59.246+01:00  INFO 12720 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-01-27T13:28:59.279+01:00  INFO 12720 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-01-27T13:28:59.339+01:00  WARN 12720 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-01-27T13:28:59.390+01:00  INFO 12720 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2025-01-27T13:28:59.396+01:00  INFO 12720 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8888 (http) with context path '/'
+2025-01-27T13:28:59.398+01:00  INFO 12720 --- [restartedMain] e.i.R.ReaktorIssuesServerApplication     : Started ReaktorIssuesServerApplication in 0.52 seconds (process running for 6540.229)
+2025-01-27T13:28:59.399+01:00  INFO 12720 --- [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2025-01-27T13:29:02.855+01:00  INFO 12720 --- [File Watcher] rtingClassPathChangeChangedEventListener : Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification)
+2025-01-27T13:29:02.863+01:00  INFO 12720 --- [Thread-23] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-01-27T13:29:02.863+01:00  INFO 12720 --- [Thread-23] com.zaxxer.hikari.HikariDataSource       : HikariPool-6 - Shutdown initiated...
+2025-01-27T13:29:02.865+01:00  INFO 12720 --- [Thread-23] com.zaxxer.hikari.HikariDataSource       : HikariPool-6 - Shutdown completed.
+2025-01-27T13:29:02.945+01:00  INFO 12720 --- [restartedMain] e.i.R.ReaktorIssuesServerApplication     : Starting ReaktorIssuesServerApplication using Java 23 with PID 12720 (C:\Users\2DAM enrique\Documents\Reaktor_IssuesServer\target\classes started by 2DAM enrique in C:\Users\2DAM enrique\Documents\Reaktor_IssuesServer)
+2025-01-27T13:29:02.945+01:00  INFO 12720 --- [restartedMain] e.i.R.ReaktorIssuesServerApplication     : No active profile set, falling back to 1 default profile: "default"
+2025-01-27T13:29:03.083+01:00  INFO 12720 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-01-27T13:29:03.093+01:00  INFO 12720 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 9 ms. Found 1 JPA repository interface.
+2025-01-27T13:29:03.151+01:00  INFO 12720 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8888 (http)
+2025-01-27T13:29:03.152+01:00  INFO 12720 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-01-27T13:29:03.152+01:00  INFO 12720 --- [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.30]
+2025-01-27T13:29:03.173+01:00  INFO 12720 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-01-27T13:29:03.174+01:00  INFO 12720 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 227 ms
+2025-01-27T13:29:03.200+01:00  INFO 12720 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-01-27T13:29:03.204+01:00  INFO 12720 --- [restartedMain] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-01-27T13:29:03.220+01:00  INFO 12720 --- [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-01-27T13:29:03.222+01:00  INFO 12720 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-7 - Starting...
+2025-01-27T13:29:03.234+01:00  INFO 12720 --- [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-7 - Added connection com.mysql.cj.jdbc.ConnectionImpl@1d9fb929
+2025-01-27T13:29:03.235+01:00  INFO 12720 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-7 - Start completed.
+2025-01-27T13:29:03.273+01:00  INFO 12720 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-01-27T13:29:03.298+01:00  INFO 12720 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-01-27T13:29:03.353+01:00  WARN 12720 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-01-27T13:29:03.404+01:00  INFO 12720 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2025-01-27T13:29:03.412+01:00  INFO 12720 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8888 (http) with context path '/'
+2025-01-27T13:29:03.414+01:00  INFO 12720 --- [restartedMain] e.i.R.ReaktorIssuesServerApplication     : Started ReaktorIssuesServerApplication in 0.492 seconds (process running for 6544.244)
+2025-01-27T13:29:03.414+01:00  INFO 12720 --- [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2025-01-27T13:29:10.148+01:00  INFO 12720 --- [http-nio-8888-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-01-27T13:29:10.148+01:00  INFO 12720 --- [http-nio-8888-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-01-27T13:29:10.148+01:00  INFO 12720 --- [http-nio-8888-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 0 ms
+2025-01-27T13:29:10.153+01:00  INFO 12720 --- [http-nio-8888-exec-1] e.i.R.rest.IncidenciaController          : ModificarIncidenciaDto(numeroAula=0.5, correoDocente=pablo@gmail.com, fechaIncidencia=2025-01-27T11:54:49.536450, estadoIncidencia=EN PROGRESO, comentario=progereso)
+2025-01-27T13:29:10.158+01:00  INFO 12720 --- [http-nio-8888-exec-1] e.i.R.rest.IncidenciaController          : Datos recibidos: numeroAula=0.5, correoDocente=pablo@gmail.com, fechaIncidencia=2025-01-27T11:54:49.536450
+2025-01-27T13:29:10.161+01:00  INFO 12720 --- [http-nio-8888-exec-1] e.i.R.rest.IncidenciaController          : La incidencia ha sido modificada correctamente: IncidenciaEntity(numeroAula=0.5, correoDocente=pablo@gmail.com, fechaIncidencia=2025-01-27T11:54:49.536450, descripcionIncidencia=La pizarra electronica no enciende., estadoIncidencia=EN PROGRESO, comentario=progereso)
+2025-01-27T13:29:24.725+01:00  INFO 12720 --- [http-nio-8888-exec-2] e.i.R.rest.IncidenciaController          : ModificarIncidenciaDto(numeroAula=12, correoDocente=epergar1209@g.educaand.es, fechaIncidencia=2025-01-27T11:42:30.759728, estadoIncidencia=EN PROGRESO, comentario=terminado)
+2025-01-27T13:29:24.728+01:00  INFO 12720 --- [http-nio-8888-exec-2] e.i.R.rest.IncidenciaController          : Datos recibidos: numeroAula=12, correoDocente=epergar1209@g.educaand.es, fechaIncidencia=2025-01-27T11:42:30.759728
+2025-01-27T13:29:24.733+01:00  INFO 12720 --- [http-nio-8888-exec-2] e.i.R.rest.IncidenciaController          : La incidencia ha sido modificada correctamente: IncidenciaEntity(numeroAula=12, correoDocente=epergar1209@g.educaand.es, fechaIncidencia=2025-01-27T11:42:30.759728, descripcionIncidencia=No funciona el proyector
+, estadoIncidencia=EN PROGRESO, comentario=terminado)
+2025-01-27T13:29:56.885+01:00  INFO 12720 --- [http-nio-8888-exec-4] e.i.R.rest.IncidenciaController          : ModificarIncidenciaDto(numeroAula=0.5, correoDocente=pablo@gmail.com, fechaIncidencia=2025-01-27T11:54:49.536450, estadoIncidencia=null, comentario=robado)
+2025-01-27T13:29:56.886+01:00 ERROR 12720 --- [http-nio-8888-exec-4] e.i.R.rest.IncidenciaController          : El estado es obligatorio.
+2025-01-27T13:30:11.216+01:00  INFO 12720 --- [http-nio-8888-exec-6] e.i.R.rest.IncidenciaController          : ModificarIncidenciaDto(numeroAula=0.5, correoDocente=pablo@gmail.com, fechaIncidencia=2025-01-27T11:54:49.536450, estadoIncidencia=null, comentario=robado)
+2025-01-27T13:30:11.216+01:00 ERROR 12720 --- [http-nio-8888-exec-6] e.i.R.rest.IncidenciaController          : El estado es obligatorio.
+2025-01-27T13:30:22.666+01:00  INFO 12720 --- [http-nio-8888-exec-9] e.i.R.rest.IncidenciaController          : ModificarIncidenciaDto(numeroAula=0.5, correoDocente=pablo@gmail.com, fechaIncidencia=2025-01-27T11:54:49.536450, estadoIncidencia=PENDIENTE, comentario=robado)
+2025-01-27T13:30:22.669+01:00  INFO 12720 --- [http-nio-8888-exec-9] e.i.R.rest.IncidenciaController          : Datos recibidos: numeroAula=0.5, correoDocente=pablo@gmail.com, fechaIncidencia=2025-01-27T11:54:49.536450
+2025-01-27T13:30:22.677+01:00  INFO 12720 --- [http-nio-8888-exec-9] e.i.R.rest.IncidenciaController          : La incidencia ha sido modificada correctamente: IncidenciaEntity(numeroAula=0.5, correoDocente=pablo@gmail.com, fechaIncidencia=2025-01-27T11:54:49.536450, descripcionIncidencia=La pizarra electronica no enciende., estadoIncidencia=PENDIENTE, comentario=robado)
+2025-01-27T13:30:39.975+01:00  INFO 12720 --- [File Watcher] rtingClassPathChangeChangedEventListener : Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification)
+2025-01-27T13:30:39.983+01:00  INFO 12720 --- [Thread-27] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-01-27T13:30:39.984+01:00  INFO 12720 --- [Thread-27] com.zaxxer.hikari.HikariDataSource       : HikariPool-7 - Shutdown initiated...
+2025-01-27T13:30:39.986+01:00  INFO 12720 --- [Thread-27] com.zaxxer.hikari.HikariDataSource       : HikariPool-7 - Shutdown completed.
+2025-01-27T13:30:40.066+01:00  INFO 12720 --- [restartedMain] e.i.R.ReaktorIssuesServerApplication     : Starting ReaktorIssuesServerApplication using Java 23 with PID 12720 (C:\Users\2DAM enrique\Documents\Reaktor_IssuesServer\target\classes started by 2DAM enrique in C:\Users\2DAM enrique\Documents\Reaktor_IssuesServer)
+2025-01-27T13:30:40.067+01:00  INFO 12720 --- [restartedMain] e.i.R.ReaktorIssuesServerApplication     : No active profile set, falling back to 1 default profile: "default"
+2025-01-27T13:30:40.192+01:00  INFO 12720 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-01-27T13:30:40.202+01:00  INFO 12720 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 9 ms. Found 1 JPA repository interface.
+2025-01-27T13:30:40.255+01:00  INFO 12720 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8888 (http)
+2025-01-27T13:30:40.256+01:00  INFO 12720 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-01-27T13:30:40.256+01:00  INFO 12720 --- [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.30]
+2025-01-27T13:30:40.280+01:00  INFO 12720 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-01-27T13:30:40.281+01:00  INFO 12720 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 213 ms
+2025-01-27T13:30:40.306+01:00  INFO 12720 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-01-27T13:30:40.309+01:00  INFO 12720 --- [restartedMain] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-01-27T13:30:40.315+01:00  INFO 12720 --- [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-01-27T13:30:40.316+01:00  INFO 12720 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-8 - Starting...
+2025-01-27T13:30:40.327+01:00  INFO 12720 --- [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-8 - Added connection com.mysql.cj.jdbc.ConnectionImpl@5f3eab1
+2025-01-27T13:30:40.328+01:00  INFO 12720 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-8 - Start completed.
+2025-01-27T13:30:40.361+01:00  INFO 12720 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-01-27T13:30:40.388+01:00  INFO 12720 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-01-27T13:30:40.435+01:00  WARN 12720 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-01-27T13:30:40.486+01:00  INFO 12720 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2025-01-27T13:30:40.494+01:00  INFO 12720 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8888 (http) with context path '/'
+2025-01-27T13:30:40.496+01:00  INFO 12720 --- [restartedMain] e.i.R.ReaktorIssuesServerApplication     : Started ReaktorIssuesServerApplication in 0.452 seconds (process running for 6641.325)
+2025-01-27T13:30:40.497+01:00  INFO 12720 --- [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2025-01-27T13:30:42.797+01:00  INFO 12720 --- [http-nio-8888-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-01-27T13:30:42.797+01:00  INFO 12720 --- [http-nio-8888-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-01-27T13:30:42.798+01:00  INFO 12720 --- [http-nio-8888-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2025-01-27T13:30:42.802+01:00  INFO 12720 --- [http-nio-8888-exec-2] e.i.R.rest.IncidenciaController          : ModificarIncidenciaDto(numeroAula=0.5, correoDocente=pablo@gmail.com, fechaIncidencia=2025-01-27T11:54:49.536450, estadoIncidencia=PENDIENTE, comentario=robado)
+2025-01-27T13:30:42.807+01:00  INFO 12720 --- [http-nio-8888-exec-2] e.i.R.rest.IncidenciaController          : Datos recibidos: numeroAula=0.5, correoDocente=pablo@gmail.com, fechaIncidencia=2025-01-27T11:54:49.536450
+2025-01-27T13:30:42.810+01:00  INFO 12720 --- [http-nio-8888-exec-2] e.i.R.rest.IncidenciaController          : La incidencia ha sido modificada correctamente: IncidenciaEntity(numeroAula=0.5, correoDocente=pablo@gmail.com, fechaIncidencia=2025-01-27T11:54:49.536450, descripcionIncidencia=La pizarra electronica no enciende., estadoIncidencia=PENDIENTE, comentario=robado)
+2025-01-27T13:33:59.850+01:00  INFO 12720 --- [http-nio-8888-exec-4] e.i.R.rest.IncidenciaController          : INFO: Incidencias listadas con exito
+2025-01-27T13:39:04.338+01:00  INFO 12720 --- [http-nio-8888-exec-6] e.i.R.rest.IncidenciaController          : INFO: Incidencias listadas con exito
+2025-01-27T13:39:22.092+01:00  INFO 12720 --- [http-nio-8888-exec-7] e.i.R.rest.IncidenciaController          : INFO: Incidencias listadas con exito
+2025-01-27T13:52:34.532+01:00  INFO 12720 --- [http-nio-8888-exec-9] e.i.R.rest.IncidenciaController          : INFO: Incidencias listadas con exito
+2025-01-27T14:04:11.203+01:00  INFO 12720 --- [http-nio-8888-exec-1] e.i.R.rest.IncidenciaController          : INFO: Incidencias listadas con exito
+2025-01-27T14:11:12.485+01:00  INFO 12720 --- [http-nio-8888-exec-3] e.i.R.rest.IncidenciaController          : INFO: Incidencias listadas con exito
+2025-01-27T14:11:31.692+01:00  INFO 12720 --- [http-nio-8888-exec-5] e.i.R.rest.IncidenciaController          : Incidencia creada correctamente: IncidenciaEntity(numeroAula=12, correoDocente=epergar1209@g.educaand.es, fechaIncidencia=2025-01-27T14:11:31.685452, descripcionIncidencia=wdqdsad, estadoIncidencia=PENDIENTE, comentario=null)
+2025-01-27T14:11:35.088+01:00  INFO 12720 --- [http-nio-8888-exec-6] e.i.R.rest.IncidenciaController          : Incidencia creada correctamente: IncidenciaEntity(numeroAula=12, correoDocente=epergar1209@g.educaand.es, fechaIncidencia=2025-01-27T14:11:35.080998700, descripcionIncidencia=asdasdasd, estadoIncidencia=PENDIENTE, comentario=null)
+2025-01-27T14:11:39.800+01:00  INFO 12720 --- [http-nio-8888-exec-7] e.i.R.rest.IncidenciaController          : Incidencia creada correctamente: IncidenciaEntity(numeroAula=12, correoDocente=epergar1209@g.educaand.es, fechaIncidencia=2025-01-27T14:11:39.792912500, descripcionIncidencia=asdsadasdas, estadoIncidencia=PENDIENTE, comentario=null)
+2025-01-27T14:11:44.938+01:00  INFO 12720 --- [http-nio-8888-exec-8] e.i.R.rest.IncidenciaController          : INFO: Incidencias listadas con exito
+2025-01-27T14:15:04.312+01:00  INFO 12720 --- [File Watcher] rtingClassPathChangeChangedEventListener : Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification)
+2025-01-27T14:15:04.320+01:00  INFO 12720 --- [Thread-31] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-01-27T14:15:04.320+01:00  INFO 12720 --- [Thread-31] com.zaxxer.hikari.HikariDataSource       : HikariPool-8 - Shutdown initiated...
+2025-01-27T14:15:04.322+01:00  INFO 12720 --- [Thread-31] com.zaxxer.hikari.HikariDataSource       : HikariPool-8 - Shutdown completed.
+2025-01-27T14:15:04.403+01:00  INFO 12720 --- [restartedMain] e.i.R.ReaktorIssuesServerApplication     : Starting ReaktorIssuesServerApplication using Java 23 with PID 12720 (C:\Users\2DAM enrique\Documents\Reaktor_IssuesServer\target\classes started by 2DAM enrique in C:\Users\2DAM enrique\Documents\Reaktor_IssuesServer)
+2025-01-27T14:15:04.404+01:00  INFO 12720 --- [restartedMain] e.i.R.ReaktorIssuesServerApplication     : No active profile set, falling back to 1 default profile: "default"
+2025-01-27T14:15:04.531+01:00  INFO 12720 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-01-27T14:15:04.540+01:00  INFO 12720 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 9 ms. Found 1 JPA repository interface.
+2025-01-27T14:15:04.591+01:00  INFO 12720 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8888 (http)
+2025-01-27T14:15:04.591+01:00  INFO 12720 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-01-27T14:15:04.592+01:00  INFO 12720 --- [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.30]
+2025-01-27T14:15:04.610+01:00  INFO 12720 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-01-27T14:15:04.610+01:00  INFO 12720 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 205 ms
+2025-01-27T14:15:04.632+01:00  INFO 12720 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-01-27T14:15:04.636+01:00  INFO 12720 --- [restartedMain] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-01-27T14:15:04.647+01:00  INFO 12720 --- [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-01-27T14:15:04.648+01:00  INFO 12720 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-9 - Starting...
+2025-01-27T14:15:04.660+01:00  INFO 12720 --- [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-9 - Added connection com.mysql.cj.jdbc.ConnectionImpl@78a3b47f
+2025-01-27T14:15:04.660+01:00  INFO 12720 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-9 - Start completed.
+2025-01-27T14:15:04.693+01:00  INFO 12720 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-01-27T14:15:04.719+01:00  INFO 12720 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-01-27T14:15:04.767+01:00  WARN 12720 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-01-27T14:15:04.811+01:00  INFO 12720 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2025-01-27T14:15:04.818+01:00  INFO 12720 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8888 (http) with context path '/'
+2025-01-27T14:15:04.819+01:00  INFO 12720 --- [restartedMain] e.i.R.ReaktorIssuesServerApplication     : Started ReaktorIssuesServerApplication in 0.437 seconds (process running for 9305.65)
+2025-01-27T14:15:04.820+01:00  INFO 12720 --- [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2025-01-27T14:16:05.321+01:00  INFO 12720 --- [http-nio-8888-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-01-27T14:16:05.322+01:00  INFO 12720 --- [http-nio-8888-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-01-27T14:16:05.322+01:00  INFO 12720 --- [http-nio-8888-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 0 ms
+2025-01-27T14:16:05.336+01:00  INFO 12720 --- [http-nio-8888-exec-1] e.i.R.rest.IncidenciaController          : INFO: Incidencias listadas con exito
+2025-01-27T14:16:17.777+01:00  INFO 12720 --- [http-nio-8888-exec-3] e.i.R.rest.IncidenciaController          : INFO: Incidencias listadas con exito
+2025-01-27T14:19:09.209+01:00  INFO 12720 --- [http-nio-8888-exec-6] e.i.R.rest.IncidenciaController          : INFO: Incidencias listadas con exito
+2025-01-27T14:19:10.047+01:00  INFO 12720 --- [http-nio-8888-exec-8] e.i.R.rest.IncidenciaController          : ModificarIncidenciaDto(numeroAula=1.1, correoDocente=pablo@gmail.com, fechaIncidencia=2025-01-27T11:55:40.302217, estadoIncidencia=PENDIENTE, comentario=null)
+2025-01-27T14:19:10.047+01:00 ERROR 12720 --- [http-nio-8888-exec-8] e.i.R.rest.IncidenciaController          : El comentario de la incidencia es obligatorio.
+2025-01-27T14:19:10.048+01:00  WARN 12720 --- [http-nio-8888-exec-8] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.HttpMediaTypeNotAcceptableException: No acceptable representation]
+2025-01-27T14:19:10.236+01:00  INFO 12720 --- [http-nio-8888-exec-9] e.i.R.rest.IncidenciaController          : ModificarIncidenciaDto(numeroAula=1.1, correoDocente=pablo@gmail.com, fechaIncidencia=2025-01-27T11:55:40.302217, estadoIncidencia=PENDIENTE, comentario=null)
+2025-01-27T14:19:10.236+01:00 ERROR 12720 --- [http-nio-8888-exec-9] e.i.R.rest.IncidenciaController          : El comentario de la incidencia es obligatorio.
+2025-01-27T14:19:10.236+01:00  WARN 12720 --- [http-nio-8888-exec-9] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.HttpMediaTypeNotAcceptableException: No acceptable representation]
+2025-01-27T14:19:10.379+01:00  INFO 12720 --- [http-nio-8888-exec-10] e.i.R.rest.IncidenciaController          : ModificarIncidenciaDto(numeroAula=1.1, correoDocente=pablo@gmail.com, fechaIncidencia=2025-01-27T11:55:40.302217, estadoIncidencia=PENDIENTE, comentario=null)
+2025-01-27T14:19:10.379+01:00 ERROR 12720 --- [http-nio-8888-exec-10] e.i.R.rest.IncidenciaController          : El comentario de la incidencia es obligatorio.
+2025-01-27T14:19:10.379+01:00  WARN 12720 --- [http-nio-8888-exec-10] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.HttpMediaTypeNotAcceptableException: No acceptable representation]
+2025-01-27T14:19:10.514+01:00  INFO 12720 --- [http-nio-8888-exec-1] e.i.R.rest.IncidenciaController          : ModificarIncidenciaDto(numeroAula=1.1, correoDocente=pablo@gmail.com, fechaIncidencia=2025-01-27T11:55:40.302217, estadoIncidencia=PENDIENTE, comentario=null)
+2025-01-27T14:19:10.514+01:00 ERROR 12720 --- [http-nio-8888-exec-1] e.i.R.rest.IncidenciaController          : El comentario de la incidencia es obligatorio.
+2025-01-27T14:19:10.515+01:00  WARN 12720 --- [http-nio-8888-exec-1] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.HttpMediaTypeNotAcceptableException: No acceptable representation]
+2025-01-27T14:19:10.626+01:00  INFO 12720 --- [http-nio-8888-exec-2] e.i.R.rest.IncidenciaController          : ModificarIncidenciaDto(numeroAula=1.1, correoDocente=pablo@gmail.com, fechaIncidencia=2025-01-27T11:55:40.302217, estadoIncidencia=PENDIENTE, comentario=null)
+2025-01-27T14:19:10.626+01:00 ERROR 12720 --- [http-nio-8888-exec-2] e.i.R.rest.IncidenciaController          : El comentario de la incidencia es obligatorio.
+2025-01-27T14:19:10.627+01:00  WARN 12720 --- [http-nio-8888-exec-2] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.HttpMediaTypeNotAcceptableException: No acceptable representation]
+2025-01-27T14:19:10.970+01:00  INFO 12720 --- [http-nio-8888-exec-3] e.i.R.rest.IncidenciaController          : ModificarIncidenciaDto(numeroAula=1.1, correoDocente=pablo@gmail.com, fechaIncidencia=2025-01-27T11:55:40.302217, estadoIncidencia=PENDIENTE, comentario=null)
+2025-01-27T14:19:10.971+01:00 ERROR 12720 --- [http-nio-8888-exec-3] e.i.R.rest.IncidenciaController          : El comentario de la incidencia es obligatorio.
+2025-01-27T14:19:10.971+01:00  WARN 12720 --- [http-nio-8888-exec-3] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.HttpMediaTypeNotAcceptableException: No acceptable representation]
+2025-01-27T14:19:11.258+01:00  INFO 12720 --- [http-nio-8888-exec-4] e.i.R.rest.IncidenciaController          : ModificarIncidenciaDto(numeroAula=1.1, correoDocente=pablo@gmail.com, fechaIncidencia=2025-01-27T11:55:40.302217, estadoIncidencia=PENDIENTE, comentario=null)
+2025-01-27T14:19:11.258+01:00 ERROR 12720 --- [http-nio-8888-exec-4] e.i.R.rest.IncidenciaController          : El comentario de la incidencia es obligatorio.
+2025-01-27T14:19:11.259+01:00  WARN 12720 --- [http-nio-8888-exec-4] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.HttpMediaTypeNotAcceptableException: No acceptable representation]
+2025-01-27T14:19:11.394+01:00  INFO 12720 --- [http-nio-8888-exec-5] e.i.R.rest.IncidenciaController          : ModificarIncidenciaDto(numeroAula=1.1, correoDocente=pablo@gmail.com, fechaIncidencia=2025-01-27T11:55:40.302217, estadoIncidencia=PENDIENTE, comentario=null)
+2025-01-27T14:19:11.394+01:00 ERROR 12720 --- [http-nio-8888-exec-5] e.i.R.rest.IncidenciaController          : El comentario de la incidencia es obligatorio.
+2025-01-27T14:19:11.395+01:00  WARN 12720 --- [http-nio-8888-exec-5] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.HttpMediaTypeNotAcceptableException: No acceptable representation]
+2025-01-27T14:19:11.522+01:00  INFO 12720 --- [http-nio-8888-exec-6] e.i.R.rest.IncidenciaController          : ModificarIncidenciaDto(numeroAula=1.1, correoDocente=pablo@gmail.com, fechaIncidencia=2025-01-27T11:55:40.302217, estadoIncidencia=PENDIENTE, comentario=null)
+2025-01-27T14:19:11.523+01:00 ERROR 12720 --- [http-nio-8888-exec-6] e.i.R.rest.IncidenciaController          : El comentario de la incidencia es obligatorio.
+2025-01-27T14:19:11.523+01:00  WARN 12720 --- [http-nio-8888-exec-6] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.HttpMediaTypeNotAcceptableException: No acceptable representation]
+2025-01-27T14:19:18.907+01:00  INFO 12720 --- [http-nio-8888-exec-7] e.i.R.rest.IncidenciaController          : ModificarIncidenciaDto(numeroAula=12, correoDocente=epergar1209@g.educaand.es, fechaIncidencia=2025-01-27T12:40:28.429699, estadoIncidencia=EN PROGRESO, comentario=jolh)
+2025-01-27T14:19:18.911+01:00  INFO 12720 --- [http-nio-8888-exec-7] e.i.R.rest.IncidenciaController          : Datos recibidos: numeroAula=12, correoDocente=epergar1209@g.educaand.es, fechaIncidencia=2025-01-27T12:40:28.429699
+2025-01-27T14:19:18.919+01:00  INFO 12720 --- [http-nio-8888-exec-7] e.i.R.rest.IncidenciaController          : La incidencia ha sido modificada correctamente: IncidenciaEntity(numeroAula=12, correoDocente=epergar1209@g.educaand.es, fechaIncidencia=2025-01-27T12:40:28.429699, descripcionIncidencia=fafsdfsf, estadoIncidencia=EN PROGRESO, comentario=jolh)
