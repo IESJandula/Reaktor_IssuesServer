@@ -31,7 +31,7 @@ public interface IIncidenciaRepository extends JpaRepository<IncidenciaEntity, I
 	 *  	 
 	 * @return lista de Incidencias ordenadas por fecha de forma decreciente  	 
 	 */ 	
-	@Query("SELECT i FROM IncidenciaEntity i ORDER BY i.fechaIncidencia ASC") 	
+	@Query("SELECT i FROM IncidenciaEntity i ORDER BY i.fechaIncidencia DESC") 	
 	public List<IncidenciaEntity> buscarIncidenciaOrdenadaFecha();
 	
 	/**
