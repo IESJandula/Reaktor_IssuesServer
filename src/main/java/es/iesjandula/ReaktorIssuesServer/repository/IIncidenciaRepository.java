@@ -1,11 +1,9 @@
 package es.iesjandula.ReaktorIssuesServer.repository;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.ZonedDateTime;
-import java.util.Date;
-import java.util.List;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -28,11 +26,12 @@ public interface IIncidenciaRepository extends JpaRepository<IncidenciaEntity, I
 	
 	/**Busca incidencias en la base de datos ordenado por fecha de forma decreciente  	 
 	 * <p> 	 
+	 * @param pageable 
 	 *  	 
 	 * @return lista de Incidencias ordenadas por fecha de forma decreciente  	 
 	 */ 	
 	@Query("SELECT i FROM IncidenciaEntity i ORDER BY i.fechaIncidencia DESC") 	
-	public List<IncidenciaEntity> buscarIncidenciaOrdenadaFecha();
+	Page<IncidenciaEntity> buscarIncidenciaOrdenadaFecha(Pageable pageable);
 	
 	/**
 	 * Verifica si existe una incidencia en la base de datos utilizando un identificador compuesto.

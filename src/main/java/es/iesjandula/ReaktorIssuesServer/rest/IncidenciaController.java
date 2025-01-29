@@ -5,6 +5,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -14,7 +17,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import es.iesjandula.ReaktorIssuesServer.dto.CrearIncidenciaDTO;
@@ -282,14 +284,11 @@ public class IncidenciaController
 	}
 
 	
-	@GetMapping("/listarIncidenciasOrdenadas") 	public ResponseEntity<?> listarIncidenciasOrdenadasPorFecha() { 	 
-		try { 	       
-		List<IncidenciaEntity> incidencias = iIncidenciaRepository.buscarIncidenciaOrdenadaFecha(); 	   
-		log.info("INFO: Incidencias listadas con exito"); 	        
-		return ResponseEntity.ok(incidencias); 	    
-		}catch (Exception findIssueException) 		
-		{ 			
-		String message = "Error inesperado en listarIncidenciasOrdenadasPorFecha() .\nMensaje de error: " + findIssueException.getMessage(); 			log.error(message, findIssueException); 			IssuesServerError serverError = new IssuesServerError(5, message, findIssueException); 			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(serverError.getMapError()); 		} 	}
+	@GetMapping("/listarIncidenciasOrdenadas") 	
+	public Page<IncidenciaEntity> listarIncidenciasOrdenadasPorFecha(Pageable pageable)
+	{ 	        
+		return this.iIncidenciaRepository.buscarIncidenciaOrdenadaFecha(pageable); 	    
+	}
 	
 
 	/**
