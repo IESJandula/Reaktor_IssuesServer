@@ -423,3 +423,31 @@ Caused by: jakarta.mail.AuthenticationFailedException: 535-5.7.8 Username and Pa
 2025-02-26T13:09:03.207+01:00  INFO 17204 --- [Thread-23] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
 2025-02-26T13:09:03.207+01:00  INFO 17204 --- [Thread-23] com.zaxxer.hikari.HikariDataSource       : HikariPool-6 - Shutdown initiated...
 2025-02-26T13:09:03.209+01:00  INFO 17204 --- [Thread-23] com.zaxxer.hikari.HikariDataSource       : HikariPool-6 - Shutdown completed.
+2025-02-26T13:09:03.277+01:00  INFO 17204 --- [restartedMain] e.i.R.ReaktorIssuesServerApplication     : Starting ReaktorIssuesServerApplication using Java 21.0.5 with PID 17204 (C:\Users\2DAM-JD\git\Reaktor_IssuesServer\target\classes started by 2DAM-JD in C:\Users\2DAM-JD\git\Reaktor_IssuesServer)
+2025-02-26T13:09:03.277+01:00  INFO 17204 --- [restartedMain] e.i.R.ReaktorIssuesServerApplication     : No active profile set, falling back to 1 default profile: "default"
+2025-02-26T13:09:03.419+01:00  INFO 17204 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-02-26T13:09:03.430+01:00  INFO 17204 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 10 ms. Found 1 JPA repository interface.
+2025-02-26T13:09:03.488+01:00  INFO 17204 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8888 (http)
+2025-02-26T13:09:03.489+01:00  INFO 17204 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-02-26T13:09:03.490+01:00  INFO 17204 --- [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.30]
+2025-02-26T13:09:03.507+01:00  INFO 17204 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-02-26T13:09:03.507+01:00  INFO 17204 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 228 ms
+2025-02-26T13:09:03.528+01:00  INFO 17204 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-02-26T13:09:03.531+01:00  INFO 17204 --- [restartedMain] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-02-26T13:09:03.541+01:00  INFO 17204 --- [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-02-26T13:09:03.542+01:00  INFO 17204 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-7 - Starting...
+2025-02-26T13:09:03.556+01:00  INFO 17204 --- [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-7 - Added connection com.mysql.cj.jdbc.ConnectionImpl@5a3385c3
+2025-02-26T13:09:03.557+01:00  INFO 17204 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-7 - Start completed.
+2025-02-26T13:09:03.589+01:00  INFO 17204 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-02-26T13:09:03.618+01:00  INFO 17204 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-02-26T13:09:03.676+01:00  WARN 17204 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-02-26T13:09:03.725+01:00  INFO 17204 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2025-02-26T13:09:03.732+01:00  INFO 17204 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8888 (http) with context path '/'
+2025-02-26T13:09:03.734+01:00  INFO 17204 --- [restartedMain] e.i.R.ReaktorIssuesServerApplication     : Started ReaktorIssuesServerApplication in 0.482 seconds (process running for 1272.849)
+2025-02-26T13:09:03.735+01:00  INFO 17204 --- [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2025-02-26T13:09:21.491+01:00  INFO 17204 --- [http-nio-8888-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-02-26T13:09:21.491+01:00  INFO 17204 --- [http-nio-8888-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-02-26T13:09:21.492+01:00  INFO 17204 --- [http-nio-8888-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2025-02-26T13:09:21.505+01:00  INFO 17204 --- [http-nio-8888-exec-1] e.i.R.rest.IncidenciaController          : Incidencia creada correctamente: IncidenciaEntity(numeroAula=Aula 2.11, correoDocente=fbenchi@gmail.com, fechaIncidencia=2025-02-26T13:09:21.495554500, descripcionIncidencia=adios, correoDestinatario=jjurval099@g.educaand.es, estadoIncidencia=PENDIENTE, comentario=null)
+2025-02-26T13:10:14.682+01:00  INFO 17204 --- [http-nio-8888-exec-2] e.i.R.rest.IncidenciaController          : Incidencia creada correctamente: IncidenciaEntity(numeroAula=Aula 2.11, correoDocente=jjurval099@g.educaand.es, fechaIncidencia=2025-02-26T13:10:14.673990100, descripcionIncidencia=roto, correoDestinatario=ajurmag552@g.educaand.es, estadoIncidencia=PENDIENTE, comentario=null)
+2025-02-26T13:12:52.005+01:00  INFO 17204 --- [http-nio-8888-exec-3] e.i.R.rest.IncidenciaController          : Incidencia creada correctamente: IncidenciaEntity(numeroAula=Aula 0.7, correoDocente=jjurval099@g.educaand.es, fechaIncidencia=2025-02-26T13:12:51.997221600, descripcionIncidencia=Paco hay que arreglar la cerradura de la 07;) , correoDestinatario=fbenchi274@g.educaand.es, estadoIncidencia=PENDIENTE, comentario=null)
