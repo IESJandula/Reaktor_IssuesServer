@@ -63,6 +63,14 @@ public class IncidenciaEntity
      */
 	@Column(columnDefinition = "TEXT")
 	private String descripcionIncidencia;
+	
+	/**
+     * Atributo - Detalla al correo que se le envia la incidencia a la incidencia.
+     * 
+     * Este atributo contiene un correo del destinatario del problema que se ha reportado.
+     */
+	@Column()
+	private String correoDestinatario;
 
     /**
      * Atributo - Define el estado de la incidencia.

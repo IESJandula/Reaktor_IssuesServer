@@ -1,5 +1,7 @@
 spring:
-  jpa.hibernate.ddl-auto: update # Configura cómo se debe gestionar el esquema de la base de datos.
+  jpa:
+    hibernate:
+      ddl-auto: update # Configura cómo se debe gestionar el esquema de la base de datos.
   datasource:
     url: jdbc:mysql://localhost:3306/incidencias?createDatabaseIfNotExist=true # URL de conexión a la base de datos MySQL.
     username: root # Nombre de usuario para conectarse a la base de datos.
@@ -12,6 +14,17 @@ spring:
       charset: UTF-8 # Define la codificación para las respuestas HTTP.
       enabled: true # Habilita explícitamente la codificación HTTP.
       force: true # Obliga a que todas las respuestas sean UTF-8.
+  mail:
+      host: smtp.gmail.com
+      port: 587
+      username: jjurval099@g.educaand.es
+      password: siil xgbb voep bbdg
+      properties:
+        mail:
+          smtp:
+            auth: true
+            starttls:
+              enable: true
 server:
   port: 8888 # Define el puerto en el que se ejecutará la aplicación Spring Boot.
 
@@ -23,3 +36,4 @@ logging: # Sección de configuración del sistema de logs en Spring.
     max-size: 1MB # Define el tamaño máximo que puede tener el archivo de log antes de que se cree uno nuevo.
     max-history: 20 # Especifica el número máximo de archivos históricos de logs que se guardarán.
 urlCors: http://localhost:5173
+  

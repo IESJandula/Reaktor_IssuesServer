@@ -55,4 +55,7 @@ public class CrearIncidenciaDTO
         
         this.descripcionIncidencia = descripcionIncidencia;
     }
+	
+	private String correoDestinatario;
+	
 }

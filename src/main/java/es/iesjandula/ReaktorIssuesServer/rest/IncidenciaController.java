@@ -7,7 +7,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -25,6 +24,7 @@ import es.iesjandula.ReaktorIssuesServer.dto.IncidenciaDTO;
 import es.iesjandula.ReaktorIssuesServer.dto.ModificarIncidenciaDto;
 import es.iesjandula.ReaktorIssuesServer.entity.IncidenciaEntity;
 import es.iesjandula.ReaktorIssuesServer.repository.IIncidenciaRepository;
+import es.iesjandula.ReaktorIssuesServer.services.EmailService;
 import es.iesjandula.ReaktorIssuesServer.utils.Constants;
 import es.iesjandula.ReaktorIssuesServer.utils.IssuesServerError;
 import lombok.extern.slf4j.Slf4j;
@@ -74,6 +74,10 @@ public class IncidenciaController
 	@Autowired
 	// Auto-inyeccion de repositorio.
 	private IIncidenciaRepository iIncidenciaRepository;
+	
+
+    @Autowired
+    private EmailService emailService;
 
 	/**
 	 * Crear o actualizar una incidencia en el sistema.
@@ -215,13 +219,23 @@ public class IncidenciaController
 	        	String errorString = "La descripción de la incidencia es obligatoria." ;
 	        	
 	        	log.error(errorString) ;
-	        	throw new IssuesServerError(3, errorString) ;	        }
+	        	throw new IssuesServerError(3, errorString) ;	        
+        	}
+	        
+	        if (crearIncidenciaDTO.getCorreoDestinatario() == null || crearIncidenciaDTO.getCorreoDestinatario().isEmpty()) 
+	        {
+	        	String errorString = "El correo del destinatario es obligatorio." ;
+	        	
+	        	log.error(errorString) ;
+	        	throw new IssuesServerError(3, errorString) ;	        
+        	}
 	        
 	        // Crear un nuevo objeto entidad para guardar en la base de datos
 	        IncidenciaEntity nuevaIncidencia = new IncidenciaEntity();
 	        nuevaIncidencia.setNumeroAula(crearIncidenciaDTO.getNumeroAula());
 	        nuevaIncidencia.setCorreoDocente(crearIncidenciaDTO.getCorreoDocente());
 	        nuevaIncidencia.setFechaIncidencia(LocalDateTime.now());
+	        nuevaIncidencia.setCorreoDestinatario(crearIncidenciaDTO.getCorreoDestinatario());
 	        nuevaIncidencia.setDescripcionIncidencia(crearIncidenciaDTO.getDescripcionIncidencia());
 	        nuevaIncidencia.setEstadoIncidencia(Constants.ESTADO_PENDIENTE);
 	        
@@ -231,6 +245,20 @@ public class IncidenciaController
 	        // Loguea el éxito de la operación
 	        log.info("Incidencia creada correctamente: {}", nuevaIncidencia);
 
+	        
+	        // Enviar correo de notificación
+            String asunto = "Nueva Incidencia en el Aula " + crearIncidenciaDTO.getNumeroAula();
+            String cuerpo = "Detalles de la Incidencia:\n\n" +
+                    "Aula: " + crearIncidenciaDTO.getNumeroAula() + "\n" +
+                    "‍Docente: " + crearIncidenciaDTO.getCorreoDocente() + "\n" +
+                    "Descripción: " + crearIncidenciaDTO.getDescripcionIncidencia() + "\n" +
+                    "Fecha: " + nuevaIncidencia.getFechaIncidencia() + "\n\n" +
+                    
+                    "Este correo ha sido generado automáticamente.";
+
+            emailService.sendEmail(crearIncidenciaDTO.getCorreoDestinatario(), asunto, cuerpo, crearIncidenciaDTO.getCorreoDocente());
+            
+	        
 	        // Devuelve la respuesta exitosa
 	        return ResponseEntity.ok().build();
 	    }
