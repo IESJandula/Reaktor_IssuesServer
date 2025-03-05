@@ -1,7 +1,9 @@
 package es.iesjandula.ReaktorIssuesServer.rest;
 
+import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -78,6 +80,8 @@ public class IncidenciaController
 
     @Autowired
     private EmailService emailService;
+    
+    private SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy");
 
 	/**
 	 * Crear o actualizar una incidencia en el sistema.
@@ -245,14 +249,17 @@ public class IncidenciaController
 	        // Loguea el éxito de la operación
 	        log.info("Incidencia creada correctamente: {}", nuevaIncidencia);
 
+	        Date fecha = java.sql.Timestamp.valueOf(nuevaIncidencia.getFechaIncidencia());
 	        
+	        String fechaFormateada = simpleDateFormat.format(fecha);
+
 	        // Enviar correo de notificación
             String asunto = "Nueva Incidencia en el Aula " + crearIncidenciaDTO.getNumeroAula();
             String cuerpo = "Detalles de la Incidencia:\n\n" +
                     "Aula: " + crearIncidenciaDTO.getNumeroAula() + "\n" +
                     "‍Docente: " + crearIncidenciaDTO.getCorreoDocente() + "\n" +
                     "Descripción: " + crearIncidenciaDTO.getDescripcionIncidencia() + "\n" +
-                    "Fecha: " + nuevaIncidencia.getFechaIncidencia() + "\n\n" +
+                    "Fecha: " + fechaFormateada + "\n\n" +
                     
                     "Este correo ha sido generado automáticamente.";
 
