@@ -37,5 +37,15 @@ logging: # Sección de configuración del sistema de logs en Spring.
     name: registro.log # Ruta y el nombre del archivo donde se guardarán los logs.
     max-size: 1MB # Define el tamaño máximo que puede tener el archivo de log antes de que se cree uno nuevo.
     max-history: 20 # Especifica el número máximo de archivos históricos de logs que se guardarán.
-urlCors: http://localhost:5173
-  
+reaktor:
+  publicKeyFile: "C:/claves/public_key.pem"
+  urlCors: "http://localhost:8888, http://localhost:5173, http://192.168.1.209:5173, http://192.168.1.181:5173, http://192.168.1.137:5173, http://172.20.10.2:5173"
+  clientId: "bookings"
+  constantes:
+    reservasFijas: ""
+    reservasPuntuales: ""
+  firebase_server_url: "http://localhost:8083"
+  users_timeout: 30000
+  http_connection_timeout: 30000
+
+

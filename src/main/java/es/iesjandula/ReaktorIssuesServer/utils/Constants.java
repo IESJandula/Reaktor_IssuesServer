@@ -31,6 +31,13 @@ public final class Constants
 	public static final String ESTADO_CANCELADA = "CANCELADA";
 	public static final String ESTADO_RESUELTA = "RESUELTA";
 	public static final String ESTADO_DUPLICADA = "DUPLICADA";
-
+	
+	// Usuarios/Profesores
+	public final static int PROFESOR_NO_ENCONTRADO = 40;
+	
+	// Errores Generales/De Conexión
+	public final static int ERROR_CONEXION_FIREBASE = 101;
+	public final static int TIMEOUT_CONEXION_FIREBASE = 102;
+	public final static int IO_EXCEPTION_FIREBASE = 103;
 
 }

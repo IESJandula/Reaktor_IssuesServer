@@ -15,7 +15,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 public class CORSConfig implements WebMvcConfigurer
 {
 	/** URL permitida de CORS */
-	@Value("${urlCors}")
+	@Value("${reaktor.urlCors}")
 	private String[] urlCors;
 	
 	/**
@@ -26,5 +26,5 @@ public class CORSConfig implements WebMvcConfigurer
 	{
 		registry.addMapping("/**").allowedOrigins(urlCors).allowedMethods("GET", "POST", "PUT", "DELETE")
 		.allowedHeaders("*");
-		}
 	}
+}
