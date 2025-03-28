@@ -1,4 +1,4 @@
-package es.iesjandula.ReaktorIssuesServer.dto;
+package es.iesjandula.reaktor.issues_server.dto;
 
 
 import java.util.Date;

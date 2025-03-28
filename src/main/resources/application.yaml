@@ -28,7 +28,7 @@ spring:
             starttls:
               enable: true
 server:
-  port: 8888 # Define el puerto en el que se ejecutará la aplicación Spring Boot.
+  port: 8085 # Define el puerto en el que se ejecutará la aplicación Spring Boot.
 
 logging: # Sección de configuración del sistema de logs en Spring.
   level:

@@ -1,4 +1,4 @@
-package es.iesjandula.ReaktorIssuesServer.entity;
+package es.iesjandula.reaktor.issues_server.entity;
 
 import java.time.LocalDateTime;
 

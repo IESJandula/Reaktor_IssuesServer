@@ -1,4 +1,4 @@
-package es.iesjandula.ReaktorIssuesServer;
+package es.iesjandula.reaktor.issues_server;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

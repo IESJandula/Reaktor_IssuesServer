@@ -1,4 +1,4 @@
-package es.iesjandula.ReaktorIssuesServer.entity;
+package es.iesjandula.reaktor.issues_server.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

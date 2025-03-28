@@ -1,26 +1,17 @@
-package es.iesjandula.ReaktorIssuesServer.rest;
+package es.iesjandula.reaktor.issues_server.rest;
 
-import java.io.IOException;
-
-import java.net.SocketTimeoutException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.Optional;
 
-
-import org.apache.http.client.methods.CloseableHttpResponse;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.conn.ConnectTimeoutException;
-import org.apache.http.impl.client.CloseableHttpClient;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -30,22 +21,17 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-
-import es.iesjandula.reaktor.base.security.models.DtoUsuarioBase;
-import es.iesjandula.reaktor.base.utils.HttpClientUtils;
-import es.iesjandula.ReaktorIssuesServer.dto.CrearIncidenciaDTO;
-import es.iesjandula.ReaktorIssuesServer.dto.FiltroBusqueda;
-import es.iesjandula.ReaktorIssuesServer.dto.IncidenciaDTO;
-import es.iesjandula.ReaktorIssuesServer.dto.ModificarIncidenciaDto;
-import es.iesjandula.ReaktorIssuesServer.dto.ProfesorDTO;
-import es.iesjandula.ReaktorIssuesServer.entity.IncidenciaEntity;
-import es.iesjandula.ReaktorIssuesServer.entity.Profesor;
-import es.iesjandula.ReaktorIssuesServer.repository.IIncidenciaRepository;
-import es.iesjandula.ReaktorIssuesServer.repository.ProfesorRepository;
-import es.iesjandula.ReaktorIssuesServer.services.EmailService;
-import es.iesjandula.ReaktorIssuesServer.utils.Constants;
-import es.iesjandula.ReaktorIssuesServer.utils.IssuesServerError;
+import es.iesjandula.reaktor.base.utils.BaseConstants;
+import es.iesjandula.reaktor.issues_server.dto.CrearIncidenciaDTO;
+import es.iesjandula.reaktor.issues_server.dto.FiltroBusqueda;
+import es.iesjandula.reaktor.issues_server.dto.IncidenciaDTO;
+import es.iesjandula.reaktor.issues_server.dto.ModificarIncidenciaDto;
+import es.iesjandula.reaktor.issues_server.entity.IncidenciaEntity;
+import es.iesjandula.reaktor.issues_server.repository.IIncidenciaRepository;
+import es.iesjandula.reaktor.issues_server.repository.ProfesorRepository;
+import es.iesjandula.reaktor.issues_server.services.EmailService;
+import es.iesjandula.reaktor.issues_server.utils.Constants;
+import es.iesjandula.reaktor.issues_server.utils.IssuesServerError;
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -86,7 +72,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j 
 @RestController
 @CrossOrigin("*")
-@RequestMapping(value = "/incidencias")
+@RequestMapping(value = "/issues")
 public class IncidenciaController
 {
 
@@ -133,6 +119,7 @@ public class IncidenciaController
 	 *         Si ocurre un error inesperado, se devuelve un
 	 *         código de estado 500 (Internal Server Error) con un mensaje de error.
 	 */
+    @PreAuthorize("hasRole('" + BaseConstants.ROLE_ADMINISTRADOR + "')")
 	@PutMapping("/modificar_incidencia")
 	public ResponseEntity<?> modificarIncidencia(@RequestBody ModificarIncidenciaDto modificarIncidenciaDto)
 	{
@@ -222,6 +209,7 @@ public class IncidenciaController
 	 *         con código de estado 500 (Internal Server Error).</li>
 	 *         </ul>
 	 */
+    @PreAuthorize("hasRole('" + BaseConstants.ROLE_PROFESOR + "')")
 	@PostMapping("/crear_incidencia")
 	public ResponseEntity<?> crearIncidencia(@RequestBody CrearIncidenciaDTO crearIncidenciaDTO) 
 	{
@@ -345,7 +333,7 @@ public class IncidenciaController
 	    }
 	}
 
-	
+	@PreAuthorize("hasRole('" + BaseConstants.ROLE_PROFESOR + "')")
 	@GetMapping("/listarIncidenciasOrdenadas") 	
 	public Page<IncidenciaEntity> listarIncidenciasOrdenadasPorFecha(Pageable pageable)
 	{ 	        
@@ -369,6 +357,7 @@ public class IncidenciaController
 	 *         (INTERNAL_SERVER_ERROR) en caso de errores inesperados.
 	 * @throws IllegalArgumentException si los parámetros del DTO son inválidos.
 	 */
+	@PreAuthorize("hasRole('" + BaseConstants.ROLE_PROFESOR + "')")
 	@DeleteMapping("/borrarIncidencia")
 	public ResponseEntity<?> borraIncidencia(@RequestBody(required = true) IncidenciaDTO incidenciaDTO)
 	{
