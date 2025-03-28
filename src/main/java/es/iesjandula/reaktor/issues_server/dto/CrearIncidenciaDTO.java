@@ -1,4 +1,4 @@
-package es.iesjandula.ReaktorIssuesServer.dto;
+package es.iesjandula.reaktor.issues_server.dto;
 
 
 import java.util.Date;
@@ -55,4 +55,7 @@ public class CrearIncidenciaDTO
         
         this.descripcionIncidencia = descripcionIncidencia;
     }
+	
+	private String correoDestinatario;
+	
 }

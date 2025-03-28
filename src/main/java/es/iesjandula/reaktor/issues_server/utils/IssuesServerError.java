@@ -1,4 +1,4 @@
-package es.iesjandula.ReaktorIssuesServer.utils;
+package es.iesjandula.reaktor.issues_server.utils;
 
 import java.util.HashMap;
 import java.util.Map;

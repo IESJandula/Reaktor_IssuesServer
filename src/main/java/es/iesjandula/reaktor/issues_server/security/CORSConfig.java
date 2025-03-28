@@ -1,4 +1,4 @@
-package es.iesjandula.ReaktorIssuesServer.security;
+package es.iesjandula.reaktor.issues_server.security;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
@@ -15,7 +15,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 public class CORSConfig implements WebMvcConfigurer
 {
 	/** URL permitida de CORS */
-	@Value("${urlCors}")
+	@Value("${reaktor.urlCors}")
 	private String[] urlCors;
 	
 	/**
@@ -26,5 +26,5 @@ public class CORSConfig implements WebMvcConfigurer
 	{
 		registry.addMapping("/**").allowedOrigins(urlCors).allowedMethods("GET", "POST", "PUT", "DELETE")
 		.allowedHeaders("*");
-		}
 	}
+}

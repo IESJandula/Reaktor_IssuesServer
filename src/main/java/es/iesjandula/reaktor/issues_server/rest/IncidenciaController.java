@@ -1,15 +1,17 @@
-package es.iesjandula.ReaktorIssuesServer.rest;
+package es.iesjandula.reaktor.issues_server.rest;
 
+import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,14 +21,17 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import es.iesjandula.ReaktorIssuesServer.dto.CrearIncidenciaDTO;
-import es.iesjandula.ReaktorIssuesServer.dto.FiltroBusqueda;
-import es.iesjandula.ReaktorIssuesServer.dto.IncidenciaDTO;
-import es.iesjandula.ReaktorIssuesServer.dto.ModificarIncidenciaDto;
-import es.iesjandula.ReaktorIssuesServer.entity.IncidenciaEntity;
-import es.iesjandula.ReaktorIssuesServer.repository.IIncidenciaRepository;
-import es.iesjandula.ReaktorIssuesServer.utils.Constants;
-import es.iesjandula.ReaktorIssuesServer.utils.IssuesServerError;
+import es.iesjandula.reaktor.base.utils.BaseConstants;
+import es.iesjandula.reaktor.issues_server.dto.CrearIncidenciaDTO;
+import es.iesjandula.reaktor.issues_server.dto.FiltroBusqueda;
+import es.iesjandula.reaktor.issues_server.dto.IncidenciaDTO;
+import es.iesjandula.reaktor.issues_server.dto.ModificarIncidenciaDto;
+import es.iesjandula.reaktor.issues_server.entity.IncidenciaEntity;
+import es.iesjandula.reaktor.issues_server.repository.IIncidenciaRepository;
+import es.iesjandula.reaktor.issues_server.repository.ProfesorRepository;
+import es.iesjandula.reaktor.issues_server.services.EmailService;
+import es.iesjandula.reaktor.issues_server.utils.Constants;
+import es.iesjandula.reaktor.issues_server.utils.IssuesServerError;
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -67,13 +72,28 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j 
 @RestController
 @CrossOrigin("*")
-@RequestMapping(value = "/incidencias")
+@RequestMapping(value = "/issues")
 public class IncidenciaController
 {
 
 	@Autowired
 	// Auto-inyeccion de repositorio.
 	private IIncidenciaRepository iIncidenciaRepository;
+	
+	@Autowired
+	private ProfesorRepository profesorRepository;
+	
+    @Autowired
+    private EmailService emailService;
+    
+    private SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy");
+    
+//    @Value("${reaktor.http_connection_timeout}")
+//	private int httpConnectionTimeout;
+//    
+//    @Value("${reaktor.firebase_server_url}")
+//	private String firebaseServerUrl;
+
 
 	/**
 	 * Crear o actualizar una incidencia en el sistema.
@@ -99,6 +119,7 @@ public class IncidenciaController
 	 *         Si ocurre un error inesperado, se devuelve un
 	 *         código de estado 500 (Internal Server Error) con un mensaje de error.
 	 */
+    @PreAuthorize("hasRole('" + BaseConstants.ROLE_ADMINISTRADOR + "')")
 	@PutMapping("/modificar_incidencia")
 	public ResponseEntity<?> modificarIncidencia(@RequestBody ModificarIncidenciaDto modificarIncidenciaDto)
 	{
@@ -188,6 +209,7 @@ public class IncidenciaController
 	 *         con código de estado 500 (Internal Server Error).</li>
 	 *         </ul>
 	 */
+    @PreAuthorize("hasRole('" + BaseConstants.ROLE_PROFESOR + "')")
 	@PostMapping("/crear_incidencia")
 	public ResponseEntity<?> crearIncidencia(@RequestBody CrearIncidenciaDTO crearIncidenciaDTO) 
 	{
@@ -215,13 +237,23 @@ public class IncidenciaController
 	        	String errorString = "La descripción de la incidencia es obligatoria." ;
 	        	
 	        	log.error(errorString) ;
-	        	throw new IssuesServerError(3, errorString) ;	        }
+	        	throw new IssuesServerError(3, errorString) ;	        
+        	}
+	        
+	        if (crearIncidenciaDTO.getCorreoDestinatario() == null || crearIncidenciaDTO.getCorreoDestinatario().isEmpty()) 
+	        {
+	        	String errorString = "El correo del destinatario es obligatorio." ;
+	        	
+	        	log.error(errorString) ;
+	        	throw new IssuesServerError(3, errorString) ;	        
+        	}
 	        
 	        // Crear un nuevo objeto entidad para guardar en la base de datos
 	        IncidenciaEntity nuevaIncidencia = new IncidenciaEntity();
 	        nuevaIncidencia.setNumeroAula(crearIncidenciaDTO.getNumeroAula());
 	        nuevaIncidencia.setCorreoDocente(crearIncidenciaDTO.getCorreoDocente());
 	        nuevaIncidencia.setFechaIncidencia(LocalDateTime.now());
+	        nuevaIncidencia.setCorreoDestinatario(crearIncidenciaDTO.getCorreoDestinatario());
 	        nuevaIncidencia.setDescripcionIncidencia(crearIncidenciaDTO.getDescripcionIncidencia());
 	        nuevaIncidencia.setEstadoIncidencia(Constants.ESTADO_PENDIENTE);
 	        
@@ -231,6 +263,24 @@ public class IncidenciaController
 	        // Loguea el éxito de la operación
 	        log.info("Incidencia creada correctamente: {}", nuevaIncidencia);
 
+	        Date fecha = java.sql.Timestamp.valueOf(nuevaIncidencia.getFechaIncidencia());
+	        
+	        String fechaFormateada = simpleDateFormat.format(fecha);
+	        //Optional<Profesor> profesor= this.profesorRepository.findById(crearIncidenciaDTO.getCorreoDocente());
+            //buscarProfesor(profesor, crearIncidenciaDTO.getCorreoDocente());
+	        // Enviar correo de notificación
+            String asunto = "Nueva Incidencia en el Aula " + crearIncidenciaDTO.getNumeroAula();
+            String cuerpo = "Detalles de la Incidencia:\n\n" +
+                    "Aula: " + crearIncidenciaDTO.getNumeroAula() + "\n" +
+                    //"‍Docente: " + buscarProfesor(profesor, asunto).getNombre() +" "+buscarProfesor(profesor, asunto).getApellido()  + "\n" +
+                    "Descripción: " + crearIncidenciaDTO.getDescripcionIncidencia() + "\n" +
+                    "Fecha: " + fechaFormateada + "\n\n" +
+                    
+                    "Este correo ha sido generado automáticamente.";
+
+            emailService.sendEmail(crearIncidenciaDTO.getCorreoDestinatario(), asunto, cuerpo, crearIncidenciaDTO.getCorreoDocente());
+            
+	        
 	        // Devuelve la respuesta exitosa
 	        return ResponseEntity.ok().build();
 	    }
@@ -283,7 +333,7 @@ public class IncidenciaController
 	    }
 	}
 
-	
+	@PreAuthorize("hasRole('" + BaseConstants.ROLE_PROFESOR + "')")
 	@GetMapping("/listarIncidenciasOrdenadas") 	
 	public Page<IncidenciaEntity> listarIncidenciasOrdenadasPorFecha(Pageable pageable)
 	{ 	        
@@ -307,6 +357,7 @@ public class IncidenciaController
 	 *         (INTERNAL_SERVER_ERROR) en caso de errores inesperados.
 	 * @throws IllegalArgumentException si los parámetros del DTO son inválidos.
 	 */
+	@PreAuthorize("hasRole('" + BaseConstants.ROLE_PROFESOR + "')")
 	@DeleteMapping("/borrarIncidencia")
 	public ResponseEntity<?> borraIncidencia(@RequestBody(required = true) IncidenciaDTO incidenciaDTO)
 	{
@@ -355,4 +406,143 @@ public class IncidenciaController
 			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(serverError.getMapError());
 		}
 	}
+	
+//	/**
+//	 * @param usuario usuario
+//	 * @param email   email
+//	 * @return el profesor encontrado
+//	 * @throws IssuesServerError con un error
+//	 */
+//	private Profesor buscarProfesor(Optional<Profesor> profesor2, String email) throws IssuesServerError
+//	{
+//		Profesor profesor = null;
+//
+//		
+//			// Primero buscamos si ya tenemos a ese profesor en nuestra BBDD
+//			Optional<Profesor> optionalProfesor = this.profesorRepository.findById(email);
+//
+//			// Si lo encontramos ...
+//			if (!optionalProfesor.isEmpty())
+//			{
+//				// Lo cogemos del optional
+//				profesor = optionalProfesor.get();
+//			}
+//			else
+//			{
+//				// Si no lo encontramos, le pedimos a Firebase que nos lo dé
+//				profesor = this.buscarProfesorEnFirebase( email);
+//		
+//				// Si el usuario no es administrador, cogemos la información del usuario
+//				profesor = new Profesor(profesor.getEmail(), profesor.getNombre(), profesor.getApellido());
+//			}
+//			// Lo almacenamos en BBDD en caso de que no exista
+//			this.profesorRepository.saveAndFlush(profesor);
+//		
+//
+//		return profesor;
+//	}
+//
+//	/**
+//	 * @param jwtAdmin JWT del usuario admin
+//	 * @param email    email del profesor que va a realizar la reserva
+//	 * @return el profesor encontrado enfirebase
+//	 * @throws IssuesServerError con un error
+//	 */
+//	private Profesor buscarProfesorEnFirebase( String email) throws IssuesServerError
+//	{
+//		Profesor profesor = null;
+//
+//		// Creamos un HTTP Client con Timeout
+//		CloseableHttpClient closeableHttpClient = HttpClientUtils.crearHttpClientConTimeout(this.httpConnectionTimeout);
+//
+//		CloseableHttpResponse closeableHttpResponse = null;
+//
+//		try
+//		{
+//			HttpGet httpGet = new HttpGet(this.firebaseServerUrl + "/firebase/queries/user");
+//
+//			
+//			httpGet.addHeader("email", email);
+//
+//			// Hacemos la peticion
+//			closeableHttpResponse = closeableHttpClient.execute(httpGet);
+//
+//			// Comprobamos si viene la cabecera. En caso afirmativo, es porque trae un
+//			// profesor
+//			if (closeableHttpResponse.getEntity() == null)
+//			{
+//				String mensajeError = "Profesor no encontrado en BBDD Global";
+//
+//				log.error(mensajeError);
+//				throw new IssuesServerError(Constants.PROFESOR_NO_ENCONTRADO, mensajeError);
+//			}
+//
+//			// Convertimos la respuesta en un objeto DtoInfoUsuario
+//			ObjectMapper objectMapper = new ObjectMapper();
+//
+//			// Obtenemos la respuesta de Firebase
+//			DtoUsuarioBase dtoUsuarioBase = objectMapper.readValue(closeableHttpResponse.getEntity().getContent(),
+//					DtoUsuarioBase.class);
+//
+//			// Creamos una instancia de profesor con la respuesta de Firebase
+//			profesor = new Profesor();
+//			profesor.setNombre(dtoUsuarioBase.getNombre());
+//			profesor.setApellido(dtoUsuarioBase.getApellidos());
+//			profesor.setEmail(dtoUsuarioBase.getEmail());
+//
+//			// Almacenamos al profesor en nuestra BBDD
+//			this.profesorRepository.saveAndFlush(profesor);
+//		}
+//		catch (SocketTimeoutException socketTimeoutException)
+//		{
+//			String errorString = "SocketTimeoutException de lectura o escritura al comunicarse con el servidor (búsqueda del profesor asociado a la reserva)";
+//
+//			log.error(errorString, socketTimeoutException);
+//			throw new IssuesServerError(Constants.ERROR_CONEXION_FIREBASE, errorString, socketTimeoutException);
+//		}
+//		catch (ConnectTimeoutException connectTimeoutException)
+//		{
+//			String errorString = "ConnectTimeoutException al intentar conectar con el servidor (búsqueda del profesor asociado a la reserva)";
+//
+//			log.error(errorString, connectTimeoutException);
+//			throw new IssuesServerError(Constants.TIMEOUT_CONEXION_FIREBASE, errorString, connectTimeoutException);
+//		}
+//		catch (IOException ioException)
+//		{
+//			String errorString = "IOException mientras se buscaba el profesor asociado a la reserva";
+//
+//			log.error(errorString, ioException);
+//			throw new IssuesServerError(Constants.IO_EXCEPTION_FIREBASE, errorString, ioException);
+//		}
+//		finally
+//		{
+//			// Cierre de flujos
+//			this.buscarProfesorEnFirebaseCierreFlujos(closeableHttpResponse);
+//		}
+//
+//		return profesor;
+//	}
+//
+//	/**
+//	 * @param closeableHttpResponse closeable HTTP response
+//	 * @throws PrinterClientException printer client exception
+//	 */
+//	private void buscarProfesorEnFirebaseCierreFlujos(CloseableHttpResponse closeableHttpResponse)
+//			throws IssuesServerError
+//	{
+//		if (closeableHttpResponse != null)
+//		{
+//			try
+//			{
+//				closeableHttpResponse.close();
+//			}
+//			catch (IOException ioException)
+//			{
+//				String errorString = "IOException mientras se cerraba el closeableHttpResponse en el método que busca al profesor de la reserva";
+//
+//				log.error(errorString, ioException);
+//				throw new IssuesServerError(Constants.IO_EXCEPTION_FIREBASE, errorString, ioException);
+//			}
+//		}
+//	}
 }
