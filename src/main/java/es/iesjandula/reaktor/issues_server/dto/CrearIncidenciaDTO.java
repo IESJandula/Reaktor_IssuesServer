@@ -25,7 +25,7 @@ public class CrearIncidenciaDTO
 	/**
 	 * Atribtuo - Aula en la que se da la incidencia.
 	 */
-	private String numeroAula;
+	private String ubicacion;
 
 	/**
 	 * Atribtuo - Correo del docente que informa de la incidencia.

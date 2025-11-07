@@ -32,7 +32,7 @@ public class IncidenciaEntityId implements Serializable
 	/**
 	 * Atributo Identificativo - Aula en la que se da la incidencia.
 	 */
-	private String numeroAula;
+	private String ubicacion;
 
 	/**
 	 * Atributo Identificativo - Correo del docente que informa de la incidencia.

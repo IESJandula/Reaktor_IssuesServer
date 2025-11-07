@@ -26,7 +26,7 @@ public class FiltroBusqueda
      * las incidencias. Si se establece, se buscarán incidencias relacionadas
      * con este aula en particular.
      */
-    private String numeroAula;
+    private String ubicacion;
 
     /**
      * Atributo - Correo del docente para filtrar las incidencias.

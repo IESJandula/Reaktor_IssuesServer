@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 public class ModificarIncidenciaDto
 {
 
-    private String numeroAula;
+    private String ubicacion;
     private String correoDocente;
     private LocalDateTime  fechaIncidencia;
     private String estadoIncidencia;

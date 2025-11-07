@@ -38,7 +38,7 @@ public class IncidenciaEntity
      * Este atributo es parte del identificador compuesto de la incidencia.
      */
 	@Id
-	private String numeroAula;
+	private String ubicacion;
 
     /**
      * Atributo - Correo del docente que informa de la incidencia.

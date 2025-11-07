@@ -71,7 +71,6 @@ import lombok.extern.slf4j.Slf4j;
  */
 @Slf4j 
 @RestController
-@CrossOrigin("*")
 @RequestMapping(value = "/issues")
 public class IncidenciaController
 {
@@ -143,9 +142,9 @@ public class IncidenciaController
 	        }
 
 	        // Buscar la incidencia en la base de datos
-	        IncidenciaEntity incidencia = this.iIncidenciaRepository.EncontrarByNumeroAulaAndCorreoDocenteAndFechaIncidencia(modificarIncidenciaDto.getNumeroAula(),modificarIncidenciaDto.getCorreoDocente(),modificarIncidenciaDto.getFechaIncidencia());
-	        log.info("Datos recibidos: numeroAula={}, correoDocente={}, fechaIncidencia={}",
-	        	    modificarIncidenciaDto.getNumeroAula(),
+	        IncidenciaEntity incidencia = this.iIncidenciaRepository.EncontrarByUbicacionAndCorreoDocenteAndFechaIncidencia(modificarIncidenciaDto.getUbicacion(),modificarIncidenciaDto.getCorreoDocente(),modificarIncidenciaDto.getFechaIncidencia());
+	        log.info("Datos recibidos: ubicacion={}, correoDocente={}, fechaIncidencia={}",
+	        	    modificarIncidenciaDto.getUbicacion(),
 	        	    modificarIncidenciaDto.getCorreoDocente(),
 	        	    modificarIncidenciaDto.getFechaIncidencia()
 	        	);
@@ -216,7 +215,7 @@ public class IncidenciaController
 	    try 
 	    {
 	        // Validar que los datos obligatorios estén presentes
-	        if (crearIncidenciaDTO.getNumeroAula() == null || crearIncidenciaDTO.getNumeroAula().isEmpty()) 
+	        if (crearIncidenciaDTO.getUbicacion() == null || crearIncidenciaDTO.getUbicacion().isEmpty()) 
 	        {
 	        	String errorString = "El número de aula es obligatorio." ;
 	        	
@@ -250,7 +249,7 @@ public class IncidenciaController
 	        
 	        // Crear un nuevo objeto entidad para guardar en la base de datos
 	        IncidenciaEntity nuevaIncidencia = new IncidenciaEntity();
-	        nuevaIncidencia.setNumeroAula(crearIncidenciaDTO.getNumeroAula());
+	        nuevaIncidencia.setUbicacion(crearIncidenciaDTO.getUbicacion());
 	        nuevaIncidencia.setCorreoDocente(crearIncidenciaDTO.getCorreoDocente());
 	        nuevaIncidencia.setFechaIncidencia(LocalDateTime.now());
 	        nuevaIncidencia.setCorreoDestinatario(crearIncidenciaDTO.getCorreoDestinatario());
@@ -269,16 +268,16 @@ public class IncidenciaController
 	        //Optional<Profesor> profesor= this.profesorRepository.findById(crearIncidenciaDTO.getCorreoDocente());
             //buscarProfesor(profesor, crearIncidenciaDTO.getCorreoDocente());
 	        // Enviar correo de notificación
-            String asunto = "Nueva Incidencia en el Aula " + crearIncidenciaDTO.getNumeroAula();
+            String asunto = "Nueva Incidencia en el Aula " + crearIncidenciaDTO.getUbicacion();
             String cuerpo = "Detalles de la Incidencia:\n\n" +
-                    "Aula: " + crearIncidenciaDTO.getNumeroAula() + "\n" +
+                    "Ubicacion: " + crearIncidenciaDTO.getUbicacion() + "\n" +
                     //"‍Docente: " + buscarProfesor(profesor, asunto).getNombre() +" "+buscarProfesor(profesor, asunto).getApellido()  + "\n" +
                     "Descripción: " + crearIncidenciaDTO.getDescripcionIncidencia() + "\n" +
                     "Fecha: " + fechaFormateada + "\n\n" +
                     
                     "Este correo ha sido generado automáticamente.";
 
-            emailService.sendEmail(crearIncidenciaDTO.getCorreoDestinatario(), asunto, cuerpo, crearIncidenciaDTO.getCorreoDocente());
+          //  emailService.sendEmail(crearIncidenciaDTO.getCorreoDestinatario(), asunto, cuerpo, crearIncidenciaDTO.getCorreoDocente());
             
 	        
 	        // Devuelve la respuesta exitosa
@@ -348,7 +347,7 @@ public class IncidenciaController
 	 * elimina y retorna un código de estado 204 (NO_CONTENT) indicando éxito.
 	 *
 	 * @param dto El objeto {@link IncidenciaDTO} que contiene los detalles de la
-	 *            incidencia a eliminar. Los campos {@code numeroAula},
+	 *            incidencia a eliminar. Los campos {@code ubicacion},
 	 *            {@code correoDocente} y {@code fechaIncidencia} son obligatorios.
 	 * @return {@link ResponseEntity} con el código de estado correspondiente: - 204
 	 *         (NO_CONTENT) si la incidencia fue eliminada correctamente. - 404
@@ -363,9 +362,9 @@ public class IncidenciaController
 	{
 		try
 		{
-			 IncidenciaEntity incidencia = this.iIncidenciaRepository.EncontrarByNumeroAulaAndCorreoDocenteAndFechaIncidencia(incidenciaDTO.getNumeroAula(),incidenciaDTO.getCorreoDocente(),incidenciaDTO.getFechaIncidencia());
+			 IncidenciaEntity incidencia = this.iIncidenciaRepository.EncontrarByUbicacionAndCorreoDocenteAndFechaIncidencia(incidenciaDTO.getUbicacion(),incidenciaDTO.getCorreoDocente(),incidenciaDTO.getFechaIncidencia());
 		        log.info("Datos recibidos: numeroAula={}, correoDocente={}, fechaIncidencia={}",
-		        		incidenciaDTO.getNumeroAula(),
+		        		incidenciaDTO.getUbicacion(),
 		        	    incidenciaDTO.getCorreoDocente(),
 		        	    incidenciaDTO.getFechaIncidencia()
 		        	);

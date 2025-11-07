@@ -40,13 +40,13 @@ public interface IIncidenciaRepository extends JpaRepository<IncidenciaEntity, I
 	 * y luego utiliza este identificador para comprobar si la incidencia correspondiente ya está registrada en la base de datos.
 	 * </p>
 	 *
-	 * @param numeroAula          El número del aula asociado a la incidencia.
+	 * @param ubicacion          La ubicacion asociada a la incidencia.
 	 * @param correoDocente       El correo del docente que reportó la incidencia.
 	 * @param fechaIncidencia     La fecha y hora en que ocurrió la incidencia.
 	 * @return                   {@code true} si la incidencia existe en la base de datos; {@code false} en caso contrario.
 	 */
-	public default boolean existsByCompositeId( String numeroAula, String correoDocente, LocalDateTime fechaIncidencia  ) {
-		IncidenciaEntityId id = new IncidenciaEntityId( numeroAula, correoDocente, fechaIncidencia  );
+	public default boolean existsByCompositeId( String ubicacion, String correoDocente, LocalDateTime fechaIncidencia  ) {
+		IncidenciaEntityId id = new IncidenciaEntityId( ubicacion, correoDocente, fechaIncidencia  );
 		return this.existsById(id);
 	}
 		
@@ -59,7 +59,7 @@ public interface IIncidenciaRepository extends JpaRepository<IncidenciaEntity, I
 	 * </p>
 	 * 
 	 * Cada parametro especificado a continuación puede ser nulo. De serlo será ignorado en la busqueda.	  
-	 * @param numeroAula              El número del aula de la incidencia.
+	 * @param ubicacion              El número del aula de la incidencia.
 	 * @param correoDocente           El correo del docente que reportó la incidencia.
 	 * @param fechaInicio             La fecha y hora de inicio para filtrar incidencias.
 	 * @param fechaFin                La fecha y hora de fin para filtrar incidencias.
@@ -69,24 +69,24 @@ public interface IIncidenciaRepository extends JpaRepository<IncidenciaEntity, I
 	 * @return                        Una lista de objetos {@link IncidenciaDTO} que cumplen con los criterios de búsqueda.
 	 
 	@Query("SELECT new es.iesjandula.ReaktorIssuesServer.dto.IncidenciaDTO("
-			+ "e.numeroAula, e.correoDocente, e.fechaIncidencia, e.descripcionIncidencia, e.estadoIncidencia, e.comentario"
-			+ ") " + "FROM IncidenciaEntity e WHERE ( :numeroAula IS NULL OR e.numeroAula = :numeroAula ) AND "
+			+ "e.ubicacion, e.correoDocente, e.fechaIncidencia, e.descripcionIncidencia, e.estadoIncidencia, e.comentario"
+			+ ") " + "FROM IncidenciaEntity e WHERE ( :ubicacion IS NULL OR e.ubicacion = :ubicacion ) AND "
 			+ "( :correoDocente IS NULL OR e.correoDocente = :correoDocente ) AND "
 			+ "( (:fechaFin IS NULL) OR (:fechaInicio IS NULL) OR e.fechaIncidencia BETWEEN :fechaInicio AND :fechaFin ) AND "
 			+ "( :descripcionIncidencia IS NULL OR e.descripcionIncidencia LIKE CONCAT('%', :descripcionIncidencia, '%') ) AND "
 			+ "( :estadoIncidencia IS NULL OR e.estadoIncidencia = :estadoIncidencia ) AND "
 			+ "( :comentario IS NULL OR e.comentario LIKE CONCAT('%', :comentario, '%') )")
 	public List<IncidenciaDTO> buscaIncidencia(  
-			@Param("numeroAula") String numeroAula, 
+			@Param("ubicacion") String ubicacion, 
 			@Param("correoDocente")String correoDocente, 
 			@Param("fechaInicio")Date fechaInicio, 
 			@Param("fechaFin")Date fechaFin, 
 			@Param("descripcionIncidencia")String descripcionIncidencia, 
 			@Param("estadoIncidencia")String estadoIncidencia, 
 			@Param("comentario")String comentario );*/
-	@Query("SELECT i FROM IncidenciaEntity i WHERE i.numeroAula = :numeroAula AND i.correoDocente = :correoDocente AND i.fechaIncidencia = :fechaIncidencia")
-	IncidenciaEntity EncontrarByNumeroAulaAndCorreoDocenteAndFechaIncidencia(
-	    @Param("numeroAula") String numeroAula, 
+	@Query("SELECT i FROM IncidenciaEntity i WHERE i.ubicacion = :ubicacion AND i.correoDocente = :correoDocente AND i.fechaIncidencia = :fechaIncidencia")
+	IncidenciaEntity EncontrarByUbicacionAndCorreoDocenteAndFechaIncidencia(
+	    @Param("ubicacion") String ubicacion, 
 	    @Param("correoDocente") String correoDocente, 
 	    @Param("fechaIncidencia") LocalDateTime fechaIncidencia
 	);

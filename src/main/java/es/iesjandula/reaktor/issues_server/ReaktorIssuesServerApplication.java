@@ -2,6 +2,7 @@ package es.iesjandula.reaktor.issues_server;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.ComponentScan;
 
 /**
  * Clase principal de la aplicación que arranca el servicio de gestión de incidencias.
@@ -11,6 +12,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * </p>
  */
 @SpringBootApplication
+@ComponentScan(basePackages = {"es.iesjandula"})
 public class ReaktorIssuesServerApplication
 {
 	/**
