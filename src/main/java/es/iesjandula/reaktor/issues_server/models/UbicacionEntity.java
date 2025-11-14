@@ -1,4 +1,4 @@
-package es.iesjandula.reaktor.issues_server.entity;
+package es.iesjandula.reaktor.issues_server.models;
 
 
 import jakarta.persistence.*;
@@ -17,4 +17,7 @@ public class UbicacionEntity
 
     @Column(name = "nombre", nullable = false, unique = true)
     private String nombre;
+    
+    
+    
 }

@@ -10,8 +10,8 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import es.iesjandula.reaktor.issues_server.dto.IncidenciaDTO;
-import es.iesjandula.reaktor.issues_server.entity.IncidenciaEntity;
-import es.iesjandula.reaktor.issues_server.entity.IncidenciaEntityId;
+import es.iesjandula.reaktor.issues_server.models.IncidenciaEntity;
+import es.iesjandula.reaktor.issues_server.models.ids.IncidenciaEntityId;
 
 /**
  * Repositorio para gestionar incidencias en la base de datos.
@@ -88,6 +88,12 @@ public interface IIncidenciaRepository extends JpaRepository<IncidenciaEntity, I
 	IncidenciaEntity EncontrarByUbicacionAndCorreoDocenteAndFechaIncidencia(
 	    @Param("ubicacion") String ubicacion, 
 	    @Param("correoDocente") String correoDocente, 
-	    @Param("fechaIncidencia") LocalDateTime fechaIncidencia
+	    @Param("fechaIncidencia") LocalDateTime localDateTime
 	);
+	
+	boolean existsByCategoria_NombreCategoria(String nombreCategoria);
+
+
+	
+	
 }

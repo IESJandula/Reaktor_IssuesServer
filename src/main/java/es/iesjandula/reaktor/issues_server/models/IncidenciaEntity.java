@@ -1,12 +1,14 @@
-package es.iesjandula.reaktor.issues_server.entity;
+package es.iesjandula.reaktor.issues_server.models;
 
 import java.time.LocalDateTime;
 
-
+import es.iesjandula.reaktor.issues_server.models.ids.IncidenciaEntityId;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.IdClass;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -71,15 +73,6 @@ public class IncidenciaEntity
      * Este atributo contiene un correo del destinatario del problema que se ha reportado.
      */
 	@Column()
-	private String correoDestinatario;
-
-    /**
-     * Atributo - Define el estado de la incidencia.
-     * 
-     * Este atributo puede tomar valores como "EN PROGRESO", "CANCELADA", 
-     * "RESUELTA" o "PENDIENTE".
-     */
-	@Column()
 	private String estadoIncidencia;
 	
     /**
@@ -91,4 +84,15 @@ public class IncidenciaEntity
 	@Column(columnDefinition = "TEXT")
 	private String comentario;
 	
+	@Column(name = "correo_responsable")
+	private String correoResponsable;
+	
+	
+	   @ManyToOne
+	    @JoinColumn(
+	        name = "nombreCategoria",
+	        referencedColumnName = "nombreCategoria",
+	        nullable = false
+	    )
+	    private CategoriaIncidenciaEntity categoria;
 }

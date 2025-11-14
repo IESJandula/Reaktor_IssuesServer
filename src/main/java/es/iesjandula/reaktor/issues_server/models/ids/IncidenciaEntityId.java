@@ -1,8 +1,9 @@
-package es.iesjandula.reaktor.issues_server.entity;
+package es.iesjandula.reaktor.issues_server.models.ids;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
+import es.iesjandula.reaktor.issues_server.models.IncidenciaEntity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

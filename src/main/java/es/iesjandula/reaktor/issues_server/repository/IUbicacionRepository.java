@@ -6,7 +6,7 @@ import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import es.iesjandula.reaktor.issues_server.entity.UbicacionEntity;
+import es.iesjandula.reaktor.issues_server.models.UbicacionEntity;
 
 public interface IUbicacionRepository extends JpaRepository<UbicacionEntity, Long>
 {

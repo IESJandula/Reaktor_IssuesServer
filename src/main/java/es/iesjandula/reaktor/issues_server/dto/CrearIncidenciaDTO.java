@@ -1,61 +1,41 @@
 package es.iesjandula.reaktor.issues_server.dto;
 
-
-import java.util.Date;
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
- * Clase que representa un objeto de transferencia de datos para una incidencia.
- * 
- * <p>
- * Esta clase se utiliza para transportar información sobre una incidencia
- * en el sistema. Es un objeto ligero que facilita la comunicación entre
- * las distintas capas de la aplicación (por ejemplo, entre la capa de
- * servicio y la capa de presentación).
- * </p>
+ * DTO que representa los datos necesarios para crear una incidencia.
  */
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class CrearIncidenciaDTO 
 {
-	/**
-	 * Atribtuo - Aula en la que se da la incidencia.
-	 */
-	private String ubicacion;
+    /**
+     * Aula en la que ocurre la incidencia.
+     */
+    private String ubicacion;
 
-	/**
-	 * Atribtuo - Correo del docente que informa de la incidencia.
-	 */
-	private String correoDocente;
+    /**
+     * Descripción de la incidencia.
+     */
+    private String descripcionIncidencia;
 
-	/**
-	 * Atribtuo - Fecha de creación de la señalación.
-	 */
-	//@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy HH:mm:ss")
-	private Date fechaIncidencia;
+    /**
+     * Categoría asignada a la incidencia.
+     * Esta categoría determina automáticamente los responsables destino.
+     */
+    private String nombreCategoria;
 
-	/**
-	 * Atribtuo - Detalla el problema relacionado a la incidencia.
-	 */
-	private String descripcionIncidencia;
 
-	/**
-	 * @param descripcionIncidencia descripción de la incidencia
-	 */
-	public void setDescripcionIncidencia(String descripcionIncidencia)
+    public void setDescripcionIncidencia(String descripcionIncidencia)
     {
         if (descripcionIncidencia == null || descripcionIncidencia.trim().isEmpty())
         {
-            throw new IllegalArgumentException("La descripcion del tic no debería de estar vacía");
+            throw new IllegalArgumentException("La descripción no debería estar vacía");
         }
-        
+
         this.descripcionIncidencia = descripcionIncidencia;
     }
-	
-	private String correoDestinatario;
-	
 }

@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import es.iesjandula.reaktor.base.utils.BaseConstants;
 import es.iesjandula.reaktor.issues_server.dto.UbicacionDTO;
-import es.iesjandula.reaktor.issues_server.entity.UbicacionEntity;
+import es.iesjandula.reaktor.issues_server.models.UbicacionEntity;
 import es.iesjandula.reaktor.issues_server.repository.IUbicacionRepository;
 import es.iesjandula.reaktor.issues_server.utils.IssuesServerError;
 import lombok.extern.slf4j.Slf4j;
@@ -90,6 +90,26 @@ public class UbicacionController
             log.error(msg, e);
             IssuesServerError err = new IssuesServerError(0, msg, e);
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(err.getMapError());
+        }
+    }
+    
+    
+    @PreAuthorize("hasRole('" + BaseConstants.ROLE_ADMINISTRADOR + "')")
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> borrarUbicacion(@PathVariable Long id) throws IssuesServerError {
+        try {
+            if (!ubicacionRepository.existsById(id)) {
+                return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                        .body("No se encontró la ubicación con ID " + id);
+            }
+
+            ubicacionRepository.deleteById(id);
+            log.info("Ubicación eliminada con ID {}", id);
+            return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+
+        } catch (Exception e) {
+            log.error("Error al borrar ubicación con ID {}", id, e);
+            throw new IssuesServerError(500, "Error al borrar ubicación", e);
         }
     }
 }
