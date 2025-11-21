@@ -5,12 +5,8 @@ import java.util.Map;
 
 import org.apache.commons.lang3.exception.ExceptionUtils;
 
-import lombok.Data;
-import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
-@Data
-//@EqualsAndHashCode(callSuper = false)
 @NoArgsConstructor
 public class IssuesServerError extends Exception
 {

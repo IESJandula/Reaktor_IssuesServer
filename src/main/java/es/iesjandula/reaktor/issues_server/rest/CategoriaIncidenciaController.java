@@ -12,7 +12,6 @@ import es.iesjandula.reaktor.base.utils.BaseConstants;
 import es.iesjandula.reaktor.issues_server.models.CategoriaIncidenciaEntity;
 import es.iesjandula.reaktor.issues_server.repository.ICategoriaIncidenciaRepository;
 import es.iesjandula.reaktor.issues_server.repository.IIncidenciaRepository;
-import es.iesjandula.reaktor.issues_server.repository.IUsuarioCategoriaRepository;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -24,8 +23,6 @@ public class CategoriaIncidenciaController {
     @Autowired
     private ICategoriaIncidenciaRepository categoriaRepository;
 
-    @Autowired
-    private IUsuarioCategoriaRepository usuarioCategoriaRepository;
 
     @Autowired
     private IIncidenciaRepository incidenciaRepository;

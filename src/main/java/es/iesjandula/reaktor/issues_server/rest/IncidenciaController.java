@@ -1,8 +1,6 @@
 package es.iesjandula.reaktor.issues_server.rest;
 
-import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
-import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,11 +27,10 @@ import es.iesjandula.reaktor.issues_server.dto.IncidenciaDTO;
 import es.iesjandula.reaktor.issues_server.dto.ModificarIncidenciaDto;
 import es.iesjandula.reaktor.issues_server.models.CategoriaIncidenciaEntity;
 import es.iesjandula.reaktor.issues_server.models.IncidenciaEntity;
+import es.iesjandula.reaktor.issues_server.models.UsuarioCategoriaEntity;
 import es.iesjandula.reaktor.issues_server.repository.ICategoriaIncidenciaRepository;
 import es.iesjandula.reaktor.issues_server.repository.IIncidenciaRepository;
 import es.iesjandula.reaktor.issues_server.repository.IUsuarioCategoriaRepository;
-import es.iesjandula.reaktor.issues_server.repository.ProfesorRepository;
-import es.iesjandula.reaktor.issues_server.services.EmailService;
 import es.iesjandula.reaktor.issues_server.utils.Constants;
 import es.iesjandula.reaktor.issues_server.utils.IssuesServerError;
 import lombok.extern.slf4j.Slf4j;
@@ -83,19 +80,14 @@ public class IncidenciaController
 	// Auto-inyeccion de repositorio.
 	private IIncidenciaRepository iIncidenciaRepository;
 	
-	@Autowired
-	private ProfesorRepository profesorRepository;
 	
 	@Autowired
 	private ICategoriaIncidenciaRepository iCategoriaIncidenciaRepository;
 	
-	@Autowired
-	private IUsuarioCategoriaRepository usuarioCategoriaRepository;
 	
-    @Autowired
-    private EmailService emailService;
-    
-    private SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy");
+	@Autowired
+	private IUsuarioCategoriaRepository iUsuarioCategoriaRepository;
+	
     
 //    @Value("${reaktor.http_connection_timeout}")
 //	private int httpConnectionTimeout;
@@ -211,40 +203,40 @@ public class IncidenciaController
 	 */
     @PreAuthorize("hasRole('" + BaseConstants.ROLE_PROFESOR + "')")
     @PostMapping("/crear_incidencia")
-    public ResponseEntity<?> crearIncidencia(@AuthenticationPrincipal DtoUsuarioExtended usuario,
-                                             @RequestBody CrearIncidenciaDTO crearIncidenciaDTO) 
+    public ResponseEntity<?> crearIncidencia(
+            @AuthenticationPrincipal DtoUsuarioExtended usuario,
+            @RequestBody CrearIncidenciaDTO crearIncidenciaDTO) 
     {
         try 
         {
-            // Validar campos obligatorios
+            // Validaciones
             if (crearIncidenciaDTO.getUbicacion() == null || crearIncidenciaDTO.getUbicacion().isEmpty()) {
-                String errorString = "El número de aula es obligatorio.";
-                log.error(errorString);
-                throw new IssuesServerError(1, errorString);
+                throw new IssuesServerError(1, "El número de aula es obligatorio.");
             }
 
             if (crearIncidenciaDTO.getDescripcionIncidencia() == null 
                     || crearIncidenciaDTO.getDescripcionIncidencia().isEmpty()) {
-                String errorString = "La descripción de la incidencia es obligatoria.";
-                log.error(errorString);
-                throw new IssuesServerError(3, errorString);
+                throw new IssuesServerError(3, "La descripción de la incidencia es obligatoria.");
             }
 
             if (crearIncidenciaDTO.getNombreCategoria() == null 
                     || crearIncidenciaDTO.getNombreCategoria().isEmpty()) {
-                String errorString = "La categoría es obligatoria.";
-                log.error(errorString);
-                throw new IssuesServerError(4, errorString);
+                throw new IssuesServerError(4, "La categoría es obligatoria.");
             }
 
             // Buscar categoría
             CategoriaIncidenciaEntity categoria = this.iCategoriaIncidenciaRepository
                 .findById(crearIncidenciaDTO.getNombreCategoria())
-                .orElseThrow(() -> {
-                    String errorString = "La categoría especificada no existe.";
-                    log.error(errorString + " nombreCategoria={}", crearIncidenciaDTO.getNombreCategoria());
-                    return new IssuesServerError(5, errorString);
-                });
+                .orElseThrow(() -> new IssuesServerError(5, "La categoría especificada no existe."));
+
+            // Buscar responsable de categoría (el primero de la lista)
+            List<UsuarioCategoriaEntity> responsables =
+                    this.iUsuarioCategoriaRepository.findByNombreCategoria(crearIncidenciaDTO.getNombreCategoria());
+
+            String correoResponsable = null;
+            if (!responsables.isEmpty()) {
+                correoResponsable = responsables.get(0).getCorreoResponsable(); // ← PRIMER RESPONSABLE
+            }
 
             // Crear entidad Incidencia
             IncidenciaEntity nuevaIncidencia = new IncidenciaEntity();
@@ -256,24 +248,24 @@ public class IncidenciaController
             nuevaIncidencia.setComentario(null);
             nuevaIncidencia.setCategoria(categoria);
 
+            // Asignar responsable automático
+            nuevaIncidencia.setCorreoResponsable(correoResponsable);
+
             // Guardar en BD
             this.iIncidenciaRepository.saveAndFlush(nuevaIncidencia);
 
             log.info("Incidencia creada correctamente: {}", nuevaIncidencia);
 
-            // *** Se eliminó la parte de envío de correo ***
-
             return ResponseEntity.ok().build();
         }
-        catch (IssuesServerError exception)
+        catch (IssuesServerError ex)
         {
-            return ResponseEntity.status(400).body(exception.getMapError());
+            return ResponseEntity.status(400).body(ex.getMapError());
         }
         catch (Exception ex) 
         {
-            String message = "ERROR: Error al crear la incidencia:\n " + ex.getMessage();
+            String message = "ERROR al crear incidencia: " + ex.getMessage();
             log.error(message, ex);
-
             IssuesServerError serverError = new IssuesServerError(3, message, ex);
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(serverError.getMapError());
         }
