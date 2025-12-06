@@ -2,7 +2,7 @@ package es.iesjandula.reaktor.issues_server.models;
 
 import java.time.LocalDateTime;
 
-import es.iesjandula.reaktor.issues_server.models.ids.IncidenciaEntityId;
+import es.iesjandula.reaktor.issues_server.models.ids.IncidenciaId;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -16,11 +16,11 @@ import lombok.NoArgsConstructor;
 
 
 /**
- * Clase que representa una incidencia en el sistema.
+ * Entidad que representa una incidencia en el sistema.
  * 
  * <p>
  * Esta clase define el objeto de incidencia que se almacena en la base de datos. 
- * Utiliza un identificador compuesto definido por {@link IncidenciaEntityId} que 
+ * Utiliza un identificador compuesto definido por {@link IncidenciaId} que 
  * incluye el número de aula, el correo del docente y la fecha de la incidencia.
  * </p>
  */
@@ -28,12 +28,10 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "incidencias")
-@IdClass(IncidenciaEntityId.class)
-public class IncidenciaEntity 
+@Table(name = "incidencia")
+@IdClass(IncidenciaId.class)
+public class Incidencia 
 {
-
-	
     /**
      * Atributo - Aula en la que se da la incidencia.
      * 
@@ -43,13 +41,13 @@ public class IncidenciaEntity
 	private String ubicacion;
 
     /**
-     * Atributo - Correo del docente que informa de la incidencia.
+     * Atributo - Email del docente que informa de la incidencia.
      * 
      * Este atributo es parte del identificador compuesto de la incidencia.
      */
 	@Id
-	@Column()
-	private String correoDocente;
+	@Column
+	private String email;
 
     /**
      * Atributo - Fecha de creación de la señalación.
@@ -57,7 +55,7 @@ public class IncidenciaEntity
      * Este atributo es parte del identificador compuesto de la incidencia.
      */
 	@Id
-	private LocalDateTime fechaIncidencia;
+	private LocalDateTime fecha;
 	
     /**
      * Atributo - Detalla el problema relacionado a la incidencia.
@@ -65,15 +63,15 @@ public class IncidenciaEntity
      * Este atributo contiene una descripción del problema que se ha reportado.
      */
 	@Column(columnDefinition = "TEXT")
-	private String descripcionIncidencia;
+	private String descripcion;
 	
 	/**
      * Atributo - Detalla al correo que se le envia la incidencia a la incidencia.
      * 
      * Este atributo contiene un correo del destinatario del problema que se ha reportado.
      */
-	@Column()
-	private String estadoIncidencia;
+	@Column
+	private String estado;
 	
     /**
      * Atributo - Comentario relacionado a la solución de la incidencia.
@@ -82,17 +80,23 @@ public class IncidenciaEntity
      * la incidencia.
      */
 	@Column(columnDefinition = "TEXT")
-	private String comentario;
+    private String comentario;
+            
+    /**
+     * Atributo - Email del responsable de la incidencia.
+     * 
+     * Este atributo contiene el email del responsable de la incidencia.
+     */
+	@Column(name = "email_responsable")
+	private String emailResponsable;
 	
-	@Column(name = "correo_responsable")
-	private String correoResponsable;
-	
-	
-	   @ManyToOne
-	    @JoinColumn(
-	        name = "nombreCategoria",
-	        referencedColumnName = "nombreCategoria",
-	        nullable = false
-	    )
-	    private CategoriaIncidenciaEntity categoria;
+    /**
+     * Relación muchos a uno con Categoria
+     * @return Categoría de incidencia
+     */
+    @ManyToOne
+    @JoinColumn(name = "nombre",
+                referencedColumnName = "nombre",
+                nullable = false)
+    private Categoria categoria;
 }

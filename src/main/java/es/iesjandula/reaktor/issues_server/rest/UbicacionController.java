@@ -1,115 +1,166 @@
 package es.iesjandula.reaktor.issues_server.rest;
 
-import java.util.List;
-import java.util.stream.Collectors;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.*;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import es.iesjandula.reaktor.base.utils.BaseConstants;
-import es.iesjandula.reaktor.issues_server.dto.UbicacionDTO;
-import es.iesjandula.reaktor.issues_server.models.UbicacionEntity;
+import es.iesjandula.reaktor.issues_server.dto.UbicacionDto;
+import es.iesjandula.reaktor.issues_server.models.Ubicacion;
 import es.iesjandula.reaktor.issues_server.repository.IUbicacionRepository;
+import es.iesjandula.reaktor.issues_server.utils.Constants;
 import es.iesjandula.reaktor.issues_server.utils.IssuesServerError;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @RestController
-@CrossOrigin("*")
 @RequestMapping("/issues/ubicaciones")
 public class UbicacionController
 {
     @Autowired
     private IUbicacionRepository ubicacionRepository;
 
-    /** Listar todas las ubicaciones (para el desplegable, PROFESOR puede verlas) */
+    /** 
+     * Listar todas las ubicaciones (para el desplegable, PROFESOR puede verlas)
+     *
+     * @return ResponseEntity con la lista de ubicaciones
+     */
     @PreAuthorize("hasRole('" + BaseConstants.ROLE_PROFESOR + "')")
     @GetMapping
     public ResponseEntity<?> listarUbicaciones()
     {
         try
         {
-            List<UbicacionDTO> resultado = this.ubicacionRepository
-                .findAllByOrderByNombreAsc()
-                .stream()
-                .map(u -> new UbicacionDTO(u.getId(), u.getNombre()))
-                .collect(Collectors.toList());
-
-            return ResponseEntity.ok(resultado);
+            return ResponseEntity.ok(this.ubicacionRepository.buscarTodasLasUbicaciones());
         }
-        catch (Exception e)
+        catch (Exception exception)
         {
-            String msg = "Error inesperado en listarUbicaciones(): " + e.getMessage();
-            log.error(msg, e);
-            IssuesServerError err = new IssuesServerError(0, msg, e);
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(err.getMapError());
+            // Creamos una excepción genérica para devolver al cliente
+            IssuesServerError issuesServerError = new IssuesServerError(Constants.ERR_GENERICO_CODE, Constants.ERR_GENERICO_MESSAGE, exception);
+
+            // Log de la excepción
+            log.error("Excepción genérica al listar las ubicaciones", issuesServerError);
+
+            // Devolvemos la respuesta
+            return ResponseEntity.status(500).body(issuesServerError.getBodyErrorMessage());
         }
     }
 
-    /** Crear nueva ubicación (solo administración) */
+    /** 
+     * Crear nueva ubicación (solo administración)
+     * 
+     * @param nombre El nombre de la ubicación a crear
+     * @return ResponseEntity con el resultado de la creación
+     */
     @PreAuthorize("hasRole('" + BaseConstants.ROLE_ADMINISTRADOR + "')")
     @PostMapping
-    public ResponseEntity<?> crearUbicacion(@RequestBody UbicacionDTO dto)
+    public ResponseEntity<?> crearUbicacion(@RequestHeader("nombre") String nombre)
     {
         try
         {
-            if (dto.getNombre() == null || dto.getNombre().isBlank())
+            // Validamos que el nombre de la ubicación no sea nulo o en blanco
+            if (nombre == null || nombre.isEmpty() || nombre.isBlank())
             {
                 String errorString = "El nombre de la ubicación es obligatorio.";
+
                 log.error(errorString);
-                throw new IssuesServerError(10, errorString);
+                throw new IssuesServerError(Constants.ERR_UBICACION_NOMBRE_OBLIGATORIO_CODE, errorString);
             }
 
-            String nombreNormalizado = dto.getNombre().trim();
-
-            if (this.ubicacionRepository.findByNombreIgnoreCase(nombreNormalizado).isPresent())
+            // Validamos que la ubicación no exista
+            if (this.ubicacionRepository.existsById(nombre))
             {
                 String errorString = "Ya existe una ubicación con ese nombre.";
+
                 log.error(errorString);
-                throw new IssuesServerError(11, errorString);
+                throw new IssuesServerError(Constants.ERR_UBICACION_YA_EXISTE_CODE, errorString);
             }
 
-            UbicacionEntity entity = new UbicacionEntity();
-            entity.setNombre(nombreNormalizado);
-            this.ubicacionRepository.saveAndFlush(entity);
+            // Creamos la ubicación
+            Ubicacion ubicacion = new Ubicacion();
+            ubicacion.setNombre(nombre);
+            
+            // Guardamos la ubicación
+            this.ubicacionRepository.saveAndFlush(ubicacion);
 
-            dto.setId(entity.getId());
-            log.info("Ubicacion creada: {}", entity);
+            // Log de la ubicación creada
+            log.info("Ubicacion creada: {}", ubicacion);
 
-            return ResponseEntity.status(HttpStatus.CREATED).body(dto);
+            // Devolvemos la respuesta
+            return ResponseEntity.ok().build();
         }
-        catch (IssuesServerError ex)
+        catch (IssuesServerError issuesServerError)
         {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ex.getMapError());
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(issuesServerError.getBodyErrorMessage());
         }
-        catch (Exception e)
+        catch (Exception exception)
         {
-            String msg = "Error inesperado creando la ubicación: " + e.getMessage();
-            log.error(msg, e);
-            IssuesServerError err = new IssuesServerError(0, msg, e);
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(err.getMapError());
+            // Creamos una excepción genérica para devolver al cliente
+            IssuesServerError issuesServerError = new IssuesServerError(Constants.ERR_GENERICO_CODE, Constants.ERR_GENERICO_MESSAGE, exception);
+
+            // Log de la excepción
+            log.error("Excepción genérica al crear la ubicación", issuesServerError);
+
+            // Devolvemos la respuesta
+            return ResponseEntity.status(500).body(issuesServerError.getBodyErrorMessage());
         }
     }
     
-    
+    /** 
+     * Borrar ubicación (solo administración)
+     * 
+     * @param nombre El nombre de la ubicación a borrar
+     * @return ResponseEntity con el resultado de la eliminación
+     */ 
     @PreAuthorize("hasRole('" + BaseConstants.ROLE_ADMINISTRADOR + "')")
-    @DeleteMapping("/{id}")
-    public ResponseEntity<?> borrarUbicacion(@PathVariable Long id) throws IssuesServerError {
-        try {
-            if (!ubicacionRepository.existsById(id)) {
-                return ResponseEntity.status(HttpStatus.NOT_FOUND)
-                        .body("No se encontró la ubicación con ID " + id);
+    @DeleteMapping
+    public ResponseEntity<?> borrarUbicacion(@RequestHeader("nombre") String nombre)
+    {
+        try
+        {
+            // Log de la petición
+            log.info("Petición para borrar ubicación '{}'", nombre);
+
+            // Verificamos que la ubicación exista
+            if (!this.ubicacionRepository.existsById(nombre))
+            {
+                String errorString = "No se encontró la ubicación con ese nombre.";
+
+                log.error(errorString);
+                throw new IssuesServerError(Constants.ERR_UBICACION_NO_ENCONTRADA_CODE, errorString);
             }
 
-            ubicacionRepository.deleteById(id);
-            log.info("Ubicación eliminada con ID {}", id);
-            return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+            // Borramos la ubicación
+            this.ubicacionRepository.deleteById(nombre);
 
-        } catch (Exception e) {
-            log.error("Error al borrar ubicación con ID {}", id, e);
-            throw new IssuesServerError(500, "Error al borrar ubicación", e);
+            // Log de la ubicación eliminada
+            log.info("Ubicación eliminada con ID '{}'", nombre);
+
+            // Devolvemos la respuesta
+            return ResponseEntity.ok().build();
+        }
+        catch (IssuesServerError issuesServerError)
+        {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(issuesServerError.getBodyErrorMessage());
+        }
+        catch (Exception exception)
+        {
+            // Creamos una excepción genérica para devolver al cliente
+            IssuesServerError issuesServerError = new IssuesServerError(Constants.ERR_GENERICO_CODE, Constants.ERR_GENERICO_MESSAGE, exception);
+
+            // Log de la excepción
+            log.error("Excepción genérica al borrar la ubicación", issuesServerError);
+
+            // Devolvemos la respuesta
+            return ResponseEntity.status(500).body(issuesServerError.getBodyErrorMessage());
         }
     }
 }

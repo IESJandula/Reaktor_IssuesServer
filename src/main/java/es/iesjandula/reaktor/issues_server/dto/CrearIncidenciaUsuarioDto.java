@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class CrearIncidenciaDTO 
+public class CrearIncidenciaUsuarioDto 
 {
     /**
      * Aula en la que ocurre la incidencia.
@@ -20,22 +20,11 @@ public class CrearIncidenciaDTO
     /**
      * Descripción de la incidencia.
      */
-    private String descripcionIncidencia;
+    private String descripcion;
 
     /**
      * Categoría asignada a la incidencia.
      * Esta categoría determina automáticamente los responsables destino.
      */
     private String nombreCategoria;
-
-
-    public void setDescripcionIncidencia(String descripcionIncidencia)
-    {
-        if (descripcionIncidencia == null || descripcionIncidencia.trim().isEmpty())
-        {
-            throw new IllegalArgumentException("La descripción no debería estar vacía");
-        }
-
-        this.descripcionIncidencia = descripcionIncidencia;
-    }
 }

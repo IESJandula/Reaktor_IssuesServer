@@ -1,12 +1,19 @@
 package es.iesjandula.reaktor.issues_server.dto;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
+/**
+ * DTO que representa una ubicación.
+ */
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class UbicacionDTO
+public class UbicacionDto
 {
-    private Long id;
+    /**
+     * Nombre de la ubicación.
+     */
     private String nombre;
 }

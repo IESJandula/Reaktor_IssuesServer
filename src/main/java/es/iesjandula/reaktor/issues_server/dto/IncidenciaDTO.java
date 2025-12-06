@@ -19,7 +19,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class IncidenciaDTO 
+public class IncidenciaDto 
 {
 
     private String ubicacion;

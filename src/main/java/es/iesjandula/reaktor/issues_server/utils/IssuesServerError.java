@@ -15,40 +15,47 @@ public class IssuesServerError extends Exception
 	 */
 	private static final long serialVersionUID = 8144321039123138732L;
 
-	private int id;
+	private int code;
 
-	private String message;
-
-	private Exception exception;
-
-	// Constructor completo
-	public IssuesServerError(int id, String message, Exception exception)
+	/***
+	 * Constructor sin la Excepción
+	 * @param code Código del error
+	 * @param message Mensaje del error
+	 */
+	public IssuesServerError(int code, String message)
 	{
-		super();
-		this.id = id;
-		this.message = message;
-		this.exception = exception;
+		super(message);
+
+		this.code = code;
+	}
+	
+	/**
+	 * Constructor completo
+	 * @param code Código del error
+	 * @param message Mensaje del error
+	 * @param exception Excepción
+	 */
+	public IssuesServerError(int code, String message, Exception exception)
+	{
+		super(message, exception);
+
+		this.code = code;
 	}
 
-	// Constructor sin la Excepcion
-	public IssuesServerError(int id, String message)
-	{
-		super();
-		this.id = id;
-		this.message = message;
-	}
-
-	// Metodo que devuelve un Mapa con la Excepción propia
-	public Map<String, String> getMapError()
+	/**
+	 * Método que devuelve un Mapa con el mensaje de la Excepción propia
+	 * @return Mapa con la Excepción propia
+	 */
+	public Map<String, String> getBodyErrorMessage()
 	{
 		Map<String, String> mapError = new HashMap<String, String>();
 
-		mapError.put("id", "" + id);
-		mapError.put("message", message);
+		mapError.put("code", "" + code);
+		mapError.put("message", this.getMessage());
 
-		if (this.exception != null)
+		if (this.getCause() != null)
 		{
-			String stacktrace = ExceptionUtils.getStackTrace(this.exception);
+			String stacktrace = ExceptionUtils.getStackTrace(this.getCause());
 			mapError.put("exception", stacktrace);
 		}
 		

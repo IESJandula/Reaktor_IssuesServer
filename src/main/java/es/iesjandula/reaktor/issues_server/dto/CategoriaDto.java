@@ -1,16 +1,16 @@
 package es.iesjandula.reaktor.issues_server.dto;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.AllArgsConstructor;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class ProfesorDTO
+public class CategoriaDto
 {
-	 private String nombre;
-	 private String email;
-	 private String apellido;
-
+    /**
+     * Nombre de la categoría
+     */
+    private String nombre ;
 }
