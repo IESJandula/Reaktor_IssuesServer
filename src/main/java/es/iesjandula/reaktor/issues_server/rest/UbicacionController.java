@@ -7,13 +7,11 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import es.iesjandula.reaktor.base.utils.BaseConstants;
-import es.iesjandula.reaktor.issues_server.dto.UbicacionDto;
 import es.iesjandula.reaktor.issues_server.models.Ubicacion;
 import es.iesjandula.reaktor.issues_server.repository.IUbicacionRepository;
 import es.iesjandula.reaktor.issues_server.utils.Constants;
@@ -34,7 +32,7 @@ public class UbicacionController
      * @return ResponseEntity con la lista de ubicaciones
      */
     @PreAuthorize("hasRole('" + BaseConstants.ROLE_PROFESOR + "')")
-    @GetMapping
+    @GetMapping("/")
     public ResponseEntity<?> listarUbicaciones()
     {
         try
@@ -61,7 +59,7 @@ public class UbicacionController
      * @return ResponseEntity con el resultado de la creación
      */
     @PreAuthorize("hasRole('" + BaseConstants.ROLE_ADMINISTRADOR + "')")
-    @PostMapping
+    @PostMapping("/")
     public ResponseEntity<?> crearUbicacion(@RequestHeader("nombre") String nombre)
     {
         try
@@ -121,7 +119,7 @@ public class UbicacionController
      * @return ResponseEntity con el resultado de la eliminación
      */ 
     @PreAuthorize("hasRole('" + BaseConstants.ROLE_ADMINISTRADOR + "')")
-    @DeleteMapping
+    @DeleteMapping("/")
     public ResponseEntity<?> borrarUbicacion(@RequestHeader("nombre") String nombre)
     {
         try

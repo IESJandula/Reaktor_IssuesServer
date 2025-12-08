@@ -1,6 +1,8 @@
 package es.iesjandula.reaktor.issues_server.models;
 
 
+import java.util.List;
+
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -19,4 +21,16 @@ public class Ubicacion
      */
     @Id
     private String nombre;
+
+    /**
+     * Incidencias asociadas a la ubicación.
+     */
+    @OneToMany(mappedBy = "ubicacion")
+    private List<Incidencia> incidencias;
+
+    @Override
+    public String toString()
+    {
+        return "Ubicacion [nombre=" + this.nombre + "]" ;
+    }
 }

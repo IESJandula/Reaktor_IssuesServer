@@ -21,11 +21,48 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class IncidenciaDto 
 {
+    /**
+     * ID de la incidencia.
+     */
+    private Long id;
 
+    /**
+     * Aula en la que ocurre la incidencia.
+     */     
     private String ubicacion;
-    private String correoDocente;
-    private LocalDateTime  fechaIncidencia;
-    private String estado;
-    private String comentario;
 
+    /**
+     * Correo del docente que reportó la incidencia.
+     */
+    private String email;
+
+    /**
+     * Fecha y hora de la incidencia.
+     */
+    private LocalDateTime fecha;
+
+    /**
+     * Problema de la incidencia.
+     */
+    private String problema;
+
+    /**
+     * Estado de la incidencia.
+     */
+    private String estado;
+
+    /**
+     * Solución de la incidencia.
+     */
+    private String solucion;
+
+    /**
+     * Email del responsable de la incidencia.
+     */
+    private String emailResponsable;
+
+    /**
+     * Categoría de la incidencia.
+     */
+    private String categoria;
 }

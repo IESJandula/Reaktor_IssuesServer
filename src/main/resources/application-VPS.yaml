@@ -1,17 +1,12 @@
 spring:
   jpa.hibernate.ddl-auto: create
   datasource:
-    url: jdbc:mysql://localhost:3306/reaktor_issuesserver?createDatabaseIfNotExist=true
+    url: jdbc:mysql://localhost:3306/reaktor_issues_server?createDatabaseIfNotExist=true
     username: root
     password: ${DB_PASSWORD}
     hikari:
       connection-timeout: 60000
       maximum-pool-size: 5
-  http:
-    encoding:
-      charset: UTF-8
-      enabled: true
-      force: true
 server:
   port: 8085
 logging:
@@ -22,7 +17,6 @@ logging:
         max-size: 1MB
         max-history: 10
         total-size-cap: 10MB
-
 reaktor:
   publicKeyFile: ${PUBLIC_KEY_FILE}
   urlCors: https://somos.iesjandula.es

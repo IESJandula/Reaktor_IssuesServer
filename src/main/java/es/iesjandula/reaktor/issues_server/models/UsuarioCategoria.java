@@ -2,6 +2,7 @@ package es.iesjandula.reaktor.issues_server.models;
 
 import es.iesjandula.reaktor.issues_server.models.ids.UsuarioCategoriaId;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Id;
 import jakarta.persistence.IdClass;
 import jakarta.persistence.JoinColumn;
@@ -19,26 +20,10 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@IdClass(UsuarioCategoriaId.class)
 public class UsuarioCategoria
 {
-    /**
-     * Nombre de la categoría (clave primaria)
-     */
-    @Id
-    private String nombreCategoria;
-
-    /**
-     * Nombre del responsable (clave primaria)
-     */
-    @Id
-    private String nombreResponsable;
-
-    /**
-     * Correo del responsable (clave primaria)
-     */
-    @Id
-    private String emailResponsable;
+    @EmbeddedId
+    private UsuarioCategoriaId id;
 
     /**
      * Relación muchos a uno con Categoria
@@ -48,7 +33,6 @@ public class UsuarioCategoria
     @JoinColumn(name = "nombreCategoria", referencedColumnName = "nombre", insertable= false, updatable= false)
     private Categoria categoria;
     
-    
     /**
      * Método que devuelve una cadena de texto con el nombre del responsable de la categoría de incidencia
      * @return Cadena de texto con el nombre del responsable de la categoría de incidencia
@@ -56,8 +40,13 @@ public class UsuarioCategoria
     @Override
     public String toString()
     {
-        return "UsuarioCategoria{" + "nombreCategoria='" + this.nombreCategoria + '\'' + 
-                                   ", nombreResponsable='" + this.nombreResponsable + '\'' + 
-                                   ", emailResponsable='" + this.emailResponsable + '\'' + '}';
+        // Obtenemos la categoría si es que existe, si no, se devuelve ""
+        String categoria = this.categoria != null ? this.categoria.getNombre() : "";
+
+        // Devolvemos la cadena de texto con la información del usuario responsable de la categoría de incidencia
+        return "UsuarioCategoria [nombreCategoria=" + this.id.getNombreCategoria() + 
+                               ", nombreResponsable=" + this.id.getNombreResponsable() + 
+                               ", emailResponsable="  + this.id.getEmailResponsable() + 
+                               ", categoria="         + categoria + "]";
     }
 }

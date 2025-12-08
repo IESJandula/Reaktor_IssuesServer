@@ -38,6 +38,12 @@ public class Categoria
     @OneToMany(mappedBy = "categoria",  cascade = CascadeType.ALL)
     @JsonIgnore 
     private List<UsuarioCategoria> responsables;
+
+    /**
+     * Incidencias asociadas a la categoría.
+     */
+    @OneToMany(mappedBy = "categoria")
+    private List<Incidencia> incidencias;
     
     /**
      * Método que devuelve una cadena de texto con el nombre de la categoría de incidencia
@@ -46,6 +52,6 @@ public class Categoria
     @Override
     public String toString()
     {
-        return "CategoriaIncidenciaEntity{" + "nombre='" + this.nombre + '\'' + '}';
+        return "Categoria [nombre=" + this.nombre + "]" ;
     }
 }

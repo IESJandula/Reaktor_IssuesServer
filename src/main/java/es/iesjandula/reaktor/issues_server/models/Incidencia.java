@@ -2,9 +2,10 @@ package es.iesjandula.reaktor.issues_server.models;
 
 import java.time.LocalDateTime;
 
-import es.iesjandula.reaktor.issues_server.models.ids.IncidenciaId;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.IdClass;
 import jakarta.persistence.JoinColumn;
@@ -29,24 +30,27 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Entity
 @Table(name = "incidencia")
-@IdClass(IncidenciaId.class)
 public class Incidencia 
 {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
     /**
      * Atributo - Aula en la que se da la incidencia.
      * 
      * Este atributo es parte del identificador compuesto de la incidencia.
      */
-	@Id
-	private String ubicacion;
+	@ManyToOne
+	@JoinColumn(name = "ubicacion", referencedColumnName = "nombre", nullable = false)
+	private Ubicacion ubicacion;
 
     /**
      * Atributo - Email del docente que informa de la incidencia.
      * 
      * Este atributo es parte del identificador compuesto de la incidencia.
      */
-	@Id
-	@Column
+	@Column(name = "email", nullable = false)
 	private String email;
 
     /**
@@ -54,7 +58,7 @@ public class Incidencia
      * 
      * Este atributo es parte del identificador compuesto de la incidencia.
      */
-	@Id
+	@Column(name = "fecha", nullable = false)
 	private LocalDateTime fecha;
 	
     /**
@@ -63,7 +67,7 @@ public class Incidencia
      * Este atributo contiene una descripción del problema que se ha reportado.
      */
 	@Column(columnDefinition = "TEXT")
-	private String descripcion;
+	private String problema;
 	
 	/**
      * Atributo - Detalla al correo que se le envia la incidencia a la incidencia.
@@ -80,7 +84,7 @@ public class Incidencia
      * la incidencia.
      */
 	@Column(columnDefinition = "TEXT")
-    private String comentario;
+    private String solucion;
             
     /**
      * Atributo - Email del responsable de la incidencia.
@@ -95,8 +99,27 @@ public class Incidencia
      * @return Categoría de incidencia
      */
     @ManyToOne
-    @JoinColumn(name = "nombre",
-                referencedColumnName = "nombre",
-                nullable = false)
+    @JoinColumn(name = "nombre", referencedColumnName = "nombre", nullable = false)
     private Categoria categoria;
+
+    @Override
+    public String toString()
+    {
+        // Obtenemos la ubicación si es que existe, si no, se devuelve ""
+        String ubicacion = this.ubicacion != null ? this.ubicacion.getNombre() : "";
+
+        // Obtenemos la categoría si es que existe, si no, se devuelve ""
+        String categoria = this.categoria != null ? this.categoria.getNombre() : "";
+
+        // Devolvemos la cadena de texto con la información de la incidencia
+        return "Incidencia [id="               + this.id + 
+                         ", ubicacion="        + ubicacion + 
+                         ", email="            + this.email + 
+                         ", fecha="            + this.fecha + 
+                         ", problema="         + this.problema + 
+                         ", estado="           + this.estado + 
+                         ", solucion="         + this.solucion + 
+                         ", emailResponsable=" + this.emailResponsable + 
+                         ", categoria="        + categoria + "]";
+    }
 }

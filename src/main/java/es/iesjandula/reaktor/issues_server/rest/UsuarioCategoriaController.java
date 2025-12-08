@@ -10,7 +10,6 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -52,7 +51,7 @@ public class UsuarioCategoriaController
      * @return ResponseEntity con la lista de usuarios-responsables
      */
     @PreAuthorize("hasRole('" + BaseConstants.ROLE_ADMINISTRADOR + "')")
-    @GetMapping
+    @GetMapping("/")
     public ResponseEntity<?> listarTodos()
     {
         try
@@ -94,7 +93,7 @@ public class UsuarioCategoriaController
      * @return ResponseEntity con el resultado de la operación
      */
     @PreAuthorize("hasRole('" + BaseConstants.ROLE_ADMINISTRADOR + "')")
-    @PostMapping
+    @PostMapping("/")
     public ResponseEntity<?> crear(@RequestHeader("nombreCategoria") String nombreCategoria, @RequestHeader("nombreResponsable") String nombreResponsable, @RequestHeader("emailResponsable") String emailResponsable)
     {
         try
@@ -119,9 +118,7 @@ public class UsuarioCategoriaController
 
             // Creamos la relación usuario-categoría
             UsuarioCategoria usuarioCategoria = new UsuarioCategoria();
-            usuarioCategoria.setNombreCategoria(nombreCategoria);
-            usuarioCategoria.setNombreResponsable(nombreResponsable);
-            usuarioCategoria.setEmailResponsable(emailResponsable);
+            usuarioCategoria.setId(new UsuarioCategoriaId(nombreCategoria, nombreResponsable, emailResponsable));
             usuarioCategoria.setCategoria(categoria);
 
             // Guardamos la relación usuario-categoría
@@ -157,7 +154,7 @@ public class UsuarioCategoriaController
      * @return ResponseEntity con el resultado de la operación
      */
     @PreAuthorize("hasRole('" + BaseConstants.ROLE_ADMINISTRADOR + "')")
-    @DeleteMapping
+    @DeleteMapping("/")
     public ResponseEntity<?> borrar(@RequestHeader("nombreCategoria") String nombreCategoria, @RequestHeader("nombreResponsable") String nombreResponsable, @RequestHeader("emailResponsable") String emailResponsable)
     {
         try

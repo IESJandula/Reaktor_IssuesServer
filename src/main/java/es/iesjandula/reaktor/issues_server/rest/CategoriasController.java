@@ -9,7 +9,6 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -46,7 +45,7 @@ public class CategoriasController
      * @return ResponseEntity con la lista de categorías
      */
     @PreAuthorize("hasRole('" + BaseConstants.ROLE_ADMINISTRADOR + "')")
-    @GetMapping
+    @GetMapping("/")
     public ResponseEntity<?> listar()
     {
 		try
@@ -83,7 +82,7 @@ public class CategoriasController
      * @return ResponseEntity con la categoría creada
      */
     @PreAuthorize("hasRole('" + BaseConstants.ROLE_ADMINISTRADOR + "')")
-    @PostMapping
+    @PostMapping("/")
     public ResponseEntity<?> crear(@RequestHeader("nombre") String nombre)
     {
         try
@@ -123,7 +122,7 @@ public class CategoriasController
      * @return ResponseEntity con el resultado de la borrada
      */
     @PreAuthorize("hasRole('" + BaseConstants.ROLE_ADMINISTRADOR + "')")
-    @DeleteMapping
+    @DeleteMapping("/")
     public ResponseEntity<?> borrar(@RequestHeader("nombre") String nombre)
     {
         try

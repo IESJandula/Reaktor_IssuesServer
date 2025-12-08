@@ -25,20 +25,24 @@ package es.iesjandula.reaktor.issues_server.utils;
  */
 public final class Constants
 {
-	// Constantes de estado de incidencias
+	/********************************************/
+	/**************** Estados *******************/
+	/********************************************/
+
+	/** Estado de incidencia pendiente */
 	public static final String ESTADO_PENDIENTE = "PENDIENTE";
+
+	/** Estado de incidencia en progreso */
 	public static final String ESTADO_EN_PROGRESO = "EN PROGRESO";
+
+	/** Estado de incidencia cancelada */
 	public static final String ESTADO_CANCELADA = "CANCELADA";
+
+	/** Estado de incidencia resuelta */
 	public static final String ESTADO_RESUELTA = "RESUELTA";
+
+	/** Estado de incidencia duplicada */
 	public static final String ESTADO_DUPLICADA = "DUPLICADA";
-	
-	// Usuarios/Profesores
-	public final static int PROFESOR_NO_ENCONTRADO = 40;
-	
-	// Errores Generales/De Conexión
-	public final static int ERROR_CONEXION_FIREBASE = 101;
-	public final static int TIMEOUT_CONEXION_FIREBASE = 102;
-	public final static int IO_EXCEPTION_FIREBASE = 103;
 
 	/********************************************/
 	/**************** Errores *******************/
@@ -62,7 +66,7 @@ public final class Constants
 	public final static int ERR_CATEGORIA_NO_BORRABLE_CODE = 202;
 
 	/********************************************/
-	/********** Errores de Ubicaciones ***********/
+	/********** Errores de Ubicaciones **********/
 	/********************************************/
 
 	/** Error de ubicación no encontrada */
@@ -97,11 +101,11 @@ public final class Constants
 	/** Error de incidencia ubicación no introducida - Mensaje */
 	public final static String ERR_INCIDENCIA_UBICACION_NO_INTRODUCIDA_MESSAGE = "La ubicación de la incidencia es obligatoria.";
 
-	/** Error de incidencia descripción no introducida - Código */
-	public final static int ERR_INCIDENCIA_DESCRIPCION_NO_INTRODUCIDA_CODE = 502;
-	
-	/** Error de incidencia descripción no introducida - Mensaje */
-	public final static String ERR_INCIDENCIA_DESCRIPCION_NO_INTRODUCIDA_MESSAGE = "La descripción de la incidencia es obligatoria.";
+	/** Error de incidencia problema no introducido - Código */
+	public final static int ERR_INCIDENCIA_PROBLEMA_NO_INTRODUCIDO_CODE = 502;
+
+	/** Error de incidencia problema no introducido - Mensaje */
+	public final static String ERR_INCIDENCIA_PROBLEMA_NO_INTRODUCIDO_MESSAGE = "El problema de la incidencia es obligatorio.";
 
 	/** Error de incidencia categoría no introducida - Código */
 	public final static int ERR_INCIDENCIA_CATEGORIA_NO_INTRODUCIDA_CODE = 503;
@@ -114,4 +118,40 @@ public final class Constants
 
 	/** Error de incidencia no encontrada - Mensaje */
 	public final static String ERR_INCIDENCIA_NO_ENCONTRADA_MESSAGE = "La incidencia no ha sido encontrada.";
+
+	/** Error de incidencia email responsable no introducido - Código */
+	public final static int ERR_INCIDENCIA_EMAIL_RESPONSABLE_NO_INTRODUCIDO_CODE = 505;
+
+	/** Error de incidencia email responsable no introducido - Mensaje */
+	public final static String ERR_INCIDENCIA_EMAIL_RESPONSABLE_NO_INTRODUCIDO_MESSAGE = "El email del responsable de la incidencia es obligatorio.";
+
+	/** Error de incidencia estado no introducido - Código */
+	public final static int ERR_INCIDENCIA_ESTADO_NO_INTRODUCIDO_CODE = 506;
+
+	/** Error de incidencia estado no introducido - Mensaje */
+	public final static String ERR_INCIDENCIA_ESTADO_NO_INTRODUCIDO_MESSAGE = "El estado de la incidencia es obligatorio.";
+
+	/** Error de incidencia solución no introducido - Código */
+	public final static int ERR_INCIDENCIA_SOLUCION_NO_INTRODUCIDO_CODE = 507;
+
+	/** Error de incidencia solución no introducido - Mensaje */
+	public final static String ERR_INCIDENCIA_SOLUCION_NO_INTRODUCIDO_MESSAGE = "La solución de la incidencia es obligatoria.";
+
+	/** Error de incidencia ubicación no encontrada - Código */
+	public final static int ERR_INCIDENCIA_UBICACION_NO_ENCONTRADA_CODE = 508;
+
+	/** Error de incidencia ubicación no encontrada - Mensaje */
+	public final static String ERR_INCIDENCIA_UBICACION_NO_ENCONTRADA_MESSAGE = "La ubicación de la incidencia no ha sido encontrada.";
+
+	/** Error de incidencia ID no introducido - Código */
+	public final static int ERR_INCIDENCIA_ID_NO_INTRODUCIDO_CODE = 509;
+
+	/** Error de incidencia ID no introducido - Mensaje */
+	public final static String ERR_INCIDENCIA_ID_NO_INTRODUCIDO_MESSAGE = "El ID de la incidencia es obligatorio.";
+
+	/** Error de incidencia usuario no permitido - Código */
+	public final static int ERR_INCIDENCIA_USUARIO_NO_PERMITIDO_CODE = 510;
+
+	/** Error de incidencia usuario no permitido - Mensaje */
+	public final static String ERR_INCIDENCIA_USUARIO_NO_PERMITIDO_MESSAGE = "El usuario no tiene permisos para realizar esta acción.";	
 }
