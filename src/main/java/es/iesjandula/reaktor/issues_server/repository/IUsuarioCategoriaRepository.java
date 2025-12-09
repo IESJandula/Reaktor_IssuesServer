@@ -6,7 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
-import es.iesjandula.reaktor.issues_server.dto.UsuarioCategoriaDto;
+import es.iesjandula.reaktor.issues_server.dtos.UsuarioCategoriaDto;
 import es.iesjandula.reaktor.issues_server.models.UsuarioCategoria;
 import es.iesjandula.reaktor.issues_server.models.ids.UsuarioCategoriaId;
 
@@ -21,7 +21,7 @@ public interface IUsuarioCategoriaRepository
      * Busca todos los usuarios-categoría
      * @return Los usuarios-categoría encontrados
      */
-    @Query("SELECT new es.iesjandula.reaktor.issues_server.dto.UsuarioCategoriaDto(uc.id.nombreCategoria, uc.id.nombreResponsable, uc.id.emailResponsable) FROM UsuarioCategoria uc")
+    @Query("SELECT new es.iesjandula.reaktor.issues_server.dtos.UsuarioCategoriaDto(uc.id.nombreCategoria, uc.id.nombreResponsable, uc.id.emailResponsable) FROM UsuarioCategoria uc")
     List<UsuarioCategoriaDto> buscarTodos();
 
     /**
@@ -29,6 +29,6 @@ public interface IUsuarioCategoriaRepository
      * @param nombreCategoria El nombre de la categoría
      * @return Los responsables de la categoría encontrados
      */
-    @Query("SELECT new es.iesjandula.reaktor.issues_server.dto.UsuarioCategoriaDto(uc.id.nombreCategoria, uc.id.nombreResponsable, uc.id.emailResponsable) FROM UsuarioCategoria uc WHERE uc.id.nombreCategoria = :nombreCategoria")
+    @Query("SELECT new es.iesjandula.reaktor.issues_server.dtos.UsuarioCategoriaDto(uc.id.nombreCategoria, uc.id.nombreResponsable, uc.id.emailResponsable) FROM UsuarioCategoria uc WHERE uc.id.nombreCategoria = :nombreCategoria")
     List<UsuarioCategoriaDto> buscarResponsablesPorCategoria(String nombreCategoria);
 }

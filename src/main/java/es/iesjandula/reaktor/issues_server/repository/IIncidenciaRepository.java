@@ -7,7 +7,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
-import es.iesjandula.reaktor.issues_server.dto.IncidenciaDto;
+import es.iesjandula.reaktor.issues_server.dtos.IncidenciaDto;
 import es.iesjandula.reaktor.issues_server.models.Incidencia;
 
 /**
@@ -28,15 +28,15 @@ public interface IIncidenciaRepository extends JpaRepository<Incidencia, Long>
 	 * @return lista de Incidencias ordenadas por fecha de forma decreciente  	 
 	 */ 	
 	@Query("""
-	        SELECT new es.iesjandula.reaktor.issues_server.dto.IncidenciaDto(i.id, 
-			                                                                 i.ubicacion.nombre,
-																			 i.email,
-																			 i.fecha,
-																			 i.problema,
-																			 i.estado,
-																			 i.solucion,
-																			 i.emailResponsable,
-																			 i.categoria.nombre)
+	        SELECT new es.iesjandula.reaktor.issues_server.dtos.IncidenciaDto(i.id, 
+			                                                                  i.ubicacion.nombre,
+																			  i.email,
+																			  i.fecha,
+																			  i.problema,
+																			  i.estado,
+																			  i.solucion,
+																			  i.emailResponsable,
+																			  i.categoria.nombre)
 			FROM Incidencia i
 			ORDER BY i.fecha DESC
 		   """) 	
