@@ -131,26 +131,20 @@ public final class Constants
 	/** Error de incidencia estado no introducido - Mensaje */
 	public final static String ERR_INCIDENCIA_ESTADO_NO_INTRODUCIDO_MESSAGE = "El estado de la incidencia es obligatorio.";
 
-	/** Error de incidencia solución no introducido - Código */
-	public final static int ERR_INCIDENCIA_SOLUCION_NO_INTRODUCIDO_CODE = 507;
-
-	/** Error de incidencia solución no introducido - Mensaje */
-	public final static String ERR_INCIDENCIA_SOLUCION_NO_INTRODUCIDO_MESSAGE = "La solución de la incidencia es obligatoria.";
-
 	/** Error de incidencia ubicación no encontrada - Código */
-	public final static int ERR_INCIDENCIA_UBICACION_NO_ENCONTRADA_CODE = 508;
+	public final static int ERR_INCIDENCIA_UBICACION_NO_ENCONTRADA_CODE = 507;
 
 	/** Error de incidencia ubicación no encontrada - Mensaje */
 	public final static String ERR_INCIDENCIA_UBICACION_NO_ENCONTRADA_MESSAGE = "La ubicación de la incidencia no ha sido encontrada.";
 
 	/** Error de incidencia ID no introducido - Código */
-	public final static int ERR_INCIDENCIA_ID_NO_INTRODUCIDO_CODE = 509;
+	public final static int ERR_INCIDENCIA_ID_NO_INTRODUCIDO_CODE = 508;
 
 	/** Error de incidencia ID no introducido - Mensaje */
 	public final static String ERR_INCIDENCIA_ID_NO_INTRODUCIDO_MESSAGE = "El ID de la incidencia es obligatorio.";
 
 	/** Error de incidencia usuario no permitido - Código */
-	public final static int ERR_INCIDENCIA_USUARIO_NO_PERMITIDO_CODE = 510;
+	public final static int ERR_INCIDENCIA_USUARIO_NO_PERMITIDO_CODE = 509;
 
 	/** Error de incidencia usuario no permitido - Mensaje */
 	public final static String ERR_INCIDENCIA_USUARIO_NO_PERMITIDO_MESSAGE = "El usuario no tiene permisos para realizar esta acción.";	

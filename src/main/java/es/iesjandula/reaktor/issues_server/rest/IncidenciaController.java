@@ -342,13 +342,6 @@ public class IncidenciaController
 			log.error(Constants.ERR_INCIDENCIA_ESTADO_NO_INTRODUCIDO_MESSAGE);
 			throw new IssuesServerError(Constants.ERR_INCIDENCIA_ESTADO_NO_INTRODUCIDO_CODE, Constants.ERR_INCIDENCIA_ESTADO_NO_INTRODUCIDO_MESSAGE);
 		}
-
-		// Validamos la solución de la incidencia
-		if (solucion == null || solucion.isEmpty())
-		{
-			log.error(Constants.ERR_INCIDENCIA_SOLUCION_NO_INTRODUCIDO_MESSAGE);
-			throw new IssuesServerError(Constants.ERR_INCIDENCIA_SOLUCION_NO_INTRODUCIDO_CODE, Constants.ERR_INCIDENCIA_SOLUCION_NO_INTRODUCIDO_MESSAGE);
-		}
 	}
 
 	/**
