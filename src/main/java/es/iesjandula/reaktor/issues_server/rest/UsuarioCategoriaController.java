@@ -23,9 +23,9 @@ import es.iesjandula.reaktor.issues_server.repository.ICategoriaRepository;
 import es.iesjandula.reaktor.issues_server.repository.IUsuarioCategoriaRepository;
 import es.iesjandula.reaktor.issues_server.utils.Constants;
 import es.iesjandula.reaktor.issues_server.utils.IssuesServerError;
-import lombok.extern.slf4j.Slf4j;
+import lombok.extern.log4j.Log4j2;
 
-@Slf4j
+@Log4j2
 @RestController
 @RequestMapping("/issues/usuarios_categoria")
 public class UsuarioCategoriaController

@@ -16,9 +16,9 @@ import es.iesjandula.reaktor.issues_server.models.Ubicacion;
 import es.iesjandula.reaktor.issues_server.repository.IUbicacionRepository;
 import es.iesjandula.reaktor.issues_server.utils.Constants;
 import es.iesjandula.reaktor.issues_server.utils.IssuesServerError;
-import lombok.extern.slf4j.Slf4j;
+import lombok.extern.log4j.Log4j2;
 
-@Slf4j
+@Log4j2
 @RestController
 @RequestMapping("/issues/ubicaciones")
 public class UbicacionController
