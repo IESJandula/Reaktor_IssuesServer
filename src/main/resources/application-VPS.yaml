@@ -24,8 +24,3 @@ reaktor:
   notifications_server_url: https://api.iesjandula.es/
   clientId: ${CLIENT_ID}
   http_connection_timeout: 30000
-  gmail:
-    appName: ${GMAIL_APP_NAME}
-    from: ${GMAIL_EMAIL_FROM}
-    oauthCredentialsFile: ${GMAIL_OAUTH_CREDENTIALS_FILE}
-    oauthRedirectUri: https://api.iesjandula.es/notifications/gmail/oauth2callback

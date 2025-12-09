@@ -1,2 +1,0 @@
-MAIL_USERNAME= email
-MAIL_API_KEY= clave del email

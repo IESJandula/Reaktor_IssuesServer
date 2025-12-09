@@ -1,34 +1,51 @@
-HELP.md
+### Archivos específicos de sistema operativo ###
+.DS_Store
+Thumbs.db
+
+### Archivos de compilación ###
 target/
-!.mvn/wrapper/maven-wrapper.jar
-!**/src/main/**/target/
-!**/src/test/**/target/
+out/
+bin/
+build/
 
-### STS ###
-.apt_generated
-.classpath
-.factorypath
-.project
-.settings
-.springBeans
-.sts4-cache
-
+### Configuración de IDEs ###
 ### IntelliJ IDEA ###
-.idea
-*.iws
+.idea/
 *.iml
 *.ipr
+*.iws
+
+### Eclipse ###
+.project
+.classpath
+.settings/
 
 ### NetBeans ###
-/nbproject/private/
-/nbbuild/
-/dist/
-/nbdist/
-/.nb-gradle/
-build/
-!**/src/main/**/build/
-!**/src/test/**/build/
+nbproject/private/
 
 ### VS Code ###
 .vscode/
-/.apt_generated_tests/
+
+### Dependencias de Maven ###
+.mvn/
+log/
+!logs/  # Permitir la carpeta logs, pero ignorar archivos dentro
+logs/*
+!logs/.keep  # Mantener un archivo de marcador en logs/
+
+### Dependencias de Gradle ###
+.gradle/
+build/
+!gradle-wrapper.jar  # Mantener el wrapper
+
+### Archivos de entorno y configuración sensible ###
+.env
+*.properties
+*.yml
+*.yaml
+!src/main/resources/application.properties
+!src/main/resources/application.yml
+!src/main/resources/application.yaml
+
+*.gz
+*.log
