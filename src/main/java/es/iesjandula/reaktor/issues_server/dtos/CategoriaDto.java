@@ -1,4 +1,4 @@
-package es.iesjandula.reaktor.issues_server.dto;
+package es.iesjandula.reaktor.issues_server.dtos;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;

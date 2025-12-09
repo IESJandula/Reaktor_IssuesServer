@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import es.iesjandula.reaktor.base.utils.BaseConstants;
-import es.iesjandula.reaktor.issues_server.dto.UsuarioCategoriaDto;
+import es.iesjandula.reaktor.issues_server.dtos.UsuarioCategoriaDto;
 import es.iesjandula.reaktor.issues_server.models.Categoria;
 import es.iesjandula.reaktor.issues_server.models.UsuarioCategoria;
 import es.iesjandula.reaktor.issues_server.models.ids.UsuarioCategoriaId;
