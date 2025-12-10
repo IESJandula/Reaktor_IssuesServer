@@ -56,6 +56,12 @@ public final class Constants
 	/********** Errores de Categorías ***********/
 	/********************************************/
 
+	/** Error de categoría no informada - Codigo */
+	public final static int ERR_CATEGORIA_NO_INFORMADA_CODE  = 200 ;
+
+	/** Error de categoría no informada - Mensaje */
+	public final static String ERR_CATEGORIA_NO_INFORMADA_MESSAGE = "No se informó del nombre de la categoría";
+
 	/** Error de categoría no encontrada */
 	public final static int ERR_CATEGORIA_NO_ENCONTRADA_CODE = 201;
 
@@ -68,6 +74,12 @@ public final class Constants
 	/********************************************/
 	/********** Errores de Ubicaciones **********/
 	/********************************************/
+
+	/** Error de ubicación no informada - Codigo */
+	public final static int ERR_UBICACION_NO_INFORMADA_CODE = 300;
+
+	/** Error de ubicación no informada - Mensaje */
+	public final static String ERR_UBICACION_NO_INFORMADA_MESSAGE = "No se informó del nombre de la ubicación";
 
 	/** Error de ubicación no encontrada */
 	public final static int ERR_UBICACION_NO_ENCONTRADA_CODE = 301;
@@ -85,8 +97,26 @@ public final class Constants
 	/****** Errores de Usuarios Categoría *******/
 	/********************************************/
 
+	/** Error de usuario categoría no informada - Codigo */
+	public final static int ERR_USUARIO_CATEGORIA_NO_INFORMADA_CODE = 400;
+
+	/** Error de usuario categoría no informada - Mensaje */
+	public final static String ERR_USUARIO_CATEGORIA_NO_INFORMADA_MESSAGE = "No se informó del nombre de la categoría";
+
+	/** Error de usuario categoría no informada - Codigo */
+	public final static int ERR_USUARIO_RESPONSABLE_NO_INFORMADO_CODE = 401;
+
+	/** Error de usuario categoría no informada - Mensaje */
+	public final static String ERR_USUARIO_RESPONSABLE_NO_INFORMADO_MESSAGE = "No se informó del nombre del responsable";
+
+	/** Error de usuario email no informado - Codigo */
+	public final static int ERR_USUARIO_EMAIL_NO_INFORMADO_CODE = 402;
+
+	/** Error de usuario email no informado - Mensaje */
+	public final static String ERR_USUARIO_EMAIL_NO_INFORMADO_MESSAGE = "No se informó del email del responsable";
+
 	/** Error de usuario categoría no encontrada - Codigo */
-	public final static int ERR_USUARIO_CATEGORIA_NO_ENCONTRADA_CODE = 401;
+	public final static int ERR_USUARIO_CATEGORIA_NO_ENCONTRADA_CODE = 403;
 
 	/** Error de usuario categoría no encontrada - Mensaje */
 	public final static String ERR_USUARIO_CATEGORIA_NO_ENCONTRADA_MESSAGE = "No se encontró ningún responsable para la categoría.";

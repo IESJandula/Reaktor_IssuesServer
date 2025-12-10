@@ -124,6 +124,13 @@ public class UbicacionController
     {
         try
         {
+            // Verificamos que el nombre de la ubicación no sea nulo o en blanco
+            if (nombre == null || nombre.isEmpty())
+            {
+                log.error(Constants.ERR_UBICACION_NO_INFORMADA_MESSAGE);
+                throw new IssuesServerError(Constants.ERR_UBICACION_NO_INFORMADA_CODE, Constants.ERR_UBICACION_NO_INFORMADA_MESSAGE);
+            }
+
             // Log de la petición
             log.info("Petición para borrar ubicación '{}'", nombre);
 

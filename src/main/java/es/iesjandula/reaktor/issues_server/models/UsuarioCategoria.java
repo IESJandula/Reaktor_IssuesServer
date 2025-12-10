@@ -3,8 +3,6 @@ package es.iesjandula.reaktor.issues_server.models;
 import es.iesjandula.reaktor.issues_server.models.ids.UsuarioCategoriaId;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EmbeddedId;
-import jakarta.persistence.Id;
-import jakarta.persistence.IdClass;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;

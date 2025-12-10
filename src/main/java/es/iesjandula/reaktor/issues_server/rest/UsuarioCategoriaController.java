@@ -98,6 +98,9 @@ public class UsuarioCategoriaController
     {
         try
         {
+            // Realizamos la validación de los datos de entrada
+            this.validarUsuarioCategoria(nombreCategoria, nombreResponsable, emailResponsable);
+            
             // Log de la petición
             log.info("Petición para crear usuario-responsable '{}' ({}) para la categoría '{}'", nombreResponsable, emailResponsable, nombreCategoria);
 
@@ -159,6 +162,9 @@ public class UsuarioCategoriaController
     {
         try
         {
+            // Realizamos la validación de los datos de entrada
+            this.validarUsuarioCategoria(nombreCategoria, nombreResponsable, emailResponsable);
+
             // Creamos el ID de la relación usuario-categoría
             UsuarioCategoriaId id = new UsuarioCategoriaId(nombreCategoria, nombreResponsable, emailResponsable);
 
@@ -194,6 +200,41 @@ public class UsuarioCategoriaController
 
             // Devolvemos la respuesta
             return ResponseEntity.status(500).body(issuesServerError.getBodyErrorMessage());
+        }
+    }
+
+    /**
+     * Validar los datos de entrada para crear un usuario-responsable
+     * <p>
+     * Este método permite validar los datos de entrada para crear un usuario-responsable.
+     * </p>
+     *
+     * @param nombreCategoria El nombre de la categoría a la que se le asignará el responsable
+     * @param nombreResponsable El nombre del responsable a crear
+     * @param emailResponsable El email del responsable a crear
+     * @throws IssuesServerError Si los datos de entrada no son válidos
+     */
+    private void validarUsuarioCategoria(String nombreCategoria, String nombreResponsable, String emailResponsable) throws IssuesServerError
+    {
+        // Verificamos que el nombre de la categoría no sea nulo o en blanco
+        if (nombreCategoria == null || nombreCategoria.isEmpty())
+        {
+            log.error(Constants.ERR_CATEGORIA_NO_INFORMADA_MESSAGE);
+            throw new IssuesServerError(Constants.ERR_CATEGORIA_NO_INFORMADA_CODE, Constants.ERR_CATEGORIA_NO_INFORMADA_MESSAGE);
+        }
+
+        // Verificamos que el nombre del responsable no sea nulo o en blanco
+        if (nombreResponsable == null || nombreResponsable.isEmpty())
+        {
+            log.error(Constants.ERR_USUARIO_RESPONSABLE_NO_INFORMADO_MESSAGE);
+            throw new IssuesServerError(Constants.ERR_USUARIO_RESPONSABLE_NO_INFORMADO_CODE, Constants.ERR_USUARIO_RESPONSABLE_NO_INFORMADO_MESSAGE);
+        }
+
+        // Verificamos que el email del responsable no sea nulo o en blanco
+        if (emailResponsable == null || emailResponsable.isEmpty())
+        {
+            log.error(Constants.ERR_USUARIO_EMAIL_NO_INFORMADO_MESSAGE);
+            throw new IssuesServerError(Constants.ERR_USUARIO_EMAIL_NO_INFORMADO_CODE, Constants.ERR_USUARIO_EMAIL_NO_INFORMADO_MESSAGE);
         }
     }
 }

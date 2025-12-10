@@ -127,6 +127,13 @@ public class CategoriasController
     {
         try
         {
+            // Verificamos que 
+            if (nombre == null || nombre.isEmpty())
+            {
+                log.error(Constants.ERR_CATEGORIA_NO_INFORMADA_MESSAGE);
+                throw new IssuesServerError(Constants.ERR_CATEGORIA_NO_INFORMADA_CODE, Constants.ERR_CATEGORIA_NO_INFORMADA_MESSAGE);
+            }
+
             // Log de la petición
             log.info("Petición para borrar categoría '{}'", nombre);
 
