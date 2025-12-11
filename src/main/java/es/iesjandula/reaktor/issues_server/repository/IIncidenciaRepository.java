@@ -65,7 +65,7 @@ public interface IIncidenciaRepository extends JpaRepository<Incidencia, Long>
 																			i.emailResponsable,
 																			i.categoria.nombre)
 			FROM Incidencia i
-			WHERE i.email = :email
+			WHERE i.email = :email or i.emailResponsable = :email
 			ORDER BY i.fecha DESC
 		""")
 	Page<IncidenciaDto> buscarIncidenciaOrdenadaFechaPorUsuario(Pageable pageable, @Param("email") String email);
