@@ -42,8 +42,34 @@ public interface IIncidenciaRepository extends JpaRepository<Incidencia, Long>
 			FROM Incidencia i
 			ORDER BY i.fecha DESC
 		   """) 	
-	Page<IncidenciaDto> buscarIncidenciaOrdenadaFecha(Pageable pageable);
-	
+	Page<IncidenciaDto> buscarIncidenciaOrdenadaFechaPorAdmin(Pageable pageable);
+
+
+	/**
+	 * Busca incidencias en la base de datos ordenado por fecha de forma decreciente por usuario
+	 * <p>
+	 * @param email El email del usuario.
+	 * @param pageable La página y el tamaño de la página.
+	 * @return lista de Incidencias ordenadas por fecha de forma decreciente por usuario
+	 */
+	@Query("""
+			SELECT new es.iesjandula.reaktor.issues_server.dtos.IncidenciaDto(i.id, 
+																			i.ubicacion.nombre,
+																			i.email,
+																			i.nombre,
+																			i.apellidos,
+																			CAST(FUNCTION('DATE_FORMAT', i.fecha, '%d/%m/%Y %H:%i') AS string),
+																			i.problema,
+																			i.estado,
+																			i.solucion,
+																			i.emailResponsable,
+																			i.categoria.nombre)
+			FROM Incidencia i
+			WHERE i.email = :email
+			ORDER BY i.fecha DESC
+		""")
+	Page<IncidenciaDto> buscarIncidenciaOrdenadaFechaPorUsuario(Pageable pageable, @Param("email") String email);
+
 	/**
 	 * Verifica si existen incidencias asociadas a una categoría.
 	 * <p>

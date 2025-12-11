@@ -387,6 +387,7 @@ public class IncidenciaController
 	 * 
 	 * Este método devuelve una lista de incidencias ordenadas por fecha.
 	 * 
+	 * @param usuario El usuario que lista las incidencias.
 	 * @param pageable La página de incidencias a listar.
 	 * @return Un objeto {@link ResponseEntity} que puede contener:
 	 *         <ul>
@@ -396,12 +397,24 @@ public class IncidenciaController
 	 */
 	@PreAuthorize("hasRole('" + BaseConstants.ROLE_PROFESOR + "')")
 	@GetMapping("/") 	
-	public ResponseEntity<?> listarIncidenciasOrdenadasPorFecha(Pageable pageable)
+	public ResponseEntity<?> listarIncidenciasOrdenadasPorFecha(@AuthenticationPrincipal DtoUsuarioExtended usuario, Pageable pageable)
 	{ 	   
 		try
-		{     
-			// Buscamos las incidencias ordenadas por fecha
-			Page<IncidenciaDto> incidencias = this.incidenciaRepository.buscarIncidenciaOrdenadaFecha(pageable); 	    
+		{    
+			// Creamos una variable para las incidencias
+			Page<IncidenciaDto> incidencias = null ;
+
+			// Si el rol es de profesor, solo buscamos las incidencias del usuario
+			if (!usuario.getRoles().contains(BaseConstants.ROLE_ADMINISTRADOR))
+			{
+				// Buscamos las incidencias del usuario
+				incidencias = this.incidenciaRepository.buscarIncidenciaOrdenadaFechaPorUsuario(usuario.getEmail(), pageable);
+			}
+			else
+			{
+				// Buscamos todas las incidencias
+				incidencias = this.incidenciaRepository.buscarIncidenciaOrdenadaFechaPorAdmin(pageable); 	    
+			}
 
 			// Devolvemos la respuesta
 			return ResponseEntity.ok().body(incidencias);
