@@ -408,7 +408,7 @@ public class IncidenciaController
 			if (!usuario.getRoles().contains(BaseConstants.ROLE_ADMINISTRADOR))
 			{
 				// Buscamos las incidencias del usuario
-				incidencias = this.incidenciaRepository.buscarIncidenciaOrdenadaFechaPorUsuario(usuario.getEmail(), pageable);
+				incidencias = this.incidenciaRepository.buscarIncidenciaOrdenadaFechaPorUsuario(pageable, usuario.getEmail());
 			}
 			else
 			{
