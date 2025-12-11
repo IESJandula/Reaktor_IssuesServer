@@ -37,9 +37,19 @@ public class IncidenciaDto
     private String email;
 
     /**
+     * Nombre del docente que reportó la incidencia.
+     */
+    private String nombre;
+
+    /**
+     * Apellidos del docente que reportó la incidencia.
+     */
+    private String apellidos;
+    
+    /**
      * Fecha y hora de la incidencia.
      */
-    private LocalDateTime fecha;
+    private String fecha;
 
     /**
      * Problema de la incidencia.

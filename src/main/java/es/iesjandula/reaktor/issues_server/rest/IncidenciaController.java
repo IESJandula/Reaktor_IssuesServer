@@ -173,6 +173,8 @@ public class IncidenciaController
             Incidencia nuevaIncidencia = new Incidencia();
 			nuevaIncidencia.setUbicacion(ubicacion);
 			nuevaIncidencia.setEmail(usuario.getEmail());
+			nuevaIncidencia.setNombre(usuario.getNombre());
+			nuevaIncidencia.setApellidos(usuario.getApellidos());
 			nuevaIncidencia.setFecha(LocalDateTime.now());
 			nuevaIncidencia.setProblema(problema);
 			nuevaIncidencia.setEstado(Constants.ESTADO_PENDIENTE);

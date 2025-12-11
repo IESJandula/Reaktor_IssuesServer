@@ -53,6 +53,22 @@ public class Incidencia
 	private String email;
 
     /**
+     * Atributo - Nombre del docente que informa de la incidencia.
+     * 
+     * Este atributo es parte del identificador compuesto de la incidencia.
+     */
+    @Column(name = "nombre", nullable = false)
+    private String nombre;
+
+    /**
+     * Atributo - Apellidos del docente que informa de la incidencia.
+     * 
+     * Este atributo es parte del identificador compuesto de la incidencia.
+     */
+    @Column(name = "apellidos", nullable = false)
+    private String apellidos;
+
+    /**
      * Atributo - Fecha de creación de la señalación.
      * 
      * Este atributo es parte del identificador compuesto de la incidencia.
@@ -98,7 +114,7 @@ public class Incidencia
      * @return Categoría de incidencia
      */
     @ManyToOne
-    @JoinColumn(name = "nombre", referencedColumnName = "nombre", nullable = false)
+    @JoinColumn(name = "categoria", referencedColumnName = "nombre", nullable = false)
     private Categoria categoria;
 
     @Override
