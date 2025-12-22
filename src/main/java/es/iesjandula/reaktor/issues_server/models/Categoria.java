@@ -40,10 +40,10 @@ public class Categoria
     private List<UsuarioCategoria> responsables;
 
     /**
-     * Incidencias asociadas a la categoría.
+     * UsuarioCategorias asociadas a la categoría.
      */
-    @OneToMany(mappedBy = "categoria")
-    private List<Incidencia> incidencias;
+    @OneToMany(mappedBy = "id.nombreCategoria")
+    private List<UsuarioCategoria> usuarioCategoria;
     
     /**
      * Método que devuelve una cadena de texto con el nombre de la categoría de incidencia

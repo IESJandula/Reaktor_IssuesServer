@@ -21,7 +21,7 @@ public interface IUsuarioCategoriaRepository
      * Busca todos los usuarios-categoría
      * @return Los usuarios-categoría encontrados
      */
-    @Query("SELECT new es.iesjandula.reaktor.issues_server.dtos.UsuarioCategoriaDto(uc.id.nombreCategoria, uc.id.nombreResponsable, uc.id.emailResponsable) FROM UsuarioCategoria uc")
+    @Query("SELECT new es.iesjandula.reaktor.issues_server.dtos.UsuarioCategoriaDto(uc.id.nombreCategoria, uc.nombreResponsable, uc.id.emailResponsable) FROM UsuarioCategoria uc")
     List<UsuarioCategoriaDto> buscarTodos();
 
     /**
@@ -29,6 +29,6 @@ public interface IUsuarioCategoriaRepository
      * @param nombreCategoria El nombre de la categoría
      * @return Los responsables de la categoría encontrados
      */
-    @Query("SELECT new es.iesjandula.reaktor.issues_server.dtos.UsuarioCategoriaDto(uc.id.nombreCategoria, uc.id.nombreResponsable, uc.id.emailResponsable) FROM UsuarioCategoria uc WHERE uc.id.nombreCategoria = :nombreCategoria")
-    List<UsuarioCategoriaDto> buscarResponsablesPorCategoria(String nombreCategoria);
+    @Query("SELECT uc FROM UsuarioCategoria uc WHERE uc.id.nombreCategoria = :nombreCategoria")
+    List<UsuarioCategoria> buscarResponsablesPorCategoria(String nombreCategoria);
 }

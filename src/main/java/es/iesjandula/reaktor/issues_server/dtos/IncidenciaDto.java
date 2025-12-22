@@ -1,7 +1,5 @@
 package es.iesjandula.reaktor.issues_server.dtos;
 
-import java.time.LocalDateTime;
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -70,6 +68,11 @@ public class IncidenciaDto
      * Email del responsable de la incidencia.
      */
     private String emailResponsable;
+
+    /**
+     * Nombre del responsable de la incidencia.
+     */
+    private String nombreResponsable;
 
     /**
      * Categoría de la incidencia.

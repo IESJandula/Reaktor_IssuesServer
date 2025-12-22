@@ -8,6 +8,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinColumns;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
@@ -100,31 +101,23 @@ public class Incidencia
      */
 	@Column(columnDefinition = "TEXT")
     private String solucion;
-            
+            	
     /**
-     * Atributo - Email del responsable de la incidencia.
-     * 
-     * Este atributo contiene el email del responsable de la incidencia.
-     */
-	@Column(name = "email_responsable")
-	private String emailResponsable;
-	
-    /**
-     * Relación muchos a uno con Categoria
-     * @return Categoría de incidencia
+     * Relación muchos a uno con UsuarioCategoria
+     * @return UsuarioCategoria de incidencia
      */
     @ManyToOne
-    @JoinColumn(name = "categoria", referencedColumnName = "nombre", nullable = false)
-    private Categoria categoria;
+    @JoinColumns({
+        @JoinColumn(name = "nombreCategoria", referencedColumnName = "nombreCategoria", nullable = false),
+        @JoinColumn(name = "emailResponsable", referencedColumnName = "emailResponsable", nullable = false)
+    })
+    private UsuarioCategoria usuarioCategoria;
 
     @Override
     public String toString()
     {
         // Obtenemos la ubicación si es que existe, si no, se devuelve ""
         String ubicacion = this.ubicacion != null ? this.ubicacion.getNombre() : "";
-
-        // Obtenemos la categoría si es que existe, si no, se devuelve ""
-        String categoria = this.categoria != null ? this.categoria.getNombre() : "";
 
         // Devolvemos la cadena de texto con la información de la incidencia
         return "Incidencia [id="               + this.id + 
@@ -134,7 +127,7 @@ public class Incidencia
                          ", problema="         + this.problema + 
                          ", estado="           + this.estado + 
                          ", solucion="         + this.solucion + 
-                         ", emailResponsable=" + this.emailResponsable + 
-                         ", categoria="        + categoria + "]";
+                         ", emailResponsable=" + (this.usuarioCategoria != null ? this.usuarioCategoria.getId().getEmailResponsable() : "") + 
+                         ", nombreCategoria="  + (this.usuarioCategoria != null ? this.usuarioCategoria.getId().getNombreCategoria() : "") + "]";
     }
 }

@@ -1,10 +1,13 @@
 package es.iesjandula.reaktor.issues_server.models;
 
+import java.util.List;
+
 import es.iesjandula.reaktor.issues_server.models.ids.UsuarioCategoriaId;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -24,13 +27,24 @@ public class UsuarioCategoria
     private UsuarioCategoriaId id;
 
     /**
+	 * Nombre del responsable.
+	 */
+	private String nombreResponsable;
+
+    /**
      * Relación muchos a uno con Categoria
      * @return Categoría de incidencia
      */
     @ManyToOne
     @JoinColumn(name = "nombreCategoria", referencedColumnName = "nombre", insertable= false, updatable= false)
     private Categoria categoria;
-    
+
+    /**
+     * Incidencias asociadas al usuario responsable de la categoría.
+     */
+    @OneToMany(mappedBy = "usuarioCategoria")
+    private List<Incidencia> incidencias;
+
     /**
      * Método que devuelve una cadena de texto con el nombre del responsable de la categoría de incidencia
      * @return Cadena de texto con el nombre del responsable de la categoría de incidencia
@@ -42,8 +56,8 @@ public class UsuarioCategoria
         String categoria = this.categoria != null ? this.categoria.getNombre() : "";
 
         // Devolvemos la cadena de texto con la información del usuario responsable de la categoría de incidencia
-        return "UsuarioCategoria [nombreCategoria=" + this.id.getNombreCategoria() + 
-                               ", nombreResponsable=" + this.id.getNombreResponsable() + 
+        return "UsuarioCategoria [nombreCategoria="   + this.id.getNombreCategoria() + 
+                               ", nombreResponsable=" + this.nombreResponsable + 
                                ", emailResponsable="  + this.id.getEmailResponsable() + 
                                ", categoria="         + categoria + "]";
     }

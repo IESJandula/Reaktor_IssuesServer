@@ -121,7 +121,8 @@ public class UsuarioCategoriaController
 
             // Creamos la relación usuario-categoría
             UsuarioCategoria usuarioCategoria = new UsuarioCategoria();
-            usuarioCategoria.setId(new UsuarioCategoriaId(nombreCategoria, nombreResponsable, emailResponsable));
+            usuarioCategoria.setId(new UsuarioCategoriaId(nombreCategoria, emailResponsable));
+            usuarioCategoria.setNombreResponsable(nombreResponsable);
             usuarioCategoria.setCategoria(categoria);
 
             // Guardamos la relación usuario-categoría
@@ -166,7 +167,7 @@ public class UsuarioCategoriaController
             this.validarUsuarioCategoria(nombreCategoria, nombreResponsable, emailResponsable);
 
             // Creamos el ID de la relación usuario-categoría
-            UsuarioCategoriaId id = new UsuarioCategoriaId(nombreCategoria, nombreResponsable, emailResponsable);
+            UsuarioCategoriaId id = new UsuarioCategoriaId(nombreCategoria, emailResponsable);
 
             // Validamos que la relación usuario-categoría exista
             if (!this.usuarioCategoriaRepository.existsById(id))

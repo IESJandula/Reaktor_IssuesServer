@@ -37,8 +37,9 @@ public interface IIncidenciaRepository extends JpaRepository<Incidencia, Long>
 																			  i.problema,
 																			  i.estado,
 																			  i.solucion,
-																			  i.emailResponsable,
-																			  i.categoria.nombre)
+																			  i.usuarioCategoria.id.emailResponsable,
+																			  i.usuarioCategoria.nombreResponsable,
+																			  i.usuarioCategoria.id.nombreCategoria)
 			FROM Incidencia i
 			ORDER BY i.fecha DESC
 		   """) 	
@@ -54,18 +55,19 @@ public interface IIncidenciaRepository extends JpaRepository<Incidencia, Long>
 	 */
 	@Query("""
 			SELECT new es.iesjandula.reaktor.issues_server.dtos.IncidenciaDto(i.id, 
-																			i.ubicacion.nombre,
-																			i.email,
-																			i.nombre,
-																			i.apellidos,
-																			CAST(FUNCTION('DATE_FORMAT', i.fecha, '%d/%m/%Y %H:%i') AS string),
-																			i.problema,
-																			i.estado,
-																			i.solucion,
-																			i.emailResponsable,
-																			i.categoria.nombre)
+																			  i.ubicacion.nombre,
+																			  i.email,
+																			  i.nombre,
+																			  i.apellidos,
+																			  CAST(FUNCTION('DATE_FORMAT', i.fecha, '%d/%m/%Y %H:%i') AS string),
+																			  i.problema,
+																			  i.estado,
+																			  i.solucion,
+																			  i.usuarioCategoria.id.emailResponsable,
+																			  i.usuarioCategoria.nombreResponsable,
+																			  i.usuarioCategoria.id.nombreCategoria)
 			FROM Incidencia i
-			WHERE i.email = :email or i.emailResponsable = :email
+			WHERE i.email = :email or i.usuarioCategoria.id.emailResponsable = :email
 			ORDER BY i.fecha DESC
 		""")
 	Page<IncidenciaDto> buscarIncidenciaOrdenadaFechaPorUsuario(Pageable pageable, @Param("email") String email);
@@ -78,6 +80,6 @@ public interface IIncidenciaRepository extends JpaRepository<Incidencia, Long>
 	 * @param nombre El nombre de la categoría.
 	 * @return {@code true} si existen incidencias asociadas a la categoría; {@code false} en caso contrario.
 	 */
-	@Query("SELECT COUNT(i) > 0 FROM Incidencia i WHERE i.categoria.nombre = :nombreCategoria")
+	@Query("SELECT COUNT(i) > 0 FROM Incidencia i WHERE i.usuarioCategoria.id.nombreCategoria = :nombreCategoria")
 	boolean validarSiExistenIncidenciasAsociadasACategoria(@Param("nombreCategoria") String nombreCategoria);
 }

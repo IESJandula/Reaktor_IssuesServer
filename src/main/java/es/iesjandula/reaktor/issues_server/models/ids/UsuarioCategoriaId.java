@@ -27,11 +27,6 @@ public class UsuarioCategoriaId implements Serializable
 	private String nombreCategoria;
 
 	/**
-	 * Nombre del responsable.
-	 */
-	private String nombreResponsable;
-
-	/**
 	 * Email del responsable.
 	 */
     private String emailResponsable;

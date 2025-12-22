@@ -1,5 +1,8 @@
 package es.iesjandula.reaktor.issues_server.utils;
 
+import java.util.Arrays;
+import java.util.List;
+
 /**
  * Clase que contiene constantes utilizadas en la aplicación.
  * <p>
@@ -43,6 +46,9 @@ public final class Constants
 
 	/** Estado de incidencia duplicada */
 	public static final String ESTADO_DUPLICADA = "DUPLICADA";
+
+	/** Lista de estados válidos */
+	public final static List<String> ESTADOS_VALIDOS = Arrays.asList(ESTADO_PENDIENTE, ESTADO_EN_PROGRESO, ESTADO_CANCELADA, ESTADO_RESUELTA, ESTADO_DUPLICADA);
 
 	/********************************************/
 	/**************** Errores *******************/
@@ -178,4 +184,10 @@ public final class Constants
 
 	/** Error de incidencia usuario no permitido - Mensaje */
 	public final static String ERR_INCIDENCIA_USUARIO_NO_PERMITIDO_MESSAGE = "El usuario no tiene permisos para realizar esta acción.";	
+
+	/** Error de incidencia estado no válido - Código */
+	public final static int ERR_INCIDENCIA_ESTADO_NO_VALIDO_CODE = 510;
+
+	/** Error de incidencia estado no válido - Mensaje */
+	public final static String ERR_INCIDENCIA_ESTADO_NO_VALIDO_MESSAGE = "El estado de la incidencia no es válido.";
 }
