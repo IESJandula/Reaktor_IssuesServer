@@ -4,6 +4,11 @@ import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.List;
 
+import org.thymeleaf.TemplateEngine;
+import org.thymeleaf.context.Context;
+import org.thymeleaf.templatemode.TemplateMode;
+import org.thymeleaf.templateresolver.ClassLoaderTemplateResolver;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import java.util.Optional;
 import org.springframework.data.domain.Page;
@@ -23,8 +28,11 @@ import org.springframework.web.bind.annotation.RestController;
 import es.iesjandula.reaktor.base.security.models.DtoUsuarioExtended;
 import es.iesjandula.reaktor.base_client.dtos.NotificationEmailDto;
 import es.iesjandula.reaktor.base_client.requests.notificaciones.RequestNotificacionesEnviarEmail;
+import es.iesjandula.reaktor.base_client.requests.printers.RequestImpresion;
+import es.iesjandula.reaktor.base_client.requests.school_base_server.ObtencionCursoAcademico;
 import es.iesjandula.reaktor.base_client.utils.BaseClientException;
 import es.iesjandula.reaktor.base.utils.BaseConstants;
+import es.iesjandula.reaktor.base.utils.BaseException;
 import es.iesjandula.reaktor.issues_server.dtos.FiltroBusquedaDto;
 import es.iesjandula.reaktor.issues_server.dtos.IncidenciaDto;
 import es.iesjandula.reaktor.issues_server.models.Incidencia;
@@ -34,6 +42,7 @@ import es.iesjandula.reaktor.issues_server.models.ids.UsuarioCategoriaId;
 import es.iesjandula.reaktor.issues_server.repository.IUbicacionRepository;
 import es.iesjandula.reaktor.issues_server.repository.IIncidenciaRepository;
 import es.iesjandula.reaktor.issues_server.repository.IUsuarioCategoriaRepository;
+import es.iesjandula.reaktor.issues_server.services.PdfParteDesperfectosService;
 import es.iesjandula.reaktor.issues_server.utils.Constants;
 import es.iesjandula.reaktor.issues_server.utils.IssuesServerError;
 import lombok.extern.log4j.Log4j2;
@@ -98,6 +107,17 @@ public class IncidenciaController
 
 	@Autowired
 	private RequestNotificacionesEnviarEmail requestNotificacionesEnviarEmail;
+ 
+	@Autowired
+	private PdfParteDesperfectosService pdfParteDesperfectosService;
+
+	/** Request para obtener el curso académico seleccionado */
+	@Autowired
+	private ObtencionCursoAcademico obtencionCursoAcademico;
+
+	/** Request para imprimir el informe de la incidencia */
+	@Autowired
+	private RequestImpresion requestImpresion;
 
 	/**
 	 * Crea una nueva incidencia en el sistema por parte del usuario.
@@ -165,6 +185,18 @@ public class IncidenciaController
 			// Enviamos la notificación email al responsable de la categoría
 			this.enviarEmailCreacionIncidencia(nuevaIncidencia);
 
+            // Obtenemos el valor de "imprimirInforme" de la categoría
+            Boolean imprimirInforme = nuevaIncidencia.getUsuarioCategoria().getCategoria().getImprimirInforme();
+
+			// Si la categoría fue configurada así, imprimimos el informe
+			if (imprimirInforme)
+			{
+				// Obtenemos el curso académico seleccionado
+				String cursoAcademico = this.obtencionCursoAcademico.obtenerCursoAcademicoSeleccionado();
+
+				// Imprimimos el informe de la incidencia
+				this.imprimirInformeIncidencia(cursoAcademico, nuevaIncidencia);
+			}
 			// Devolvemos la respuesta
             return ResponseEntity.ok().build();
         }
@@ -184,6 +216,30 @@ public class IncidenciaController
 			return ResponseEntity.status(500).body(issuesServerError.getBodyErrorMessage());
         }
     }
+
+	/**
+	 * Imprime el informe de la incidencia si la categoría fue configurada así.
+	 * @param incidencia La incidencia a imprimir el informe.
+	 */
+	private void imprimirInformeIncidencia(String cursoAcademico, Incidencia incidencia)
+	{
+		try
+		{
+			// Generamos el PDF del parte de desperfectos
+			byte[] pdfParteDesperfectos = this.pdfParteDesperfectosService.generarPdfParteDesperfectos(cursoAcademico, incidencia);
+
+			// Imprimimos el PDF
+			this.requestImpresion.imprimirPdf(pdfParteDesperfectos);
+		}
+		catch (BaseException | BaseClientException reaktorException)
+		{
+			// Ya ha sido logueada previamente
+		}
+		catch (IssuesServerError issuesServerError)
+		{
+			// Ya ha sido logueada previamente
+		}
+	}
 
 	/**
 	 * Valida los datos de la incidencia.
@@ -292,11 +348,12 @@ public class IncidenciaController
 			List<String> destinatarios = Arrays.asList(incidencia.getUsuarioCategoria().getId().getEmailResponsable());
 
 			// Creamos el asunto de la notificación
-			String asunto = "Nueva incidencia creada por usuario " + incidencia.getNombre() + " " + incidencia.getApellidos() + 
-			                " en la ubicación " + incidencia.getUbicacion().getNombre() ;
-							
-			// Creamos el cuerpo de la notificación
-			String cuerpo = "Problema encontrado: \n\n " + incidencia.getProblema() ;
+			String asunto = String.format("Nueva incidencia creada por %s %s en %s",
+										  incidencia.getNombre(),
+										  incidencia.getApellidos(),
+										  incidencia.getUbicacion().getNombre());
+			
+			String cuerpo = this.generarCuerpoIncidenciaCreadaHtml(incidencia);
 
 			// Creamos el DTO de la notificación email
 			NotificationEmailDto notificationEmailDto = new NotificationEmailDto(destinatarios, null, null, asunto, cuerpo);
@@ -313,6 +370,28 @@ public class IncidenciaController
 			// Ya ha sido logueada previamente
 			log.error("Error al enviar la notificación email (creación de incidencia)", exception);
 		}
+	}
+
+	/**
+	 * Genera el cuerpo de la notificación email de creación de incidencia.
+	 * @param incidencia La incidencia a generar el cuerpo.
+	 * @return El cuerpo de la notificación email de creación de incidencia.
+	 */
+	private String generarCuerpoIncidenciaCreadaHtml(Incidencia incidencia)
+	{
+		// Creamos el template engine
+		TemplateEngine engine = this.crearTemplateEngine();
+
+		// Creamos el contexto
+		Context context = new Context();
+
+		// Añadimos las variables al contexto
+		context.setVariable("nombreUsuario", incidencia.getNombre() + " " + incidencia.getApellidos());
+		context.setVariable("ubicacion", incidencia.getUbicacion().getNombre());
+		context.setVariable("problema", incidencia.getProblema());
+	
+		// Procesamos el template y devolvemos el cuerpo
+		return engine.process("incidencia_creada", context);
 	}
 
 	/**
@@ -806,4 +885,52 @@ public class IncidenciaController
 		// Obtenemos la incidencia
 		return optionalIncidencia.get();
 	}
+
+    /** Método - Generar cuerpo del email en HTML
+     *
+     * @param incidencia - La incidencia a generar el cuerpo del email
+     * @param destinatario - El destinatario del email
+     * @return String - El cuerpo del email en HTML
+     */
+    private String generarCuerpoEmailHtml(Incidencia incidencia, String destinatario)
+    {
+        // Creo el template engine
+        TemplateEngine engine = this.crearTemplateEngine();
+
+        // Creo el contexto
+        Context context = new Context();
+
+        // Añado las variables al contexto
+        context.setVariable("destinatario", destinatario);
+        context.setVariable("ubicacion", incidencia.getUbicacion().getNombre());
+        context.setVariable("responsable", incidencia.getUsuarioCategoria().getNombreResponsable());
+        context.setVariable("estado", incidencia.getEstado());
+
+        // Proceso el template y devuelvo el cuerpo del email en HTML
+        return engine.process("incidencia_actualizada", context);
+    }
+
+    /** Método - Crear template engine
+     *
+     * @return TemplateEngine - El template engine creado
+     */
+    private TemplateEngine crearTemplateEngine()
+    {
+        // Creo el resolver de templates
+        ClassLoaderTemplateResolver templateResolver = new ClassLoaderTemplateResolver();
+
+        // Configuro el resolver de templates
+        templateResolver.setPrefix("templates/");
+        templateResolver.setSuffix(".html");
+        templateResolver.setTemplateMode(TemplateMode.HTML);
+        templateResolver.setCharacterEncoding("UTF-8");
+        templateResolver.setCacheable(true);
+
+        // Configuro el template engine
+        TemplateEngine templateEngine = new TemplateEngine();
+        templateEngine.setTemplateResolver(templateResolver);
+
+        // Devuelvo el template engine
+        return templateEngine;
+    }
 }

@@ -31,6 +31,9 @@ public class Categoria
     @Column(nullable = false)
     private String nombre;
 
+    @Column
+    private Boolean imprimirInforme;
+
     /**
      * Relación uno a muchos con UsuarioCategoria
      * @return Lista de usuarios responsables de la categoría de incidencia

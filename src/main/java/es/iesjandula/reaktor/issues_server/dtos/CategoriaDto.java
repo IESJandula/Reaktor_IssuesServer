@@ -13,4 +13,9 @@ public class CategoriaDto
      * Nombre de la categoría
      */
     private String nombre ;
+
+    /**
+     * Indica si se debe imprimir el informe
+     */
+    private Boolean imprimirInforme;
 }

@@ -79,11 +79,13 @@ public class CategoriasController
      * Crear una nueva categoría de incidencia
      *
      * @param nombre Nombre de la categoría de incidencia a crear
+     * @param imprimirInforme Indica si se debe imprimir el informe
      * @return ResponseEntity con la categoría creada
      */
     @PreAuthorize("hasRole('" + BaseConstants.ROLE_ADMINISTRADOR + "')")
     @PostMapping("/")
-    public ResponseEntity<?> crear(@RequestHeader("nombre") String nombre)
+    public ResponseEntity<?> crear(@RequestHeader("nombre") String nombre,
+                                   @RequestHeader("imprimirInforme") Boolean imprimirInforme)
     {
         try
         {
@@ -93,7 +95,8 @@ public class CategoriasController
             // Creamos la categoría
             Categoria categoria = new Categoria();
             categoria.setNombre(nombre);
-
+            categoria.setImprimirInforme(imprimirInforme);
+            
             // Guardamos la categoría
             this.categoriaRepository.saveAndFlush(categoria);
 

@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="utf-8" />
+  <title>Parte de desperfectos - IES Jándula</title>
+
+  <style>
+    /* ===== Impresión A4 ===== */
+    @page { size: A4; margin: 10mm; }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 11px;
+      color: #000;
+      margin: 0;
+      background: #fff;
+    }
+
+    .page {
+      width: 100%;
+      box-sizing: border-box;
+      margin: 0 auto;
+    }
+
+    /* ===== Estilos generales ===== */
+    .center { text-align: center; }
+    .mt-5 { margin-top: 3mm; }
+    .tiny { font-size: 9px; }
+    .bold { font-weight: 700; }
+
+    /* ===== Tablas ===== */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      table-layout: fixed;
+    }
+
+    td, th {
+      border: 1px solid #000;
+      padding: 2mm 2mm;
+      vertical-align: top;
+      word-wrap: break-word;
+    }
+
+    th {
+      font-weight: 700;
+      text-align: center;
+    }
+
+    /* Alturas fijas (ajustadas para que quepa en una hoja A4) */
+    .h-35 { min-height: 22mm; }
+    .h-45 { min-height: 26mm; }
+    .h-50 { min-height: 30mm; }
+    .h-60 { min-height: 36mm; }
+
+    /* Texto largo */
+    .text-block {
+      white-space: pre-wrap;
+    }
+
+    /* Separadores */
+    .section-caption {
+      margin: 4mm 0 2mm;
+      text-align: center;
+      font-style: italic;
+    }
+
+    .section-caption:before,
+    .section-caption:after {
+      content: "";
+      display: inline-block;
+      border-top: 1px solid #000;
+      width: 30%;
+      margin: 0 2mm;
+      transform: translateY(-2px);
+    }
+  </style>
+</head>
+
+<body>
+<div class="page">
+
+  <div class="center mt-5 bold" style="letter-spacing: 0.5px;">
+    PARTE DE DESPERFECTOS - I.E.S. JÁNDULA
+  </div>
+
+  <!-- Datos generales -->
+  <div class="mt-5">
+    <table>
+      <colgroup>
+        <col style="width: 35%;" />
+        <col style="width: 65%;" />
+      </colgroup>
+      <tr>
+        <td class="bold">CURSO ACADÉMICO</td>
+        <td th:text="${cursoAcademico}"></td>
+      </tr>
+      <tr>
+        <td class="bold">Fecha detección de la avería</td>
+        <td th:text="${fechaDeteccion}"></td>
+      </tr>
+      <tr>
+        <td class="bold">Instalación / Dependencia</td>
+        <td th:text="${instalacion}"></td>
+      </tr>
+      <tr>
+        <td class="bold">Detectada por</td>
+        <td th:text="${detectadaPor}"></td>
+      </tr>
+    </table>
+  </div>
+
+  <!-- Descripción -->
+  <div class="mt-5">
+    <table>
+      <tr>
+        <th>Descripción de la avería</th>
+      </tr>
+      <tr>
+        <td class="h-50">
+          <div class="text-block" th:text="${descripcionAveria}">
+            
+          </div>
+        </td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="section-caption tiny">A rellenar por el Operario o Reparador</div>
+
+  <!-- Reparación -->
+  <div class="mt-5">
+    <table>
+      <tr>
+        <th>Medidas adoptadas / Reparación realizada / Incidencias</th>
+      </tr>
+      <tr>
+        <td class="h-60">
+          <div class="text-block">
+            
+          </div>
+        </td>
+      </tr>
+    </table>
+  </div>
+
+  <!-- Materiales -->
+  <div class="mt-5">
+    <table style="width: 100%;">
+      <tr>
+        <th>Materiales utilizados</th>
+      </tr>
+      <tr>
+        <td class="h-45">
+          <div class="text-block">
+
+          </div>
+        </td>
+      </tr>
+    </table>
+  </div>
+
+  <!-- Firma -->
+  <div class="mt-5">
+    <table style="width: 100%;">
+      <tr>
+        <td class="h-35">
+          <div style="font-weight: bold; font-size: 15px; margin-top: 5mm;">
+            Fdo.
+          </div>
+          <div style="margin-top: 10mm;">
+            <span>El Secretario / Operario</span>
+          </div>
+        </td>
+      </tr>
+    </table>
+  </div>
+
+</div>
+</body>
+</html>

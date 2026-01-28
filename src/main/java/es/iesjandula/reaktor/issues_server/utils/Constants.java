@@ -190,4 +190,37 @@ public final class Constants
 
 	/** Error de incidencia estado no válido - Mensaje */
 	public final static String ERR_INCIDENCIA_ESTADO_NO_VALIDO_MESSAGE = "El estado de la incidencia no es válido.";
+
+	/********************************************/
+	/********** Errores de PDF ******************/
+	/********************************************/
+
+	/** Error de PDF no generado - Código */
+	public final static int ERR_PDF_NO_GENERADO_CODE = 600;
+
+	/** Error de PDF no generado - Mensaje */
+	public final static String ERR_PDF_NO_GENERADO_MESSAGE = "No se ha podido generar el PDF.";
+
+	/************************************************/
+	/** Plantilla y campos del PDF de desperfectos **/
+	/************************************************/
+
+	/** Plantilla del PDF de desperfectos */
+	public static final String PLANTILLA_PDF_DESPERFECTOS = "pdf_parte_desperfectos";
+
+	/** Campos del PDF de desperfectos - Curso académico */
+	public static final String CURSO_ACADEMICO   = "cursoAcademico";
+
+	/** Campos del PDF de desperfectos - Fecha de detección */
+	public static final String FECHA_DETECCION   = "fechaDeteccion";
+
+	/** Campos del PDF de desperfectos - Instalación */
+	public static final String INSTALACION       = "instalacion";
+
+	/** Campos del PDF de desperfectos - Detectada por */
+	public static final String DETECTADA_POR     = "detectadaPor";
+
+	/** Campos del PDF de desperfectos - Descripción de la avería */
+	public static final String DESCRIPCION_AVERIA = "descripcionAveria";
+	
 }
