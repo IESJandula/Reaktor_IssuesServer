@@ -2,29 +2,16 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Nueva incidencia creada</title>
+    <title>Estado de incidencia actualizada</title>
 </head>
 <body style="font-family: Arial, sans-serif; font-size: 14px; color: #222;">
 
-<p>Se ha registrado una <strong>nueva incidencia</strong> con los siguientes datos:</p>
 
-<ul>
-    <li>
-        <strong>Usuario:</strong>
-        <span th:text="${nombreUsuario}">Nombre Apellidos</span>
-    </li>
-    <li>
-        <strong>Ubicación:</strong>
-        <span th:text="${ubicacion}">Ubicación</span>
-    </li>
-</ul>
-
-<p><strong>Descripción del problema:</strong></p>
-
+<p><strong>El estado de la incidencia del aula <strong th:text="${ubicacion}">Ubicación</strong></strong> ha cambiado a:</p>
 <div style="padding: 10px; border-left: 3px solid #d9534f; background-color: #f9f9f9;">
     <pre style="margin: 0; white-space: pre-wrap; font-family: inherit;"
-         th:text="${problema}">
-Descripción del problema
+            th:text="${estado}">
+Estado de la incidencia
     </pre>
 </div>
 

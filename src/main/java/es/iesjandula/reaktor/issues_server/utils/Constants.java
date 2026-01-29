@@ -222,5 +222,36 @@ public final class Constants
 
 	/** Campos del PDF de desperfectos - Descripción de la avería */
 	public static final String DESCRIPCION_AVERIA = "descripcionAveria";
+
+	/********************************************/
+	/********** Plantillas de emails ************/
+	/********************************************/
+
+	/** Plantilla de email de incidencia creada */
+	public static final String PLANTILLA_EMAIL_INCIDENCIA_CREADA = "incidencia_creada";
+
+	/** Plantilla de email de estado de incidencia actualizada */
+	public static final String PLANTILLA_EMAIL_ESTADO_INCIDENCIA_ACTUALIZADA = "estado_incidencia_actualizada";
 	
+	/** Plantilla de email de solución de incidencia actualizada */
+	public static final String PLANTILLA_EMAIL_SOLUCION_INCIDENCIA_ACTUALIZADA = "solucion_incidencia_actualizada";
+
+	/********************************************/
+	/********* Variables de contexto ************/
+	/********************************************/
+
+	/** Variable de contexto de la ubicación de la incidencia */
+	public static final String VARIABLE_CONTEXT_UBICACION      = "ubicacion";
+
+	/** Variable de contexto del estado de la incidencia */
+	public static final String VARIABLE_CONTEXT_ESTADO         = "estado";
+
+	/** Variable de contexto de la solución de la incidencia */
+	public static final String VARIABLE_CONTEXT_SOLUCION       = "solucion";
+
+	/** Variable de contexto del nombre del usuario */
+	public static final String VARIABLE_CONTEXT_NOMBRE_USUARIO = "nombreUsuario";
+
+	/** Variable de contexto del problema de la incidencia */
+	public static final String VARIABLE_CONTEXT_PROBLEMA       = "problema";
 }

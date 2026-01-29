@@ -189,7 +189,7 @@ public class IncidenciaController
             Boolean imprimirInforme = nuevaIncidencia.getUsuarioCategoria().getCategoria().getImprimirInforme();
 
 			// Si la categoría fue configurada así, imprimimos el informe
-			if (imprimirInforme)
+			if (imprimirInforme != null && imprimirInforme)
 			{
 				// Obtenemos el curso académico seleccionado
 				String cursoAcademico = this.obtencionCursoAcademico.obtenerCursoAcademicoSeleccionado();
@@ -386,12 +386,12 @@ public class IncidenciaController
 		Context context = new Context();
 
 		// Añadimos las variables al contexto
-		context.setVariable("nombreUsuario", incidencia.getNombre() + " " + incidencia.getApellidos());
-		context.setVariable("ubicacion", incidencia.getUbicacion().getNombre());
-		context.setVariable("problema", incidencia.getProblema());
+		context.setVariable(Constants.VARIABLE_CONTEXT_NOMBRE_USUARIO, incidencia.getNombre() + " " + incidencia.getApellidos());
+		context.setVariable(Constants.VARIABLE_CONTEXT_UBICACION, incidencia.getUbicacion().getNombre());
+		context.setVariable(Constants.VARIABLE_CONTEXT_PROBLEMA, incidencia.getProblema());
 	
 		// Procesamos el template y devolvemos el cuerpo
-		return engine.process("incidencia_creada", context);
+		return engine.process(Constants.PLANTILLA_EMAIL_INCIDENCIA_CREADA, context);
 	}
 
 	/**
@@ -505,12 +505,12 @@ public class IncidenciaController
 			List<String> destinatarios = Arrays.asList(incidencia.getEmail());
 
 			// Creamos el asunto de la notificación
-			String asunto = "El estado de la incidencia ha cambiado" ;
+			String asunto = String.format("El estado de la incidencia del aula %s ha cambiado a %s",
+										  incidencia.getUbicacion().getNombre(),
+										  incidencia.getEstado());
 							
 			// Creamos el cuerpo de la notificación
-			String cuerpo = "Sobre la incidencia creada por ti en la ubicación " + incidencia.getUbicacion().getNombre() + 
-			                ", el usuario " + incidencia.getUsuarioCategoria().getNombreResponsable() + " " + 
-			                " ha cambiado el estado a " + incidencia.getEstado() ;
+			String cuerpo = this.generarCuerpoIncidenciaActualizadaHtml(incidencia);
 
 			// Creamos el DTO de la notificación email
 			NotificationEmailDto notificationEmailDto = new NotificationEmailDto(destinatarios, null, null, asunto, cuerpo);
@@ -528,6 +528,29 @@ public class IncidenciaController
 			log.error("Error al enviar la notificación email (actualización de estado)", exception);
 		}
 	}
+
+
+	/**
+	 * Genera el cuerpo de la notificación email de actualización de estado de incidencia.
+	 * @param incidencia La incidencia a generar el cuerpo.
+	 * @return El cuerpo de la notificación email de actualización de estado de incidencia.
+	 */
+	private String generarCuerpoIncidenciaActualizadaHtml(Incidencia incidencia)
+	{
+		// Creamos el template engine
+		TemplateEngine engine = this.crearTemplateEngine();
+
+		// Creamos el contexto
+		Context context = new Context();
+
+		// Añadimos las variables al contexto
+		context.setVariable(Constants.VARIABLE_CONTEXT_UBICACION, incidencia.getUbicacion().getNombre());
+		context.setVariable(Constants.VARIABLE_CONTEXT_ESTADO, incidencia.getEstado());
+
+		// Procesamos el template y devolvemos el cuerpo
+		return engine.process(Constants.PLANTILLA_EMAIL_ESTADO_INCIDENCIA_ACTUALIZADA, context);
+	}
+
 	/**
 	 * Actualiza la solución de una incidencia en el sistema por parte del administrador.
 	 * 
@@ -596,12 +619,11 @@ public class IncidenciaController
 			List<String> destinatarios = Arrays.asList(incidencia.getEmail());
 
 			// Creamos el asunto de la notificación
-			String asunto = "La solución de la incidencia ha cambiado" ;
+			String asunto = String.format("La solución de la incidencia del aula %s ha cambiado",
+										  incidencia.getUbicacion().getNombre());
 							
 			// Creamos el cuerpo de la notificación
-			String cuerpo = "Sobre la incidencia creada por ti en la ubicación " + incidencia.getUbicacion().getNombre() + 
-			                ", el usuario " + incidencia.getUsuarioCategoria().getNombreResponsable() + " " + 
-			                " ha comentado la siguiente solución: " + incidencia.getSolucion() ;
+			String cuerpo = this.generarCuerpoIncidenciaSolucionActualizadaHtml(incidencia);
 
 			// Creamos el DTO de la notificación email
 			NotificationEmailDto notificationEmailDto = new NotificationEmailDto(destinatarios, null, null, asunto, cuerpo);
@@ -619,6 +641,28 @@ public class IncidenciaController
 			log.error("Error al enviar la notificación email (actualización de solución)", exception);
 		}
 	}
+
+	/**
+	 * Genera el cuerpo de la notificación email de actualización de solución de incidencia.
+	 * @param incidencia La incidencia a generar el cuerpo.
+	 * @return El cuerpo de la notificación email de actualización de solución de incidencia.
+	 */
+	private String generarCuerpoIncidenciaSolucionActualizadaHtml(Incidencia incidencia)
+	{
+		// Creamos el template engine
+		TemplateEngine engine = this.crearTemplateEngine();
+
+		// Creamos el contexto
+		Context context = new Context();
+
+		// Añadimos las variables al contexto
+		context.setVariable(Constants.VARIABLE_CONTEXT_UBICACION, incidencia.getUbicacion().getNombre());
+		context.setVariable(Constants.VARIABLE_CONTEXT_SOLUCION, incidencia.getSolucion());
+
+		// Procesamos el template y devolvemos el cuerpo
+		return engine.process(Constants.PLANTILLA_EMAIL_SOLUCION_INCIDENCIA_ACTUALIZADA, context);
+	}
+
 	/**
 	 * Modifica el responsable de una incidencia en el sistema por parte del administrador.
 	 * 
