@@ -28,7 +28,7 @@ public class EstadisticasIncidenciaController
 	@Autowired
 	private IIncidenciaRepository incidenciaRepository;
 
-	@PreAuthorize("hasAnyRole('" + BaseConstants.ROLE_ADMINISTRADOR + "', '" + BaseConstants.ROLE_PROFESOR + "')")
+	@PreAuthorize("hasRole('" + BaseConstants.ROLE_PROFESOR + "')")
 	@GetMapping("/por-categoria")
 	public ResponseEntity<?> obtenerEstadisticasPorCategoria()
 	{
@@ -39,7 +39,8 @@ public class EstadisticasIncidenciaController
 			List<EstadisticasCategoriaDto> resultados = incidenciaRepository.obtenerEstadisticasPorCategoria();
 
 			return ResponseEntity.ok(resultados);
-		} catch (Exception exception)
+		}
+		catch (Exception exception)
 		{
 			String mensajeError = "Error inesperado al obtener estadísticas por categoría";
 			log.error(mensajeError, exception);
@@ -49,7 +50,7 @@ public class EstadisticasIncidenciaController
 		}
 	}
 
-	@PreAuthorize("hasAnyRole('" + BaseConstants.ROLE_ADMINISTRADOR + "', '" + BaseConstants.ROLE_PROFESOR + "')")
+	@PreAuthorize("hasRole('" + BaseConstants.ROLE_PROFESOR + "')")
 	@GetMapping("/por-estado")
 	public ResponseEntity<?> obtenerEstadisticasPorEstado()
 	{
@@ -60,7 +61,8 @@ public class EstadisticasIncidenciaController
 			List<EstadisticasEstadoDto> resultados = incidenciaRepository.obtenerEstadisticasPorEstado();
 
 			return ResponseEntity.ok(resultados);
-		} catch (Exception exception)
+		}
+		catch (Exception exception)
 		{
 			String mensajeError = "Error inesperado al obtener estadísticas por estado";
 			log.error(mensajeError, exception);
@@ -70,7 +72,7 @@ public class EstadisticasIncidenciaController
 		}
 	}
 
-	@PreAuthorize("hasAnyRole('" + BaseConstants.ROLE_ADMINISTRADOR + "', '" + BaseConstants.ROLE_PROFESOR + "')")
+	@PreAuthorize("hasRole('" + BaseConstants.ROLE_PROFESOR + "')")
 	@GetMapping("/por-ubicacion")
 	public ResponseEntity<?> obtenerEstadisticasPorUbicacion()
 	{
@@ -81,7 +83,8 @@ public class EstadisticasIncidenciaController
 			List<EstadisticasUbicacionDto> resultados = incidenciaRepository.obtenerEstadisticasPorUbicacion();
 
 			return ResponseEntity.ok(resultados);
-		} catch (Exception exception)
+		}
+		catch (Exception exception)
 		{
 			String mensajeError = "Error inesperado al obtener estadísticas por ubicación";
 			log.error(mensajeError, exception);
