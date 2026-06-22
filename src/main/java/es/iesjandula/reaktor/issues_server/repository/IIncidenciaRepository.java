@@ -95,15 +95,30 @@ public interface IIncidenciaRepository extends JpaRepository<Incidencia, Long>
 	@Query("SELECT COUNT(i) > 0 FROM Incidencia i WHERE i.usuarioCategoria.id.nombreCategoria = :nombreCategoria")
 	boolean validarSiExistenIncidenciasAsociadasACategoria(@Param("nombreCategoria") String nombreCategoria);
 
-	@Query("SELECT new es.iesjandula.reaktor.issues_server.dtos.EstadisticasCategoriaDto(i.usuarioCategoria.id.nombreCategoria, COUNT(i)) "
-			+ "FROM Incidencia i GROUP BY i.usuarioCategoria.id.nombreCategoria ORDER BY COUNT(i) DESC")
-	List<EstadisticasCategoriaDto> obtenerEstadisticasPorCategoria();
+	@Query("""
+		SELECT new es.iesjandula.reaktor.issues_server.dtos.EstadisticasCategoriaDto(i.usuarioCategoria.id.nombreCategoria, COUNT(i)) "
+		FROM Incidencia i 
+		WHERE i.cursoAcademico = :cursoAcademico
+		GROUP BY i.usuarioCategoria.id.nombreCategoria 
+		ORDER BY COUNT(i) DESC
+	""")
+	List<EstadisticasCategoriaDto> obtenerEstadisticasPorCategoria(@Param("cursoAcademico") String cursoAcademico);
 
-	@Query("SELECT new es.iesjandula.reaktor.issues_server.dtos.EstadisticasEstadoDto(i.estado, COUNT(i)) "
-			+ "FROM Incidencia i GROUP BY i.estado ORDER BY COUNT(i) DESC")
-	List<EstadisticasEstadoDto> obtenerEstadisticasPorEstado();
+	@Query("""
+		SELECT new es.iesjandula.reaktor.issues_server.dtos.EstadisticasEstadoDto(i.estado, COUNT(i)) "
+		FROM Incidencia i
+		WHERE i.cursoAcademico = :cursoAcademico
+		GROUP BY i.estado
+		ORDER BY COUNT(i) DESC
+	""")
+	List<EstadisticasEstadoDto> obtenerEstadisticasPorEstado(@Param("cursoAcademico") String cursoAcademico);
 
-	@Query("SELECT new es.iesjandula.reaktor.issues_server.dtos.EstadisticasUbicacionDto(i.ubicacion.nombre, COUNT(i)) "
-			+ "FROM Incidencia i GROUP BY i.ubicacion.nombre ORDER BY COUNT(i) DESC")
-	List<EstadisticasUbicacionDto> obtenerEstadisticasPorUbicacion();
+	@Query("""
+		SELECT new es.iesjandula.reaktor.issues_server.dtos.EstadisticasUbicacionDto(i.ubicacion.nombre, COUNT(i))
+		FROM Incidencia i
+		WHERE i.cursoAcademico = :cursoAcademico
+		GROUP BY i.ubicacion.nombre
+		ORDER BY COUNT(i) DESC
+	""")
+	List<EstadisticasUbicacionDto> obtenerEstadisticasPorUbicacion(@Param("cursoAcademico") String cursoAcademico);
 }

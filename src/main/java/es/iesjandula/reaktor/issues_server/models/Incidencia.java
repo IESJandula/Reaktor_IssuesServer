@@ -37,6 +37,12 @@ public class Incidencia
     private Long id;
 
     /**
+     * Curso académico de la incidencia.
+     */
+    @Column(name = "curso_academico", nullable = false)
+    private String cursoAcademico;
+
+    /**
      * Atributo - Aula en la que se da la incidencia.
      * 
      * Este atributo es parte del identificador compuesto de la incidencia.

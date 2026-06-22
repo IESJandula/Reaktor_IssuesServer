@@ -166,6 +166,7 @@ public class IncidenciaController
 
             // Creamos la nueva incidencia
             Incidencia nuevaIncidencia = new Incidencia();
+			nuevaIncidencia.setCursoAcademico(FechasUtils.obtenerCursoAcademicoActual());
 			nuevaIncidencia.setUbicacion(ubicacion);
 			nuevaIncidencia.setEmail(usuario.getEmail());
 			nuevaIncidencia.setNombre(usuario.getNombre());

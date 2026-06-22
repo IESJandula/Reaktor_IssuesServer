@@ -16,6 +16,7 @@ import es.iesjandula.reaktor.issues_server.dtos.EstadisticasCategoriaDto;
 import es.iesjandula.reaktor.issues_server.dtos.EstadisticasEstadoDto;
 import es.iesjandula.reaktor.issues_server.dtos.EstadisticasUbicacionDto;
 import es.iesjandula.reaktor.issues_server.repository.IIncidenciaRepository;
+import es.iesjandula.reaktor.issues_server.utils.FechasUtils;
 import es.iesjandula.reaktor.issues_server.utils.Constants;
 import es.iesjandula.reaktor.issues_server.utils.IssuesServerError;
 
@@ -36,8 +37,13 @@ public class EstadisticasIncidenciaController
 		{
 			log.info("Petición para obtener estadísticas de incidencias por categoría");
 
-			List<EstadisticasCategoriaDto> resultados = incidenciaRepository.obtenerEstadisticasPorCategoria();
+			// Obtenemos el curso académico actual
+			String cursoAcademico = FechasUtils.obtenerCursoAcademicoActual();
 
+			// Obtenemos las estadísticas por categoría
+			List<EstadisticasCategoriaDto> resultados = incidenciaRepository.obtenerEstadisticasPorCategoria(cursoAcademico);
+
+			// Devolvemos las estadísticas por categoría
 			return ResponseEntity.ok(resultados);
 		}
 		catch (Exception exception)
@@ -58,8 +64,13 @@ public class EstadisticasIncidenciaController
 		{
 			log.info("Petición para obtener estadísticas de incidencias por estado");
 
-			List<EstadisticasEstadoDto> resultados = incidenciaRepository.obtenerEstadisticasPorEstado();
+			// Obtenemos el curso académico actual
+			String cursoAcademico = FechasUtils.obtenerCursoAcademicoActual();
 
+			// Obtenemos las estadísticas por estado
+			List<EstadisticasEstadoDto> resultados = incidenciaRepository.obtenerEstadisticasPorEstado(cursoAcademico);
+
+			// Devolvemos las estadísticas por estado
 			return ResponseEntity.ok(resultados);
 		}
 		catch (Exception exception)
@@ -80,8 +91,13 @@ public class EstadisticasIncidenciaController
 		{
 			log.info("Petición para obtener estadísticas de incidencias por ubicación");
 
-			List<EstadisticasUbicacionDto> resultados = incidenciaRepository.obtenerEstadisticasPorUbicacion();
+			// Obtenemos el curso académico actual
+			String cursoAcademico = FechasUtils.obtenerCursoAcademicoActual();
 
+			// Obtenemos las estadísticas por ubicación
+			List<EstadisticasUbicacionDto> resultados = incidenciaRepository.obtenerEstadisticasPorUbicacion(cursoAcademico);
+
+			// Devolvemos las estadísticas por ubicación
 			return ResponseEntity.ok(resultados);
 		}
 		catch (Exception exception)
