@@ -12,11 +12,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import es.iesjandula.reaktor.base.utils.BaseConstants;
+import es.iesjandula.reaktor.base.utils.FechasUtils;
 import es.iesjandula.reaktor.issues_server.dtos.EstadisticasCategoriaDto;
 import es.iesjandula.reaktor.issues_server.dtos.EstadisticasEstadoDto;
 import es.iesjandula.reaktor.issues_server.dtos.EstadisticasUbicacionDto;
 import es.iesjandula.reaktor.issues_server.repository.IIncidenciaRepository;
-import es.iesjandula.reaktor.issues_server.utils.FechasUtils;
 import es.iesjandula.reaktor.issues_server.utils.Constants;
 import es.iesjandula.reaktor.issues_server.utils.IssuesServerError;
 
