@@ -96,7 +96,7 @@ public interface IIncidenciaRepository extends JpaRepository<Incidencia, Long>
 	boolean validarSiExistenIncidenciasAsociadasACategoria(@Param("nombreCategoria") String nombreCategoria);
 
 	@Query("""
-		SELECT new es.iesjandula.reaktor.issues_server.dtos.EstadisticasCategoriaDto(i.usuarioCategoria.id.nombreCategoria, COUNT(i)) "
+		SELECT new es.iesjandula.reaktor.issues_server.dtos.EstadisticasCategoriaDto(i.usuarioCategoria.id.nombreCategoria, COUNT(i))
 		FROM Incidencia i 
 		WHERE i.cursoAcademico = :cursoAcademico
 		GROUP BY i.usuarioCategoria.id.nombreCategoria 
@@ -105,7 +105,7 @@ public interface IIncidenciaRepository extends JpaRepository<Incidencia, Long>
 	List<EstadisticasCategoriaDto> obtenerEstadisticasPorCategoria(@Param("cursoAcademico") String cursoAcademico);
 
 	@Query("""
-		SELECT new es.iesjandula.reaktor.issues_server.dtos.EstadisticasEstadoDto(i.estado, COUNT(i)) "
+		SELECT new es.iesjandula.reaktor.issues_server.dtos.EstadisticasEstadoDto(i.estado, COUNT(i))
 		FROM Incidencia i
 		WHERE i.cursoAcademico = :cursoAcademico
 		GROUP BY i.estado
